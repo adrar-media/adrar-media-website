@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Tokens de marque Adrar Media (PROMPT §07).
+ * Le design system complet (typographie, spacing, radius, shadows, motion)
+ * est défini en PHASE 05. Ce fichier ne pose que les fondations.
+ */
+:root {
+  --atlas-green: #1f7a63;
+  --deep-blue: #0a2540;
+  --earth-beige: #d6c2a1;
+  --anthracite: #2b2b2b;
+  --light-green: #3ed598;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--anthracite);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Aucun scroll horizontal, quel que soit le breakpoint (PROMPT §17 / §37). */
+html,
+body {
+  overflow-x: clip;
+}
+
+/* PROMPT §39 — respect strict de prefers-reduced-motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
