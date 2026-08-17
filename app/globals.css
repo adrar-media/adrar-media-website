@@ -2,44 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-/**
- * Tokens de marque Adrar Media (PROMPT §07).
- * Le design system complet (typographie, spacing, radius, shadows, motion)
- * est défini en PHASE 05. Ce fichier ne pose que les fondations.
- */
-:root {
-  --atlas-green: #1f7a63;
-  --deep-blue: #0a2540;
-  --earth-beige: #d6c2a1;
-  --anthracite: #2b2b2b;
-  --light-green: #3ed598;
+@layer base {
+  :root {
+    --atlas-green: #1f7a63;
+    --deep-blue: #0a2540;
+    --earth-beige: #d6c2a1;
+    --anthracite: #2b2b2b;
+    --light-green: #3ed598;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  /* Aucun scroll horizontal, quel que soit le breakpoint. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-body text-anthracite antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Focus visible cohérent sur tout le site, jamais supprimé. */
+  :focus-visible {
+    outline: 2px solid var(--atlas-green);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--light-green);
+    color: var(--deep-blue);
+  }
+
+  /* Les titres portent leur graisse via les tokens fontSize. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
+@layer components {
+  /* Sur-titre éditorial : petite capitale très espacée. */
+  .eyebrow {
+    @apply text-caption uppercase;
+  }
 }
 
-body {
-  background-color: #ffffff;
-  color: var(--anthracite);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+@layer utilities {
+  /* Masque de révélation ligne à ligne des grands titres. */
+  .line-mask {
+    overflow: hidden;
+    display: block;
+  }
 }
 
-/* Aucun scroll horizontal, quel que soit le breakpoint (PROMPT §17 / §37). */
-html,
-body {
-  overflow-x: clip;
-}
-
-/* PROMPT §39 — respect strict de prefers-reduced-motion. */
+/* Le mouvement est un enrichissement, jamais une condition de lecture. */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }

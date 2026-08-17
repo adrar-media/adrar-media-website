@@ -1,19 +1,29 @@
 import type { Metadata, Viewport } from "next";
+import { Archivo } from "next/font/google";
+import { siteConfig } from "@/config/site";
 import "./globals.css";
 
 /**
- * Layout racine — squelette de PHASE 02.
- * La typographie définitive, la Navbar et le Footer arrivent en PHASE 05/06.
- * Les métadonnées SEO complètes (canonical, OG, structured data) sont
- * finalisées en PHASE 12, une fois le domaine de production confirmé.
+ * Archivo — grotesque variable. Retenue pour ses capitales larges et ses
+ * apex nets, qui prolongent le lettrage du logo "ADRAR". Une seule famille
+ * pour tout le site : cohérence maximale, poids réseau minimal.
+ * next/font l'auto-héberge — aucune requête vers un domaine tiers.
+ * Pour changer de typographie, ce fichier est le seul point d'entrée.
  */
+const archivo = Archivo({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-archivo",
+  axes: ["wdth"],
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "Adrar Media — From Local to Global.",
-    template: "%s | Adrar Media",
+    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Nous transformons les marques et entreprises en expériences digitales capables d'attirer, convaincre et convertir.",
+  description: siteConfig.description,
+  ...(siteConfig.url ? { metadataBase: new URL(siteConfig.url) } : {}),
 };
 
 export const viewport: Viewport = {
@@ -24,7 +34,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={archivo.variable}>
       <body>{children}</body>
     </html>
   );
