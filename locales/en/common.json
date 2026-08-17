@@ -1,0 +1,52 @@
+{
+  "brand": {
+    "name": "Adrar Media",
+    "tagline": "From Local to Global.",
+    "logoAlt": "Adrar Media"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "services": "Services",
+    "work": "Work",
+    "method": "Method",
+    "about": "About",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "cta": {
+    "quote": "Request a quote",
+    "work": "See our work",
+    "talk": "Let's talk about your project",
+    "contact": "Get in touch",
+    "whatsapp": "WhatsApp"
+  },
+  "language": {
+    "label": "Change language",
+    "current": "Current language",
+    "heading": "Language"
+  },
+  "suggestion": {
+    "detected": "English detected",
+    "accept": "Use English",
+    "dismiss": "Keep {language}"
+  },
+  "footer": {
+    "navigation": "Navigation",
+    "services": "Services",
+    "contact": "Contact",
+    "follow": "Follow us",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "rights": "All rights reserved."
+  },
+  "services": {
+    "strategy": "Marketing Strategy",
+    "social": "Social Media Management",
+    "content": "Content Creation",
+    "brand": "Branding & Design",
+    "production": "Video Production",
+    "performance": "Digital Advertising",
+    "web": "Web Design"
+  }
+}

@@ -42,7 +42,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-archivo)", "system-ui", "sans-serif"],
+        // Latin (fr, en) et arabe : deux grotesques de proportions voisines,
+        // pour que la densité typographique ne change pas d'une langue à l'autre.
+        sans: ["var(--font-latin)", "system-ui", "sans-serif"],
+        arabic: ["var(--font-arabic)", "var(--font-latin)", "sans-serif"],
       },
       fontSize: {
         display: [

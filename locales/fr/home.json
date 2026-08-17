@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "title": "Adrar Media — Agence de communication et marketing digital au Maroc",
+    "description": "Stratégie, création de contenu, branding et publicité digitale. Nous transformons les marques et entreprises en expériences digitales capables d'attirer, convaincre et convertir."
+  },
+  "hero": {
+    "eyebrow": "Adrar Media — Digital Agency",
+    "titleLines": ["From Local", "to Global."],
+    "description": "Nous transformons les marques et entreprises en expériences digitales capables d'attirer, convaincre et convertir."
+  },
+  "marquee": ["Strategy", "Creative", "Content", "Performance", "Growth"]
+}

@@ -23,8 +23,20 @@
   }
 
   body {
-    @apply bg-canvas font-sans text-body text-anthracite antialiased;
+    @apply bg-canvas text-body text-anthracite antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  /* L'arabe supporte mal les capitales forcées et les interlettrages serrés. */
+  [dir="rtl"] .eyebrow {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3 {
+    letter-spacing: 0;
   }
 
   /* Focus visible cohérent sur tout le site, jamais supprimé. */

@@ -40,8 +40,55 @@ Aucune dépendance supplémentaire ne sera installée sans justification écrite
 
 1. **Pas de backend en V1.** Le formulaire de devis passe par une Server Action Next.js. NestJS/PostgreSQL ne seront introduits que si une fonctionnalité l'exige réellement.
 2. **Pas de CMS en V1.** Le contenu vit dans `data/` en TypeScript typé. Les types sont calqués sur les entités métier pour qu'un CMS puisse s'y brancher plus tard sans refonte du front.
-3. **Prêt pour le multilingue.** Le français est la seule langue de la V1, mais la copy est isolée pour permettre l'ajout de l'arabe et de l'anglais sans reconstruire le front.
+3. **Multilingue dès la V1.** Français, anglais et arabe, avec RTL complet et détection du pays. Implémenté sans librairie i18n — voir la section dédiée plus bas.
 4. **Palette de référence.** Le site applique strictement la palette officielle ci-dessous. Adrar OS utilise des valeurs divergentes (`#0F2238`, `#1BA784`, `#3BC9A6`) : c'est un écart connu, à arbitrer côté Adrar OS ultérieurement. Rien n'est modifié dans Adrar OS depuis ce projet.
+
+---
+
+## Multilingue
+
+Trois langues : **français** (défaut), **anglais**, **arabe** (RTL complet).
+
+### Architecture
+
+| Élément | Emplacement |
+|---|---|
+| Langues, mapping pays → langue, segments d'URL | `config/i18n.ts` |
+| Traductions | `locales/{fr,en,ar}/*.json` |
+| Résolution de langue | `lib/i18n/resolve-locale.ts` |
+| Détection du pays | `lib/geolocation/detect-country.ts` |
+| Routage localisé | `lib/i18n/routing.ts` |
+| Redirections et réécritures | `middleware.ts` |
+
+L'i18n est implémentée sans librairie. La chaîne de priorité et le mapping des URL localisées sont spécifiques au projet : une librairie aurait été contournée plus qu'utilisée.
+
+### Chaîne de priorité
+
+1. **Choix explicite de l'utilisateur** — cookie `adrar_locale`, valable un an
+2. Langue présente dans l'URL — toujours servie telle quelle
+3. Pays détecté par en-tête de requête
+4. Langue du navigateur (`Accept-Language`)
+5. Français
+
+Un choix explicite n'est **jamais** contredit, y compris si l'utilisateur change de pays. Quand le pays recommanderait une autre langue et qu'aucun choix n'a été fait, l'interface propose — sans jamais imposer ni masquer le contenu.
+
+### Détection du pays
+
+Lecture d'un en-tête déjà présent sur la requête (`x-vercel-ip-country`, `cf-ipcountry`, et autres). **Aucun appel réseau**, donc aucune latence ajoutée au rendu et aucun risque de blocage. Aucune adresse IP n'est manipulée ni stockée, aucune position précise n'est demandée : seul un code pays sur deux lettres transite. Sans en-tête, repli immédiat sur `Accept-Language`.
+
+### URL localisées
+
+Une page, une URL par langue. Les variantes sont redirigées en 308.
+
+```
+/fr/realisations    /en/work        /ar/aamal
+/fr/methode         /en/method      /ar/manhajiya
+/fr/a-propos        /en/about       /ar/man-nahnu
+```
+
+### Traductions manquantes
+
+Repli automatique sur le français, avec un avertissement `MISSING_TRANSLATION` en console de développement. L'utilisateur ne voit jamais une clé brute, `undefined` ou `null`.
 
 ---
 
@@ -153,17 +200,20 @@ L'architecture est préparée : la soumission du devis passera par une couche d'
 | 02 | Initialisation du projet | ✅ |
 | 03 | Git | ✅ |
 | 04 | Dépendances | ✅ |
-| 05 | Design System | à venir |
-| 06 | Navbar + Footer | à venir |
-| 07 | Homepage | à venir |
-| 08 | Test Homepage | à venir |
-| 09 | Pages internes | à venir |
-| 10 | Portfolio + Case Studies | à venir |
-| 11 | Contact + Formulaire de devis | à venir |
-| 12 | SEO | à venir |
-| 13 | Performance | à venir |
-| 14 | Accessibilité | à venir |
-| 15 | QA | à venir |
+| 05 | Design System | ✅ |
+| 06 | Architecture i18n (FR / EN / AR) | ✅ |
+| 07 | Détection du pays | ✅ |
+| 08 | Navbar + Language Switcher + Footer | ✅ |
+| 09 | Hero | à venir |
+| 10 | Homepage complète | à venir |
+| 11 | Portfolio + Case Studies | à venir |
+| 12 | Services | à venir |
+| 13 | À propos + Méthode | à venir |
+| 14 | Contact + Formulaire de devis | à venir |
+| 15 | SEO multilingue | à venir |
+| 16 | Performance | à venir |
+| 17 | Accessibilité | à venir |
+| 18 | QA | à venir |
 
 ---
 

@@ -1,0 +1,52 @@
+{
+  "brand": {
+    "name": "Adrar Media",
+    "tagline": "From Local to Global.",
+    "logoAlt": "Adrar Media"
+  },
+  "nav": {
+    "label": "Navigation principale",
+    "services": "Services",
+    "work": "Réalisations",
+    "method": "Méthode",
+    "about": "À propos",
+    "contact": "Contact",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "cta": {
+    "quote": "Demander un devis",
+    "work": "Voir nos réalisations",
+    "talk": "Parlons de votre projet",
+    "contact": "Nous contacter",
+    "whatsapp": "WhatsApp"
+  },
+  "language": {
+    "label": "Changer de langue",
+    "current": "Langue active",
+    "heading": "Langue"
+  },
+  "suggestion": {
+    "detected": "Français détecté",
+    "accept": "Passer en français",
+    "dismiss": "Rester en {language}"
+  },
+  "footer": {
+    "navigation": "Navigation",
+    "services": "Services",
+    "contact": "Contact",
+    "follow": "Suivez-nous",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "rights": "Tous droits réservés."
+  },
+  "services": {
+    "strategy": "Stratégie Marketing",
+    "social": "Social Media Management",
+    "content": "Création de contenu",
+    "brand": "Branding & Design",
+    "production": "Production Audiovisuelle",
+    "performance": "Publicité Digitale",
+    "web": "Création de sites web"
+  }
+}
