@@ -5,8 +5,168 @@
   },
   "hero": {
     "eyebrow": "Adrar Media — Digital Agency",
-    "titleLines": ["From Local", "to Global."],
-    "description": "We transform brands and businesses into digital experiences designed to attract, engage and convert."
+    "titleLines": [
+      "From Local",
+      "to Global."
+    ],
+    "description": "We transform brands and businesses into digital experiences designed to attract, engage and convert.",
+    "scroll": "Scroll",
+    "based": "Morocco",
+    "since": "Creative agency"
   },
-  "marquee": ["Strategy", "Creative", "Content", "Performance", "Growth"]
+  "marquee": [
+    "Strategy",
+    "Creative",
+    "Content",
+    "Performance",
+    "Growth"
+  ],
+  "intro": {
+    "eyebrow": "Our approach",
+    "titleLines": [
+      "Your brand deserves more",
+      "than an online",
+      "presence."
+    ],
+    "body": "We bring strategy, creative, content and performance together to build digital experiences that earn attention and create value.",
+    "cta": "See how we work"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "titleLines": [
+      "What it takes to",
+      "grow a brand."
+    ],
+    "intro": "Seven disciplines built to work as one, from positioning through to performance.",
+    "all": "See all services",
+    "items": {
+      "strategy": "Audit, positioning, digital strategy and action plan.",
+      "social": "Strategic social media management and community building.",
+      "content": "Reels, photography, video and social-first content.",
+      "brand": "Visual identity, art direction and brand collateral.",
+      "production": "Shooting, directing, editing and storytelling.",
+      "performance": "Meta Ads, Google Ads, TikTok Ads and conversion-driven campaigns.",
+      "web": "Websites, landing pages and digital experiences."
+    }
+  },
+  "work": {
+    "eyebrow": "Work",
+    "titleLines": [
+      "Projects.",
+      "Stories.",
+      "Results."
+    ],
+    "intro": "Every project starts from a real business problem. We show what we did, and what it produced.",
+    "viewCase": "View case study",
+    "all": "All work",
+    "visualPending": "Visual coming soon"
+  },
+  "projects": {
+    "bricodi": {
+      "summary": "Digital launch for a professional hardware and tools retailer."
+    },
+    "bigFamily": {
+      "summary": "Building a premium image for a barbershop and beauty salon."
+    },
+    "ruchendo": {
+      "summary": "Digital advertising campaign and strategic support."
+    },
+    "wlidatna": {
+      "summary": "Creative direction and video production."
+    }
+  },
+  "industry": {
+    "hardware": "Hardware & tools",
+    "barbershop": "Barbershop & beauty",
+    "pending": "Sector to be confirmed"
+  },
+  "results": {
+    "eyebrow": "Results",
+    "titleLines": [
+      "Creativity earns attention.",
+      "Performance proves it."
+    ],
+    "intro": "We only publish verified numbers, with their source. This section grows as campaigns are measured.",
+    "bricodiViews": "Facebook views generated",
+    "sourceLabel": "Source"
+  },
+  "why": {
+    "eyebrow": "Why Adrar",
+    "titleLines": [
+      "Not just an agency.",
+      "A growth partner."
+    ],
+    "items": {
+      "strategy": {
+        "title": "Strategy First",
+        "body": "We understand the business before we create."
+      },
+      "creative": {
+        "title": "Creative Thinking",
+        "body": "We turn ideas into experiences that earn attention."
+      },
+      "data": {
+        "title": "Data Driven",
+        "body": "We measure performance and we optimise."
+      },
+      "local": {
+        "title": "Local Understanding",
+        "body": "We know the Moroccan market and how it really works."
+      },
+      "partner": {
+        "title": "One Creative Partner",
+        "body": "Strategy, content, design, advertising and digital under one roof."
+      },
+      "growth": {
+        "title": "Growth Mindset",
+        "body": "We chase business results, not vanity metrics."
+      }
+    }
+  },
+  "method": {
+    "eyebrow": "Method",
+    "titleLines": [
+      "From idea",
+      "to growth."
+    ],
+    "intro": "Six steps, always in the same order. That is what makes the work predictable and measurable.",
+    "cta": "See the full method",
+    "steps": {
+      "discover": {
+        "title": "Discover",
+        "body": "Audit of the business, market, competition and digital presence."
+      },
+      "strategize": {
+        "title": "Strategize",
+        "body": "Positioning, strategy, objectives and action plan."
+      },
+      "create": {
+        "title": "Create",
+        "body": "Content production, design, video and assets."
+      },
+      "distribute": {
+        "title": "Distribute",
+        "body": "Publishing and distribution across the right channels."
+      },
+      "optimize": {
+        "title": "Optimize",
+        "body": "Data analysis, testing and optimisation."
+      },
+      "scale": {
+        "title": "Scale",
+        "body": "Scaling what works and increasing performance."
+      }
+    }
+  },
+  "cta": {
+    "titleLines": [
+      "Ready to take",
+      "your brand to the",
+      "next level?"
+    ],
+    "body": "Let's talk about your project and build the next step together."
+  },
+  "metrics": {
+    "facebookViews": "Facebook views generated"
+  }
 }

@@ -41,9 +41,41 @@ export const lineReveal: Variants = {
   hidden: { y: "110%" },
   visible: {
     y: "0%",
+    transition: { duration: 0.6, ease: easing },
+  },
+};
+
+/**
+ * Zone de déclenchement au scroll.
+ *
+ * Le déclenchement se fait dès que le haut de l'élément entre dans l'écran,
+ * et non une fois qu'il y est enfoncé de 10 % : testé au navigateur, un
+ * visiteur qui fait défiler vite arrivait sinon devant des blocs encore vides.
+ * L'animation doit accompagner la lecture, jamais la faire attendre.
+ */
+export const viewport = { once: true, margin: "0px 0px -12% 0px" } as const;
+
+/**
+ * Dévoilement par masque : le contenu est découvert par un volet qui se
+ * rétracte, plutôt que par un simple fondu. Plus lent, réservé aux moments
+ * forts — ouverture de section, visuel de projet.
+ */
+export const clipReveal: Variants = {
+  hidden: { clipPath: "inset(0 0 100% 0)" },
+  visible: {
+    clipPath: "inset(0 0 0% 0)",
     transition: { duration: duration.slow, ease: easing },
   },
 };
 
-/** Réglage unique de la zone de déclenchement au scroll. */
-export const viewport = { once: true, margin: "-10% 0px -10% 0px" } as const;
+/** Léger zoom sortant, à associer à un masque. */
+export const scaleOut: Variants = {
+  hidden: { scale: 1.08 },
+  visible: {
+    scale: 1,
+    transition: { duration: 1.1, ease: easing },
+  },
+};
+
+/** Colonne qui monte légèrement plus vite que le scroll — profondeur discrète. */
+export const parallaxRange = [-24, 24] as const;

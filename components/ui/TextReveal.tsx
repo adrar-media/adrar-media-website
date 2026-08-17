@@ -28,7 +28,7 @@ export function TextReveal({
         initial="hidden"
         whileInView="visible"
         viewport={viewport}
-        variants={stagger(0, 0.09)}
+        variants={stagger(0, 0.07)}
         className="block"
       >
         {lines.map((line, i) => (

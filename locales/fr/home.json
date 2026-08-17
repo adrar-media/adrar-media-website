@@ -5,8 +5,168 @@
   },
   "hero": {
     "eyebrow": "Adrar Media — Digital Agency",
-    "titleLines": ["From Local", "to Global."],
-    "description": "Nous transformons les marques et entreprises en expériences digitales capables d'attirer, convaincre et convertir."
+    "titleLines": [
+      "From Local",
+      "to Global."
+    ],
+    "description": "Nous transformons les marques et entreprises en expériences digitales capables d'attirer, convaincre et convertir.",
+    "scroll": "Faire défiler",
+    "based": "Maroc",
+    "since": "Agence créative"
   },
-  "marquee": ["Strategy", "Creative", "Content", "Performance", "Growth"]
+  "marquee": [
+    "Strategy",
+    "Creative",
+    "Content",
+    "Performance",
+    "Growth"
+  ],
+  "intro": {
+    "eyebrow": "Notre approche",
+    "titleLines": [
+      "Votre marque mérite plus",
+      "qu'une simple présence",
+      "en ligne."
+    ],
+    "body": "Nous réunissons stratégie, création, contenu et performance pour construire des expériences digitales qui attirent l'attention et créent de la valeur.",
+    "cta": "Découvrir notre méthode"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "titleLines": [
+      "Ce qu'il faut pour",
+      "faire grandir une marque."
+    ],
+    "intro": "Sept expertises pensées pour fonctionner ensemble, du positionnement jusqu'à la performance.",
+    "all": "Voir tous les services",
+    "items": {
+      "strategy": "Audit, positionnement, stratégie digitale et plan d'action.",
+      "social": "Gestion stratégique des réseaux sociaux et animation de communauté.",
+      "content": "Reels, photographie, vidéos et contenus social media.",
+      "brand": "Identité visuelle, direction artistique et supports de communication.",
+      "production": "Shooting, réalisation, montage et storytelling.",
+      "performance": "Meta Ads, Google Ads, TikTok Ads et campagnes orientées conversion.",
+      "web": "Sites vitrines, landing pages et expériences digitales."
+    }
+  },
+  "work": {
+    "eyebrow": "Réalisations",
+    "titleLines": [
+      "Des projets.",
+      "Des histoires.",
+      "Des résultats."
+    ],
+    "intro": "Chaque projet part d'un enjeu business réel. Nous racontons ce que nous avons fait, et ce que cela a produit.",
+    "viewCase": "Voir l'étude de cas",
+    "all": "Toutes les réalisations",
+    "visualPending": "Visuel à venir"
+  },
+  "projects": {
+    "bricodi": {
+      "summary": "Lancement digital d'une enseigne de bricolage et d'outillage professionnel."
+    },
+    "bigFamily": {
+      "summary": "Construction d'une image premium pour un salon de coiffure et d'esthétique."
+    },
+    "ruchendo": {
+      "summary": "Campagne publicitaire digitale et accompagnement stratégique."
+    },
+    "wlidatna": {
+      "summary": "Direction créative et production vidéo."
+    }
+  },
+  "industry": {
+    "hardware": "Bricolage & outillage",
+    "barbershop": "Coiffure & esthétique",
+    "pending": "Secteur à confirmer"
+  },
+  "results": {
+    "eyebrow": "Résultats",
+    "titleLines": [
+      "La créativité attire.",
+      "La performance prouve."
+    ],
+    "intro": "Nous ne publions que des chiffres vérifiés, avec leur source. Cette section s'enrichit à mesure que les campagnes sont mesurées.",
+    "bricodiViews": "vues Facebook générées",
+    "sourceLabel": "Source"
+  },
+  "why": {
+    "eyebrow": "Pourquoi Adrar",
+    "titleLines": [
+      "Pas juste une agence.",
+      "Un partenaire de croissance."
+    ],
+    "items": {
+      "strategy": {
+        "title": "Strategy First",
+        "body": "Nous comprenons le business avant de créer."
+      },
+      "creative": {
+        "title": "Creative Thinking",
+        "body": "Nous transformons les idées en expériences qui attirent l'attention."
+      },
+      "data": {
+        "title": "Data Driven",
+        "body": "Nous mesurons les performances et nous optimisons."
+      },
+      "local": {
+        "title": "Local Understanding",
+        "body": "Nous connaissons le marché marocain et ses réalités."
+      },
+      "partner": {
+        "title": "One Creative Partner",
+        "body": "Stratégie, contenu, design, publicité et digital réunis."
+      },
+      "growth": {
+        "title": "Growth Mindset",
+        "body": "Nous cherchons des résultats business, pas des métriques de vanité."
+      }
+    }
+  },
+  "method": {
+    "eyebrow": "Méthode",
+    "titleLines": [
+      "De l'idée",
+      "à la croissance."
+    ],
+    "intro": "Six étapes, toujours dans le même ordre. C'est ce qui rend le travail prévisible et mesurable.",
+    "cta": "Découvrir la méthode complète",
+    "steps": {
+      "discover": {
+        "title": "Discover",
+        "body": "Audit du business, du marché, de la concurrence et de la présence digitale."
+      },
+      "strategize": {
+        "title": "Strategize",
+        "body": "Positionnement, stratégie, objectifs et plan d'action."
+      },
+      "create": {
+        "title": "Create",
+        "body": "Production de contenus, design, vidéos et assets."
+      },
+      "distribute": {
+        "title": "Distribute",
+        "body": "Publication et diffusion sur les bons canaux."
+      },
+      "optimize": {
+        "title": "Optimize",
+        "body": "Analyse des données, tests et optimisation."
+      },
+      "scale": {
+        "title": "Scale",
+        "body": "Développement et augmentation des performances."
+      }
+    }
+  },
+  "cta": {
+    "titleLines": [
+      "Prêt à faire passer",
+      "votre marque au",
+      "niveau supérieur ?"
+    ],
+    "body": "Parlons de votre projet et construisons ensemble la prochaine étape."
+  },
+  "metrics": {
+    "facebookViews": "vues Facebook générées"
+  }
 }

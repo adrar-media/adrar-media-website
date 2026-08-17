@@ -60,9 +60,11 @@ export function Button({
     <>
       {children}
       {arrow && (
+        // La flèche suit le sens de lecture : retournée en RTL, elle pointe
+        // vers la gauche et son mouvement au survol s'inverse avec elle.
         <span
           aria-hidden
-          className="transition-transform duration-fast ease-brand group-hover:translate-x-1"
+          className="transition-transform duration-fast ease-brand group-hover:translate-x-1 rtl:-scale-x-100"
         >
           →
         </span>
