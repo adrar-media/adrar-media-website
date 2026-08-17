@@ -3,8 +3,8 @@ import { getTranslator } from "@/lib/i18n/dictionaries";
 import { href } from "@/lib/i18n/routing";
 import { whatsappLink } from "@/config/site";
 import { Container } from "@/components/ui/Container";
-import { TextReveal } from "@/components/ui/TextReveal";
-import { Reveal } from "@/components/ui/Reveal";
+import { Headline } from "@/components/ui/Headline";
+import { Block } from "@/components/ui/Block";
 import { Button } from "@/components/buttons/Button";
 
 /**
@@ -24,14 +24,14 @@ export async function CTASection({ locale }: { locale: Locale }) {
       <Container>
         <div className="grid gap-12 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8">
-            <TextReveal
+            <Headline
               as="h2"
               lines={t.list("cta.titleLines")}
               className="text-h1 text-white"
             />
           </div>
 
-          <Reveal delay={0.2} className="md:col-span-4">
+          <Block className="md:col-span-4">
             <p className="max-w-prose text-body-lg text-white/70">
               {t("cta.body")}
             </p>
@@ -65,7 +65,7 @@ export async function CTASection({ locale }: { locale: Locale }) {
                 </Button>
               )}
             </div>
-          </Reveal>
+          </Block>
         </div>
       </Container>
     </section>

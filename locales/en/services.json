@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "title": "Services — Adrar Media",
+    "description": "Marketing strategy, social media, content creation, branding, video production, digital advertising and web design."
+  },
+  "hero": {
+    "eyebrow": "Services",
+    "titleLines": ["Seven disciplines,", "one partner."],
+    "description": "Each discipline stands on its own, but earns its full value combined with the others. That is what holds a single intent together, from positioning through to conversion."
+  },
+  "scopeLabel": "What it covers",
+  "detailNote": "A precise scope is agreed for every project, after we talk.",
+  "items": {
+    "strategy": {
+      "summary": "Before producing anything, you need to know who you are talking to, what sets you apart, and what the market already expects. Strategy sets the direction and makes everything else measurable.",
+      "scope": [
+        "Audit of the existing digital presence",
+        "Market and competitor analysis",
+        "Positioning and key messages",
+        "Action plan and tracking indicators"
+      ]
+    },
+    "social": {
+      "summary": "A social presence held over time, with a clear editorial line and a publishing rhythm you can sustain. The goal is community, not vanity counters.",
+      "scope": [
+        "Editorial line and publishing calendar",
+        "Content creation and scheduling",
+        "Community management and moderation",
+        "Performance reporting and adjustments"
+      ]
+    },
+    "content": {
+      "summary": "Content is what your audience actually sees. We produce it for the platform it will be seen on, rather than shipping one format cut down for the rest.",
+      "scope": [
+        "Reels and short-form video",
+        "Product and lifestyle photography",
+        "Graphics and subtitling",
+        "Versions adapted to each platform"
+      ]
+    },
+    "brand": {
+      "summary": "An identity is not a logo: it is a system that has to stay coherent across a storefront, a post and an invoice. We build it to hold everywhere.",
+      "scope": [
+        "Brand platform and visual territory",
+        "Logo and identity system",
+        "Brand guidelines",
+        "Communication collateral"
+      ]
+    },
+    "production": {
+      "summary": "From script to delivery. Video engages more than any other format — provided it tells something and holds up technically.",
+      "scope": [
+        "Scripting and shot breakdown",
+        "Filming and art direction",
+        "Editing, grading and sound mix",
+        "Multi-format delivery"
+      ]
+    },
+    "performance": {
+      "summary": "Advertising amplifies what already works — it does not compensate for an unclear offer. We structure campaigns so every dirham spent can be attributed.",
+      "scope": [
+        "Campaign structure and setup",
+        "Creative and copy production",
+        "Targeting, budget and testing",
+        "Continuous optimisation and reporting"
+      ]
+    },
+    "web": {
+      "summary": "A website is often the only place you fully control. It has to load fast, read well on mobile, and lead the visitor to one clear action.",
+      "scope": [
+        "Architecture and site structure",
+        "Interface design",
+        "Build and deployment",
+        "Technical SEO and performance"
+      ]
+    }
+  }
+}

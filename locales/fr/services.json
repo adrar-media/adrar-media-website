@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "title": "Services — Adrar Media",
+    "description": "Stratégie marketing, social media, création de contenu, branding, production audiovisuelle, publicité digitale et création de sites web."
+  },
+  "hero": {
+    "eyebrow": "Services",
+    "titleLines": ["Sept expertises,", "un seul partenaire."],
+    "description": "Chaque expertise fonctionne seule, mais prend toute sa valeur combinée aux autres. C'est ce qui permet de tenir une même intention du positionnement jusqu'à la conversion."
+  },
+  "scopeLabel": "Ce que cela comprend",
+  "detailNote": "Un périmètre précis est établi pour chaque projet, après échange.",
+  "items": {
+    "strategy": {
+      "summary": "Avant de produire quoi que ce soit, il faut savoir à qui l'on parle, ce qui vous distingue et ce que le marché attend déjà. La stratégie fixe le cap et rend le reste mesurable.",
+      "scope": [
+        "Audit de la présence digitale existante",
+        "Analyse du marché et de la concurrence",
+        "Positionnement et messages clés",
+        "Plan d'action et indicateurs de suivi"
+      ]
+    },
+    "social": {
+      "summary": "Une présence sociale tenue dans la durée, avec une ligne éditoriale claire et un rythme de publication soutenable. L'objectif est la communauté, pas la vanité des compteurs.",
+      "scope": [
+        "Ligne éditoriale et calendrier de publication",
+        "Création et programmation des publications",
+        "Animation et modération de la communauté",
+        "Rapport de performance et ajustements"
+      ]
+    },
+    "content": {
+      "summary": "Le contenu est ce que votre audience voit réellement. Nous le produisons pour la plateforme sur laquelle il sera vu, pas dans un format unique décliné au rabais.",
+      "scope": [
+        "Reels et formats courts",
+        "Photographie produit et lifestyle",
+        "Habillage graphique et sous-titrage",
+        "Déclinaison adaptée à chaque plateforme"
+      ]
+    },
+    "brand": {
+      "summary": "Une identité n'est pas un logo : c'est un système qui doit rester cohérent sur une devanture, un post et une facture. Nous le construisons pour qu'il tienne partout.",
+      "scope": [
+        "Plateforme de marque et territoire visuel",
+        "Logo et système d'identité",
+        "Charte graphique",
+        "Supports de communication"
+      ]
+    },
+    "production": {
+      "summary": "De l'écriture à la livraison. La vidéo engage plus que tout autre format, à condition qu'elle raconte quelque chose et qu'elle soit tenue techniquement.",
+      "scope": [
+        "Écriture et découpage",
+        "Tournage et direction artistique",
+        "Montage, étalonnage et mixage",
+        "Livraison multi-formats"
+      ]
+    },
+    "performance": {
+      "summary": "La publicité amplifie ce qui fonctionne déjà — elle ne compense pas une offre floue. Nous structurons les campagnes pour que chaque dirham dépensé soit attribuable.",
+      "scope": [
+        "Structuration et paramétrage des campagnes",
+        "Création des visuels et des accroches",
+        "Ciblage, budget et tests",
+        "Optimisation continue et reporting"
+      ]
+    },
+    "web": {
+      "summary": "Un site est souvent le seul endroit que vous contrôlez entièrement. Il doit charger vite, se lire sur mobile et amener le visiteur à une action claire.",
+      "scope": [
+        "Architecture et arborescence",
+        "Design d'interface",
+        "Intégration et mise en ligne",
+        "Référencement technique et performance"
+      ]
+    }
+  }
+}

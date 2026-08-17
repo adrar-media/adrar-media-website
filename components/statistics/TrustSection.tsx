@@ -2,7 +2,7 @@ import type { Locale } from "@/config/i18n";
 import { getTranslator } from "@/lib/i18n/dictionaries";
 import { statistics } from "@/data/statistics";
 import { Container } from "@/components/ui/Container";
-import { Reveal, RevealItem } from "@/components/ui/Reveal";
+import { Block, BlockItem } from "@/components/ui/Block";
 import { Counter } from "@/components/statistics/Counter";
 
 /**
@@ -22,21 +22,20 @@ export async function TrustSection({ locale }: { locale: Locale }) {
   return (
     <section className="border-b border-canvas-gray bg-canvas py-20">
       <Container>
-        <Reveal
-          staggerChildren
+        <Block
           className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4"
         >
           {statistics.map((stat) => (
-            <RevealItem key={stat.label}>
+            <BlockItem key={stat.label}>
               <p className="text-h1 leading-none text-deep">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </p>
               <p className="mt-3 text-small text-anthracite/60">
                 {t(stat.label)}
               </p>
-            </RevealItem>
+            </BlockItem>
           ))}
-        </Reveal>
+        </Block>
       </Container>
     </section>
   );

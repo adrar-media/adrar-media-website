@@ -9,7 +9,6 @@ import { ServicesSection } from "@/components/services/ServicesSection";
 import { SelectedWork } from "@/components/portfolio/SelectedWork";
 import { ResultsSection } from "@/components/statistics/ResultsSection";
 import { WhyAdrar } from "@/components/sections/WhyAdrar";
-import { MethodSteps } from "@/components/process/MethodSteps";
 import { CTASection } from "@/components/layout/CTASection";
 
 /**
@@ -49,7 +48,6 @@ export default async function HomePage({
       <SelectedWork locale={locale} />
       <ResultsSection locale={locale} />
       <WhyAdrar locale={locale} />
-      <MethodSteps locale={locale} />
 
       {/*
         Témoignages — CONTENT_REQUIRED : aucun témoignage client validé.

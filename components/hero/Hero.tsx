@@ -4,8 +4,8 @@ import { href } from "@/lib/i18n/routing";
 import { verifiedResults } from "@/data/statistics";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { TextReveal } from "@/components/ui/TextReveal";
-import { Reveal } from "@/components/ui/Reveal";
+import { Headline } from "@/components/ui/Headline";
+import { Block } from "@/components/ui/Block";
 import { Button } from "@/components/buttons/Button";
 import { AmbientShapes } from "@/components/hero/AmbientShapes";
 
@@ -33,13 +33,13 @@ export async function Hero({ locale }: { locale: Locale }) {
       <AmbientShapes />
 
       <Container className="relative">
-        <Reveal>
+        <Block>
           <Eyebrow>{t("hero.eyebrow")}</Eyebrow>
-        </Reveal>
+        </Block>
 
         <div className="mt-10 md:mt-14">
           {/* Ligne 1 pleine largeur. */}
-          <TextReveal
+          <Headline
             as="h1"
             lines={lines.slice(0, 1)}
             className="text-display text-deep"
@@ -47,7 +47,7 @@ export async function Hero({ locale }: { locale: Locale }) {
 
           {/* Ligne 2 décalée — le décrochage ouvre la place de l'accroche. */}
           <div className="md:ps-[14%]">
-            <TextReveal
+            <Headline
               as="p"
               lines={lines.slice(1)}
               className="text-display text-deep"
@@ -56,7 +56,7 @@ export async function Hero({ locale }: { locale: Locale }) {
         </div>
 
         <div className="mt-12 grid gap-10 md:mt-16 md:grid-cols-12 md:items-end">
-          <Reveal delay={0.3} className="md:col-span-5 md:col-start-2">
+          <Block className="md:col-span-5 md:col-start-2">
             <p className="max-w-prose text-body-lg text-anthracite/80">
               {t("hero.description")}
             </p>
@@ -72,11 +72,11 @@ export async function Hero({ locale }: { locale: Locale }) {
                 {c("cta.work")}
               </Button>
             </div>
-          </Reveal>
+          </Block>
 
           {badge && (
-            <Reveal delay={0.45} className="md:col-span-4 md:col-start-9">
-              <div className="inline-flex flex-col gap-1 rounded-lg bg-light px-7 py-6 shadow-glow">
+            <Block className="md:col-span-4 md:col-start-9">
+              <div className="inline-flex animate-glow-pulse flex-col gap-1 rounded-lg bg-light px-7 py-6 shadow-glow">
                 <span className="text-h3 leading-none text-deep">
                   {badge.value}
                   {badge.suffix}
@@ -85,7 +85,7 @@ export async function Hero({ locale }: { locale: Locale }) {
                   {t(badge.label)}
                 </span>
               </div>
-            </Reveal>
+            </Block>
           )}
         </div>
       </Container>

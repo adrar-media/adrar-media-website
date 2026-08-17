@@ -2,7 +2,7 @@ import { isLocale } from "@/config/i18n";
 import { notFound } from "next/navigation";
 import { getTranslator } from "@/lib/i18n/dictionaries";
 import { Container } from "@/components/ui/Container";
-import { TextReveal } from "@/components/ui/TextReveal";
+import { Headline } from "@/components/ui/Headline";
 
 /**
  * Placeholder de PHASE 06 — sert à valider que /fr/realisations, /en/work et
@@ -22,7 +22,7 @@ export default async function WorkPage({
   return (
     <section className="pb-section pt-40 md:pt-48">
       <Container>
-        <TextReveal
+        <Headline
           as="h1"
           lines={[c("nav.work")]}
           className="text-h1 text-deep"

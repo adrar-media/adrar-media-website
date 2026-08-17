@@ -2,7 +2,7 @@ import type { Locale } from "@/config/i18n";
 import { getTranslator } from "@/lib/i18n/dictionaries";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Reveal, RevealItem } from "@/components/ui/Reveal";
+import { Block, BlockItem } from "@/components/ui/Block";
 
 const principles = [
   "strategy",
@@ -33,9 +33,9 @@ export async function WhyAdrar({ locale }: { locale: Locale }) {
           className="mb-20"
         />
 
-        <Reveal staggerChildren className="grid gap-x-grid gap-y-14 md:grid-cols-3">
+        <Block className="grid gap-x-grid gap-y-14 md:grid-cols-3">
           {principles.map((key, index) => (
-            <RevealItem key={key} className={index % 3 === 1 ? "md:mt-12" : ""}>
+            <BlockItem key={key} className={index % 3 === 1 ? "md:mt-12" : ""}>
               <p className="text-caption text-anthracite/30">
                 {String(index + 1).padStart(2, "0")}
               </p>
@@ -45,9 +45,9 @@ export async function WhyAdrar({ locale }: { locale: Locale }) {
               <p className="mt-3 max-w-prose text-small text-anthracite/65">
                 {t(`why.items.${key}.body`)}
               </p>
-            </RevealItem>
+            </BlockItem>
           ))}
-        </Reveal>
+        </Block>
       </Container>
     </section>
   );

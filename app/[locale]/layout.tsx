@@ -8,7 +8,6 @@ import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { LocaleSuggestion } from "@/components/navigation/LocaleSuggestion";
-import { PageTransition } from "@/components/ui/PageTransition";
 import { cn } from "@/lib/utils";
 import "../globals.css";
 
@@ -122,9 +121,7 @@ export default async function LocaleLayout({
           {rtl ? "تخطي إلى المحتوى" : "Aller au contenu"}
         </a>
         <Navbar locale={typedLocale} />
-        <main id="main">
-          <PageTransition>{children}</PageTransition>
-        </main>
+        <main id="main">{children}</main>
         <Footer locale={typedLocale} />
         <LocaleSuggestion current={typedLocale} labels={await suggestionLabels()} />
       </body>

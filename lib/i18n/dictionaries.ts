@@ -8,7 +8,7 @@ import { defaultLocale, type Locale } from "@/config/i18n";
  * composants — ceux-ci ne manipulent que des clés.
  */
 
-export type Namespace = "common" | "home";
+export type Namespace = "common" | "home" | "services";
 
 type Dictionary = Record<string, unknown>;
 
@@ -16,14 +16,17 @@ const loaders: Record<Locale, Record<Namespace, () => Promise<Dictionary>>> = {
   fr: {
     common: () => import("@/locales/fr/common.json").then((m) => m.default),
     home: () => import("@/locales/fr/home.json").then((m) => m.default),
+    services: () => import("@/locales/fr/services.json").then((m) => m.default),
   },
   en: {
     common: () => import("@/locales/en/common.json").then((m) => m.default),
     home: () => import("@/locales/en/home.json").then((m) => m.default),
+    services: () => import("@/locales/en/services.json").then((m) => m.default),
   },
   ar: {
     common: () => import("@/locales/ar/common.json").then((m) => m.default),
     home: () => import("@/locales/ar/home.json").then((m) => m.default),
+    services: () => import("@/locales/ar/services.json").then((m) => m.default),
   },
 };
 

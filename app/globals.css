@@ -75,19 +75,6 @@
 }
 
 @layer utilities {
-  /* Masque de révélation ligne à ligne des grands titres. */
-  .line-mask {
-    overflow: hidden;
-    display: block;
-  }
-
-  /*
-   * Halo diffus des formes d'ambiance. Rendu par un filtre plutôt que par une
-   * image : aucun octet téléchargé, et la couleur suit la palette.
-   */
-  .ambient {
-    filter: blur(46px);
-  }
 }
 
 /* Le mouvement est un enrichissement, jamais une condition de lecture. */

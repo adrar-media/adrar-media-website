@@ -16,7 +16,8 @@ export async function ServicesSection({ locale }: { locale: Locale }) {
     kicker: service.kicker,
     name: c(service.nameKey),
     description: t(service.descriptionKey),
-    href: `${href(locale, "services")}/${service.slug}`,
+    // Ancre plutôt que route de détail : aucun lien ne pointe dans le vide.
+    href: `${href(locale, "services")}#${service.slug}`,
   }));
 
   return (

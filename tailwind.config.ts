@@ -110,6 +110,12 @@ const config: Config = {
       },
       transitionTimingFunction: {
         brand: "cubic-bezier(0.22, 1, 0.36, 1)",
+        /**
+         * Courbe des changements d'état (survol, focus). Relevée sur la
+         * référence UX : plus neutre que `brand`, elle convient aux
+         * micro-interactions, qui doivent répondre sans « rebondir ».
+         */
+        standard: "cubic-bezier(0.4, 0, 0.2, 1)",
       },
       transitionDuration: {
         fast: "250ms",
@@ -128,10 +134,20 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-12px)" },
         },
+        /**
+         * Respiration lente du halo vert. C'est le seul mouvement permanent
+         * de la page : assez lent pour ne pas capter le regard, assez présent
+         * pour que la composition ne paraisse pas figée.
+         */
+        "glow-pulse": {
+          "0%, 100%": { opacity: "0.55", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1.04)" },
+        },
       },
       animation: {
-        marquee: "marquee 40s linear infinite",
+        marquee: "marquee 30s linear infinite",
         float: "float 7s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 4s ease-in-out infinite",
       },
     },
   },

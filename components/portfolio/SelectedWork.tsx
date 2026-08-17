@@ -6,7 +6,7 @@ import { featuredProjects } from "@/data/projects";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/buttons/Button";
-import { Reveal } from "@/components/ui/Reveal";
+import { Block } from "@/components/ui/Block";
 import { ProjectVisual } from "@/components/portfolio/ProjectVisual";
 import { cn } from "@/lib/utils";
 
@@ -60,7 +60,7 @@ export async function SelectedWork({ locale }: { locale: Locale }) {
                     ratio={layout.ratio}
                   />
 
-                  <Reveal delay={0.1}>
+                  <Block>
                     <div className="mt-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
                       <h3 className="text-h3 text-white">{project.client}</h3>
                       <p className="text-caption text-white/40">
@@ -92,7 +92,7 @@ export async function SelectedWork({ locale }: { locale: Locale }) {
                         →
                       </span>
                     </span>
-                  </Reveal>
+                  </Block>
                 </Link>
               </article>
             );

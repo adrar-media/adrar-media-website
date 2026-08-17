@@ -6,7 +6,7 @@ import { Marquee } from "@/components/ui/Marquee";
 import { Tag } from "@/components/ui/Tag";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/buttons/Button";
-import { Reveal, RevealItem } from "@/components/ui/Reveal";
+import { Block, BlockItem } from "@/components/ui/Block";
 
 /**
  * Page de validation interne du design system.
@@ -39,7 +39,7 @@ const typeScale = [
   { token: "caption", label: "Caption", className: "text-caption uppercase" },
 ];
 
-function Block({
+function Spec({
   title,
   children,
 }: {
@@ -67,7 +67,7 @@ export default function StyleguidePage() {
           className="mb-20"
         />
 
-        <Block title="01 — Palette">
+        <Spec title="01 — Palette">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {palette.map((color) => (
               <div key={color.hex}>
@@ -79,9 +79,9 @@ export default function StyleguidePage() {
               </div>
             ))}
           </div>
-        </Block>
+        </Spec>
 
-        <Block title="02 — Typographie">
+        <Spec title="02 — Typographie">
           <div className="space-y-8">
             {typeScale.map((item) => (
               <div
@@ -97,9 +97,9 @@ export default function StyleguidePage() {
               </div>
             ))}
           </div>
-        </Block>
+        </Spec>
 
-        <Block title="03 — Boutons">
+        <Spec title="03 — Boutons">
           <div className="flex flex-wrap items-center gap-4">
             <Button href="/demander-un-devis" arrow>
               Demander un devis
@@ -120,9 +120,9 @@ export default function StyleguidePage() {
               Sur fond sombre
             </Button>
           </div>
-        </Block>
+        </Spec>
 
-        <Block title="04 — Tags & badges">
+        <Spec title="04 — Tags & badges">
           <div className="flex flex-wrap items-center gap-3">
             <Tag>Social Media</Tag>
             <Tag>Branding</Tag>
@@ -131,32 +131,32 @@ export default function StyleguidePage() {
             <Badge tone="light">Résultat</Badge>
             <Badge tone="deep">Étude de cas</Badge>
           </div>
-        </Block>
+        </Spec>
 
-        <Block title="05 — Bande éditoriale">
+        <Spec title="05 — Bande éditoriale">
           <Marquee
             items={["Strategy", "Creative", "Content", "Performance", "Growth"]}
             className="bg-canvas-off"
           />
-        </Block>
+        </Spec>
 
-        <Block title="06 — Mouvement">
-          <Reveal staggerChildren className="grid gap-4 sm:grid-cols-3">
-            {["Reveal", "Stagger", "Line reveal"].map((label) => (
-              <RevealItem
+        <Spec title="06 — Mouvement (survol, halo, bande)">
+          <Block className="grid gap-4 sm:grid-cols-3">
+            {["Survol 350ms", "Halo 4s", "Bande 30s"].map((label) => (
+              <BlockItem
                 key={label}
                 className="border border-canvas-gray p-8 text-h3"
               >
                 {label}
-              </RevealItem>
+              </BlockItem>
             ))}
-          </Reveal>
+          </Block>
           <p className="mt-6 max-w-prose text-small text-anthracite/60">
             Une seule courbe d&apos;accélération sur tout le site. Chaque
             apparition ne joue qu&apos;une fois. Sous prefers-reduced-motion,
             tout est neutralisé et le contenu reste intégralement lisible.
           </p>
-        </Block>
+        </Spec>
       </Container>
     </main>
   );

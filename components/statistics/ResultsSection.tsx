@@ -3,7 +3,7 @@ import { getTranslator } from "@/lib/i18n/dictionaries";
 import { verifiedResults } from "@/data/statistics";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Reveal } from "@/components/ui/Reveal";
+import { Block } from "@/components/ui/Block";
 import { Counter } from "@/components/statistics/Counter";
 
 /**
@@ -39,7 +39,7 @@ export async function ResultsSection({ locale }: { locale: Locale }) {
           }
         >
           {verifiedResults.map((result) => (
-            <Reveal
+            <Block
               key={result.label}
               className={single ? "md:col-span-7" : undefined}
             >
@@ -52,7 +52,7 @@ export async function ResultsSection({ locale }: { locale: Locale }) {
               <p className="mt-3 text-caption text-anthracite/40">
                 {t("results.sourceLabel")} — {result.source}
               </p>
-            </Reveal>
+            </Block>
           ))}
         </div>
       </Container>

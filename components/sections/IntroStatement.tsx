@@ -3,8 +3,8 @@ import { getTranslator } from "@/lib/i18n/dictionaries";
 import { href } from "@/lib/i18n/routing";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { TextReveal } from "@/components/ui/TextReveal";
-import { Reveal } from "@/components/ui/Reveal";
+import { Headline } from "@/components/ui/Headline";
+import { Block } from "@/components/ui/Block";
 import { Button } from "@/components/buttons/Button";
 
 /**
@@ -27,12 +27,12 @@ export async function IntroStatement({ locale }: { locale: Locale }) {
           </div>
 
           <div className="md:col-span-9 md:col-start-4">
-            <TextReveal
+            <Headline
               as="h2"
               lines={t.list("intro.titleLines")}
               className="text-h2 text-deep"
             />
-            <Reveal delay={0.2}>
+            <Block>
               <p className="mt-10 max-w-prose text-body-lg text-anthracite/75">
                 {t("intro.body")}
               </p>
@@ -44,7 +44,7 @@ export async function IntroStatement({ locale }: { locale: Locale }) {
               >
                 {t("intro.cta")}
               </Button>
-            </Reveal>
+            </Block>
           </div>
         </div>
       </Container>

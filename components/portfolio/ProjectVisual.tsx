@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { clipReveal, scaleOut, viewport } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 interface ProjectVisualProps {
@@ -30,25 +26,18 @@ export function ProjectVisual({
   className,
 }: ProjectVisualProps) {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={viewport}
-      variants={clipReveal}
+    <div
       className={cn("relative overflow-hidden rounded-lg bg-deep", className)}
       style={{ aspectRatio: ratio }}
     >
-      <motion.div
-        variants={scaleOut}
-        className="absolute inset-0 flex items-center justify-center"
-      >
+      <div className="absolute inset-0 flex items-center justify-center">
         <span
           aria-hidden
           className="select-none px-6 text-center text-h1 leading-none text-white/10"
         >
           {client}
         </span>
-      </motion.div>
+      </div>
 
       <span className="absolute bottom-4 start-4 text-caption text-white/40">
         {pendingLabel}
@@ -69,6 +58,6 @@ export function ProjectVisual({
           strokeOpacity="0.35"
         />
       </svg>
-    </motion.div>
+    </div>
   );
 }

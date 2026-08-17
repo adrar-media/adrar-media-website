@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { revealUp, stagger, viewport } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 export interface ServiceRow {
@@ -29,21 +27,11 @@ export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
   const [active, setActive] = useState<string | null>(null);
 
   return (
-    <motion.ul
-      initial="hidden"
-      whileInView="visible"
-      viewport={viewport}
-      variants={stagger(0, 0.05)}
-      className="border-t border-anthracite/12"
-    >
+    <ul className="border-t border-anthracite/12">
       {rows.map((row) => {
         const isActive = active === row.index;
         return (
-          <motion.li
-            key={row.index}
-            variants={revealUp}
-            className="border-b border-anthracite/12"
-          >
+          <li key={row.index} className="border-b border-anthracite/12">
             <Link
               href={row.href}
               onMouseEnter={() => setActive(row.index)}
@@ -96,9 +84,9 @@ export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
                 </span>
               </span>
             </Link>
-          </motion.li>
+          </li>
         );
       })}
-    </motion.ul>
+    </ul>
   );
 }

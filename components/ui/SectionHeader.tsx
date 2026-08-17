@@ -1,5 +1,5 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { TextReveal } from "@/components/ui/TextReveal";
+import { Headline } from "@/components/ui/Headline";
 import { cn } from "@/lib/utils";
 
 interface SectionHeaderProps {
@@ -44,7 +44,7 @@ export function SectionHeader({
             {eyebrow}
           </Eyebrow>
         )}
-        <TextReveal
+        <Headline
           as={as}
           lines={titleLines}
           className={cn(
