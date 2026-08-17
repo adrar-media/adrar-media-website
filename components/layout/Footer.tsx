@@ -41,7 +41,7 @@ export async function Footer({ locale }: { locale: Locale }) {
       <Container className="py-section">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <p className="text-h3 uppercase">{t("brand.name")}</p>
+            <p className="text-h3">{t("brand.name")}</p>
             <p className="mt-2 text-body-lg text-beige">{t("brand.tagline")}</p>
           </div>
 

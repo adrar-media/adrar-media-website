@@ -49,7 +49,7 @@ export async function ResultsSection({ locale }: { locale: Locale }) {
               <p className="mt-4 text-body-lg text-anthracite/75">
                 {t(result.label)}
               </p>
-              <p className="mt-3 text-caption uppercase text-anthracite/40">
+              <p className="mt-3 text-caption text-anthracite/40">
                 {t("results.sourceLabel")} — {result.source}
               </p>
             </Reveal>

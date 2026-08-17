@@ -25,20 +25,26 @@ type ButtonProps = BaseProps &
       >)
   );
 
+/**
+ * Bouton en pastille pleine.
+ *
+ * La forme est le marqueur : arrondi complet, casse normale, transition unique
+ * à 350 ms. Aucun bouton du site n'a d'angle vif.
+ */
 const base =
-  "group inline-flex items-center justify-center gap-2 rounded text-button uppercase transition-colors duration-fast ease-brand disabled:cursor-not-allowed disabled:opacity-50";
+  "group inline-flex items-center justify-center gap-2.5 rounded-pill text-button transition-all duration-base ease-brand disabled:cursor-not-allowed disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-atlas text-white hover:bg-atlas-dark",
+  primary: "bg-atlas text-white hover:bg-atlas-dark hover:shadow-lifted",
   secondary:
-    "border border-anthracite/20 text-anthracite hover:border-anthracite hover:bg-anthracite hover:text-white",
-  invert: "bg-white text-deep hover:bg-beige",
+    "border border-anthracite/15 bg-canvas-raised text-anthracite hover:border-anthracite/30 hover:shadow-pill",
+  invert: "bg-light text-deep hover:bg-white",
   link: "px-0 text-atlas hover:text-atlas-dark",
 };
 
 const sizes: Record<Size, string> = {
-  md: "px-5 py-3",
-  lg: "px-7 py-4",
+  md: "px-6 py-3.5",
+  lg: "px-8 py-4",
 };
 
 export function Button({
@@ -64,7 +70,7 @@ export function Button({
         // vers la gauche et son mouvement au survol s'inverse avec elle.
         <span
           aria-hidden
-          className="transition-transform duration-fast ease-brand group-hover:translate-x-1 rtl:-scale-x-100"
+          className="transition-transform duration-base ease-brand group-hover:translate-x-1 rtl:-scale-x-100"
         >
           →
         </span>

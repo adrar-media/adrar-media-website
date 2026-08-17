@@ -104,6 +104,26 @@ Repli automatique sur le français, avec un avertissement `MISSING_TRANSLATION` 
 
 Direction artistique : **Premium / Editorial / Digital / Moroccan Modernism**. 80 % simplicité, 20 % caractère. Le caractère vient de la typographie, de la composition et du rythme — pas de la surcharge.
 
+### Système de proportions
+
+Les proportions sont calquées sur le système mesuré de la référence UX retenue (relevé au navigateur : styles calculés, rythme des sections, états de survol). On reprend un **système**, jamais une identité : couleurs, typographie, contenus et vocabulaire restent ceux d'Adrar Media.
+
+| Token | Valeur | Rôle |
+|---|---|---|
+| Rayon `lg` | 33 px | Cartes, visuels de projet |
+| Rayon `pill` | 999 px | Boutons, étiquettes, navigation |
+| `display` | clamp(2.75rem, 7.4vw, 7.75rem) | Titre du Hero |
+| Graisse des titres | 600, **casse normale** | Registre éditorial, pas brutaliste |
+| Texte courant | 17 px | Présence à l'écran |
+| `gutter` | clamp(1.25rem, 8.3vw, 8.75rem) | Marge horizontale de page **uniquement** |
+| `grid` | clamp(1.5rem, 2.5vw, 2.5rem) | Écart entre colonnes |
+| `duration-base` | 350 ms | Transition unique du site |
+| `max-w-container` | 1400 px | Largeur de contenu |
+
+> `gutter` et `grid` sont volontairement distincts. Appliquer la marge de page comme écart de grille multiplie sa valeur par le nombre de colonnes et fait déborder le conteneur — régression rencontrée et corrigée.
+
+Aucune capitale forcée dans l'interface : l'arabe les supporte mal, et le registre visé repose sur la casse normale.
+
 ---
 
 ## Commandes

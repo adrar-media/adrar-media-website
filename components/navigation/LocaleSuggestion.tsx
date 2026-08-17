@@ -72,9 +72,9 @@ export function LocaleSuggestion({ current, labels }: LocaleSuggestionProps) {
       aria-label={copy.detected}
       lang={suggested}
       dir={suggested === "ar" ? "rtl" : "ltr"}
-      className="border-b border-canvas-gray bg-canvas-off"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-anthracite/10 bg-canvas-raised/95 backdrop-blur-md"
     >
-      <div className="mx-auto flex max-w-container flex-wrap items-center gap-x-4 gap-y-3 px-gutter py-3">
+      <div className="mx-auto flex max-w-container flex-wrap items-center gap-x-4 gap-y-3 px-gutter py-4">
         <p className="text-small text-anthracite/80">{copy.detected}</p>
         <div className="flex items-center gap-2">
           <Button variant="link" onClick={accept} className="text-small">

@@ -11,7 +11,7 @@ export function Badge({ children, className, tone = "atlas" }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded px-2 py-1 text-caption uppercase",
+        "inline-flex items-center rounded-pill px-3 py-1 text-caption",
         tone === "atlas" && "bg-atlas text-white",
         tone === "light" && "bg-light text-deep",
         tone === "deep" && "bg-deep text-white",

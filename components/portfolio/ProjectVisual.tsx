@@ -35,7 +35,7 @@ export function ProjectVisual({
       whileInView="visible"
       viewport={viewport}
       variants={clipReveal}
-      className={cn("relative overflow-hidden bg-deep", className)}
+      className={cn("relative overflow-hidden rounded-lg bg-deep", className)}
       style={{ aspectRatio: ratio }}
     >
       <motion.div
@@ -44,13 +44,13 @@ export function ProjectVisual({
       >
         <span
           aria-hidden
-          className="select-none px-6 text-center text-h1 uppercase leading-none text-white/10"
+          className="select-none px-6 text-center text-h1 leading-none text-white/10"
         >
           {client}
         </span>
       </motion.div>
 
-      <span className="absolute bottom-4 start-4 text-caption uppercase text-white/40">
+      <span className="absolute bottom-4 start-4 text-caption text-white/40">
         {pendingLabel}
       </span>
 

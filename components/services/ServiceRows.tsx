@@ -17,13 +17,13 @@ export interface ServiceRow {
 /**
  * Les services en rangées pleine largeur, pas en grille de cartes.
  *
- * Chaque service est une ligne typographique qui s'ouvre au survol : le nom
- * glisse, la description apparaît, le fond s'assombrit. Le regard descend une
- * liste au lieu de balayer une grille — c'est ce qui donne le registre
- * éditorial plutôt que l'effet catalogue.
+ * Chaque rangée est une ligne éditoriale : un titre large en casse normale,
+ * une description sur deux lignes, et une flèche allongée à l'opposé. Le
+ * regard descend une liste au lieu de balayer une grille — c'est ce qui
+ * distingue le registre éditorial de l'effet catalogue.
  *
- * Au clavier, le focus produit exactement le même état que le survol : la
- * description n'est jamais réservée à la souris.
+ * Au survol comme au focus clavier, la flèche s'étire et le titre avance :
+ * l'état actif n'est jamais réservé à la souris.
  */
 export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
   const [active, setActive] = useState<string | null>(null);
@@ -33,8 +33,8 @@ export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
       initial="hidden"
       whileInView="visible"
       viewport={viewport}
-      variants={stagger(0, 0.06)}
-      className="border-t border-anthracite/15"
+      variants={stagger(0, 0.05)}
+      className="border-t border-anthracite/12"
     >
       {rows.map((row) => {
         const isActive = active === row.index;
@@ -42,7 +42,7 @@ export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
           <motion.li
             key={row.index}
             variants={revealUp}
-            className="border-b border-anthracite/15"
+            className="border-b border-anthracite/12"
           >
             <Link
               href={row.href}
@@ -50,46 +50,50 @@ export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
               onMouseLeave={() => setActive(null)}
               onFocus={() => setActive(row.index)}
               onBlur={() => setActive(null)}
-              className={cn(
-                "group grid grid-cols-12 items-baseline gap-4 py-7 transition-colors duration-fast ease-brand md:py-9",
-                isActive && "bg-canvas-off",
-              )}
+              className="group flex flex-col gap-5 py-10 md:flex-row md:items-center md:gap-12 md:py-14"
             >
-              <span className="col-span-2 text-caption uppercase text-anthracite/40 md:col-span-1">
-                {row.index}
-              </span>
+              <div className="flex-1">
+                <h3 className="flex items-center gap-3 text-h3 text-deep">
+                  <span
+                    className={cn(
+                      "transition-transform duration-base ease-brand",
+                      isActive && "md:translate-x-2 md:rtl:-translate-x-2",
+                    )}
+                  >
+                    {row.name}
+                  </span>
+                  <span
+                    aria-hidden
+                    className={cn(
+                      "block h-2.5 w-2.5 shrink-0 rounded-pill transition-colors duration-base ease-brand",
+                      isActive ? "bg-atlas" : "bg-light",
+                    )}
+                  />
+                </h3>
+                <p className="mt-4 max-w-xl text-body-lg text-anthracite/65">
+                  {row.description}
+                </p>
+              </div>
 
-              <span className="col-span-10 md:col-span-4">
-                <span
-                  className={cn(
-                    "block text-h3 text-deep transition-transform duration-base ease-brand",
-                    isActive && "md:translate-x-2 md:rtl:-translate-x-2",
-                  )}
-                >
-                  {row.name}
-                </span>
-                <span className="mt-1 block text-caption uppercase text-atlas">
-                  {row.kicker}
-                </span>
-              </span>
-
-              <span
-                className={cn(
-                  "col-span-12 text-small text-anthracite/60 transition-opacity duration-base ease-brand md:col-span-6 md:opacity-0",
-                  isActive && "md:opacity-100",
-                )}
-              >
-                {row.description}
-              </span>
-
+              {/* Flèche allongée : elle s'étire au lieu de simplement glisser. */}
               <span
                 aria-hidden
-                className={cn(
-                  "col-span-12 hidden text-h3 text-atlas transition-all duration-base ease-brand md:col-span-1 md:block md:text-end md:opacity-0",
-                  isActive && "md:opacity-100",
-                )}
+                className="hidden items-center md:flex rtl:-scale-x-100"
               >
-                →
+                <span
+                  className={cn(
+                    "block h-px bg-anthracite/40 transition-all duration-base ease-brand",
+                    isActive ? "w-24 bg-atlas" : "w-14",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "-ms-2 text-h3 leading-none transition-colors duration-base ease-brand",
+                    isActive ? "text-atlas" : "text-anthracite/40",
+                  )}
+                >
+                  ›
+                </span>
               </span>
             </Link>
           </motion.li>

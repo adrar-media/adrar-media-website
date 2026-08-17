@@ -27,7 +27,7 @@ export async function CTASection({ locale }: { locale: Locale }) {
             <TextReveal
               as="h2"
               lines={t.list("cta.titleLines")}
-              className="text-h1 uppercase text-white"
+              className="text-h1 text-white"
             />
           </div>
 

@@ -3,14 +3,33 @@ import { cn } from "@/lib/utils";
 interface EyebrowProps {
   children: React.ReactNode;
   className?: string;
-  /** Trait court à gauche — marqueur éditorial récurrent du site. */
-  rule?: boolean;
+  /** Pastille verte de tête — marqueur récurrent des ouvertures de section. */
+  dot?: boolean;
+  tone?: "dark" | "light";
 }
 
-export function Eyebrow({ children, className, rule = true }: EyebrowProps) {
+/**
+ * Étiquette de section, sous forme de pastille posée sur le fond.
+ *
+ * Remplace la petite capitale espacée : à l'échelle de la page, c'est cet
+ * élément qui annonce le registre doux avant même que le titre soit lu.
+ */
+export function Eyebrow({
+  children,
+  className,
+  dot = true,
+  tone = "dark",
+}: EyebrowProps) {
   return (
-    <span className={cn("eyebrow inline-flex items-center gap-3", className)}>
-      {rule && <span aria-hidden className="h-px w-8 bg-current opacity-50" />}
+    <span
+      className={cn(
+        "pill",
+        dot && "pill-dot",
+        tone === "light" &&
+          "border-white/15 bg-white/10 text-white shadow-none backdrop-blur-sm",
+        className,
+      )}
+    >
       {children}
     </span>
   );

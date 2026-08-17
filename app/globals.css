@@ -27,12 +27,7 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* L'arabe supporte mal les capitales forcées et les interlettrages serrés. */
-  [dir="rtl"] .eyebrow {
-    letter-spacing: 0;
-    text-transform: none;
-  }
-
+  /* L'arabe supporte mal les interlettrages serrés du latin. */
   [dir="rtl"] h1,
   [dir="rtl"] h2,
   [dir="rtl"] h3 {
@@ -43,7 +38,7 @@
   :focus-visible {
     outline: 2px solid var(--atlas-green);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 12px;
   }
 
   ::selection {
@@ -51,7 +46,6 @@
     color: var(--deep-blue);
   }
 
-  /* Les titres portent leur graisse via les tokens fontSize. */
   h1,
   h2,
   h3,
@@ -65,9 +59,18 @@
 }
 
 @layer components {
-  /* Sur-titre éditorial : petite capitale très espacée. */
-  .eyebrow {
-    @apply text-caption uppercase;
+  /*
+   * Étiquette de section : petite pastille posée sur le fond plutôt qu'une
+   * capitale espacée. Elle ancre le registre doux dès le premier élément lu.
+   */
+  .pill {
+    @apply inline-flex items-center gap-2.5 rounded-pill border border-anthracite/10
+      bg-canvas-raised px-4 py-2 text-caption text-anthracite shadow-pill;
+  }
+
+  .pill-dot::before {
+    content: "";
+    @apply block h-2 w-2 rounded-pill bg-light;
   }
 }
 
@@ -76,6 +79,14 @@
   .line-mask {
     overflow: hidden;
     display: block;
+  }
+
+  /*
+   * Halo diffus des formes d'ambiance. Rendu par un filtre plutôt que par une
+   * image : aucun octet téléchargé, et la couleur suit la palette.
+   */
+  .ambient {
+    filter: blur(46px);
   }
 }
 

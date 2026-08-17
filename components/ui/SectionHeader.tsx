@@ -34,18 +34,13 @@ export function SectionHeader({
     <div
       className={cn(
         align === "split" &&
-          "grid gap-8 md:grid-cols-12 md:items-end md:gap-gutter",
+          "grid gap-8 md:grid-cols-12 md:items-end md:gap-grid",
         className,
       )}
     >
       <div className={cn(align === "split" && "md:col-span-7")}>
         {eyebrow && (
-          <Eyebrow
-            className={cn(
-              "mb-6",
-              tone === "dark" ? "text-atlas" : "text-light",
-            )}
-          >
+          <Eyebrow className="mb-8" tone={tone === "dark" ? "dark" : "light"}>
             {eyebrow}
           </Eyebrow>
         )}
@@ -54,7 +49,6 @@ export function SectionHeader({
           lines={titleLines}
           className={cn(
             titleSize,
-            "uppercase",
             tone === "dark" ? "text-deep" : "text-white",
           )}
         />

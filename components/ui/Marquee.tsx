@@ -17,7 +17,7 @@ export function Marquee({ items, className, separator = "•" }: MarqueeProps) {
     <ul className="flex shrink-0 items-center">
       {items.map((item) => (
         <li key={item} className="flex items-center whitespace-nowrap">
-          <span className="px-6 text-h3 uppercase tracking-tight">{item}</span>
+          <span className="px-8 text-h2 text-deep/85">{item}</span>
           <span aria-hidden className="text-atlas">
             {separator}
           </span>

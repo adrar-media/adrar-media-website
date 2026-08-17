@@ -33,10 +33,10 @@ export async function WhyAdrar({ locale }: { locale: Locale }) {
           className="mb-20"
         />
 
-        <Reveal staggerChildren className="grid gap-x-gutter gap-y-14 md:grid-cols-3">
+        <Reveal staggerChildren className="grid gap-x-grid gap-y-14 md:grid-cols-3">
           {principles.map((key, index) => (
             <RevealItem key={key} className={index % 3 === 1 ? "md:mt-12" : ""}>
-              <p className="text-caption uppercase text-anthracite/30">
+              <p className="text-caption text-anthracite/30">
                 {String(index + 1).padStart(2, "0")}
               </p>
               <h3 className="mt-4 text-h3 text-deep">

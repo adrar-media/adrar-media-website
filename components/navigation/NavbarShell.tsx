@@ -29,11 +29,15 @@ interface NavbarShellProps {
 }
 
 /**
- * Barre de navigation.
+ * Navigation en pastille flottante.
  *
- * Reste visible au scroll et se compacte au-delà du premier écran. Contrairement
- * à la référence analysée, elle ne disparaît pas sur desktop : l'objectif du
- * site est la demande de devis, le CTA doit rester atteignable en permanence.
+ * La barre ne s'étend pas sur toute la largeur : elle flotte au-dessus du
+ * contenu, posée comme un objet. Le logo reste seul à gauche, sur le fond nu.
+ *
+ * Elle reste visible au défilement, contrairement à la référence analysée :
+ * l'objectif du site est la demande de devis, le CTA doit rester atteignable
+ * en permanence. Au-delà du premier écran, la pastille se voile simplement
+ * pour que le texte qui passe dessous reste lisible.
  */
 export function NavbarShell({
   locale,
@@ -42,11 +46,11 @@ export function NavbarShell({
   cta,
   labels,
 }: NavbarShellProps) {
-  const [compact, setCompact] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setCompact(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -69,24 +73,25 @@ export function NavbarShell({
   }, []);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 border-b transition-all duration-fast ease-brand",
-        compact
-          ? "border-canvas-gray bg-canvas/95 backdrop-blur"
-          : "border-transparent bg-canvas",
-      )}
-    >
-      <Container
-        as="nav"
-        className={cn(
-          "flex items-center justify-between transition-all duration-fast ease-brand",
-          compact ? "py-3" : "py-5",
-        )}
-      >
+    <header className="fixed inset-x-0 top-0 z-50 pt-4 md:pt-6">
+      <Container as="nav" className="flex items-center justify-between gap-4">
         <span aria-label={labels.nav} className="sr-only" />
 
-        <Link href={homeHref} className="flex items-center gap-3">
+        {/*
+          Le logo est posé sur le fond nu, sans pastille : il doit donc
+          s'effacer dès que la page défile, sinon le contenu passe dessous et
+          se superpose à lui. Seule la pastille de navigation reste fixée.
+          Sur mobile il conserve son propre fond et reste lisible.
+        */}
+        <Link
+          href={homeHref}
+          tabIndex={scrolled ? -1 : undefined}
+          aria-hidden={scrolled || undefined}
+          className={cn(
+            "flex shrink-0 items-center rounded-pill bg-canvas-raised/80 p-2 backdrop-blur-sm transition-opacity duration-base ease-brand md:bg-transparent md:p-0 md:backdrop-blur-none",
+            scrolled && "lg:pointer-events-none lg:opacity-0",
+          )}
+        >
           {/* IMAGE_REQUIRED — logo vectoriel (SVG) attendu pour remplacer ce PNG. */}
           <Image
             src="/brand/adrar-media-logo.png"
@@ -94,29 +99,40 @@ export function NavbarShell({
             width={40}
             height={40}
             priority
-            className={cn(
-              "w-auto transition-all duration-fast ease-brand",
-              compact ? "h-8" : "h-10",
-            )}
+            className="h-9 w-auto md:h-10"
           />
         </Link>
 
-        <ul className="hidden items-center gap-8 lg:flex">
-          {items.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="text-small text-anthracite transition-colors duration-fast ease-brand hover:text-atlas"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {/* Pastille de navigation — desktop */}
+        <div
+          className={cn(
+            "hidden items-center rounded-pill border p-1.5 ps-8 transition-all duration-base ease-brand lg:flex",
+            scrolled
+              ? "border-anthracite/10 bg-canvas-raised/85 shadow-pill backdrop-blur-md"
+              : "border-anthracite/10 bg-canvas-raised shadow-pill",
+          )}
+        >
+          <ul className="flex items-center gap-8">
+            {items.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="text-small text-anthracite transition-colors duration-base ease-brand hover:text-atlas"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-        <div className="hidden items-center gap-6 lg:flex">
+          <span
+            aria-hidden
+            className="mx-6 h-5 w-px shrink-0 bg-anthracite/12"
+          />
+
           <LanguageSwitcher current={locale} label={labels.language} />
-          <Button href={cta.href} size="md">
+
+          <Button href={cta.href} size="md" className="ms-5">
             {cta.label}
           </Button>
         </div>
@@ -127,24 +143,24 @@ export function NavbarShell({
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           aria-label={menuOpen ? labels.closeMenu : labels.openMenu}
-          className="flex h-10 w-10 items-center justify-center lg:hidden"
+          className="flex h-12 w-12 items-center justify-center rounded-pill border border-anthracite/10 bg-canvas-raised shadow-pill lg:hidden"
         >
-          <span aria-hidden className="relative block h-4 w-6">
+          <span aria-hidden className="relative block h-4 w-5">
             <span
               className={cn(
-                "absolute inset-x-0 block h-px bg-anthracite transition-all duration-fast ease-brand",
+                "absolute inset-x-0 block h-px bg-anthracite transition-all duration-base ease-brand",
                 menuOpen ? "top-2 rotate-45" : "top-0",
               )}
             />
             <span
               className={cn(
-                "absolute inset-x-0 top-2 block h-px bg-anthracite transition-opacity duration-fast",
+                "absolute inset-x-0 top-2 block h-px bg-anthracite transition-opacity duration-base",
                 menuOpen && "opacity-0",
               )}
             />
             <span
               className={cn(
-                "absolute inset-x-0 block h-px bg-anthracite transition-all duration-fast ease-brand",
+                "absolute inset-x-0 block h-px bg-anthracite transition-all duration-base ease-brand",
                 menuOpen ? "top-2 -rotate-45" : "top-4",
               )}
             />
@@ -155,16 +171,16 @@ export function NavbarShell({
       {menuOpen && (
         <div
           id="mobile-menu"
-          className="fixed inset-x-0 bottom-0 top-[var(--nav-h,64px)] z-50 overflow-y-auto bg-canvas lg:hidden"
+          className="fixed inset-0 z-50 overflow-y-auto bg-canvas lg:hidden"
         >
-          <Container className="flex flex-col gap-8 py-10">
+          <Container className="flex flex-col gap-8 py-24">
             <ul className="flex flex-col gap-1">
               {items.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
                     onClick={() => setMenuOpen(false)}
-                    className="block border-b border-canvas-gray py-4 text-h3 text-deep"
+                    className="block border-b border-canvas-gray py-5 text-h3 text-deep"
                   >
                     {item.label}
                   </Link>
@@ -182,7 +198,7 @@ export function NavbarShell({
             </Button>
 
             <div>
-              <p className="eyebrow mb-3 text-anthracite/50">
+              <p className="mb-3 text-caption text-anthracite/50">
                 {labels.language}
               </p>
               <LanguageSwitcher

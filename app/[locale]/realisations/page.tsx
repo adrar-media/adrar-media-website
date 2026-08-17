@@ -20,12 +20,12 @@ export default async function WorkPage({
   const c = await getTranslator(locale, "common");
 
   return (
-    <section className="py-section">
+    <section className="pb-section pt-40 md:pt-48">
       <Container>
         <TextReveal
           as="h1"
           lines={[c("nav.work")]}
-          className="text-h1 uppercase text-deep"
+          className="text-h1 text-deep"
         />
       </Container>
     </section>

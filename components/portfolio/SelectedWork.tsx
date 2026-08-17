@@ -40,7 +40,7 @@ export async function SelectedWork({ locale }: { locale: Locale }) {
           className="mb-20"
         />
 
-        <div className="grid gap-y-20 md:grid-cols-12 md:gap-x-gutter">
+        <div className="grid gap-y-20 md:grid-cols-12 md:gap-x-grid">
           {featuredProjects.map((project, index) => {
             const layout = layouts[index % layouts.length]!;
             const metric = project.headlineMetric;
@@ -63,7 +63,7 @@ export async function SelectedWork({ locale }: { locale: Locale }) {
                   <Reveal delay={0.1}>
                     <div className="mt-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
                       <h3 className="text-h3 text-white">{project.client}</h3>
-                      <p className="text-caption uppercase text-white/40">
+                      <p className="text-caption text-white/40">
                         {t(project.industry)}
                       </p>
                     </div>
@@ -83,7 +83,7 @@ export async function SelectedWork({ locale }: { locale: Locale }) {
                       </p>
                     )}
 
-                    <span className="mt-6 inline-flex items-center gap-2 text-button uppercase text-light">
+                    <span className="mt-6 inline-flex items-center gap-2 text-button text-light">
                       {t("work.viewCase")}
                       <span
                         aria-hidden

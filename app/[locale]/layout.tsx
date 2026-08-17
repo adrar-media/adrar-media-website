@@ -121,12 +121,12 @@ export default async function LocaleLayout({
         >
           {rtl ? "تخطي إلى المحتوى" : "Aller au contenu"}
         </a>
-        <LocaleSuggestion current={typedLocale} labels={await suggestionLabels()} />
         <Navbar locale={typedLocale} />
         <main id="main">
           <PageTransition>{children}</PageTransition>
         </main>
         <Footer locale={typedLocale} />
+        <LocaleSuggestion current={typedLocale} labels={await suggestionLabels()} />
       </body>
     </html>
   );

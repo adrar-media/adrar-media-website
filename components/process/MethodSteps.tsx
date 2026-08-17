@@ -53,7 +53,7 @@ export async function MethodSteps({ locale }: { locale: Locale }) {
                 aria-hidden
                 className="absolute start-0 top-1 block h-[15px] w-[15px] rounded-full border border-anthracite/30 bg-beige-soft md:top-0"
               />
-              <p className="text-caption uppercase text-atlas">
+              <p className="text-caption text-atlas">
                 {String(index + 1).padStart(2, "0")}
               </p>
               <h3 className="mt-3 text-h3 text-deep">
