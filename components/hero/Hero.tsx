@@ -8,6 +8,7 @@ import { Headline } from "@/components/ui/Headline";
 import { Block } from "@/components/ui/Block";
 import { Button } from "@/components/buttons/Button";
 import { AmbientShapes } from "@/components/hero/AmbientShapes";
+import { MountainRange } from "@/components/hero/MountainRange";
 
 /**
  * Hero.
@@ -30,6 +31,8 @@ export async function Hero({ locale }: { locale: Locale }) {
 
   return (
     <section className="relative overflow-hidden pb-20 pt-36 md:pb-28 md:pt-44">
+      {/* Le massif occupe le sol, les formes flottent au-dessus. */}
+      <MountainRange />
       <AmbientShapes />
 
       <Container className="relative">

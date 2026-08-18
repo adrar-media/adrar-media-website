@@ -16,7 +16,7 @@
 const shapes = [
   { position: "start-[6%] top-[20%] h-40 w-64", drift: "0s", glow: "0s" },
   { position: "end-[10%] top-[12%] h-52 w-72", drift: "1.6s", glow: "1.3s" },
-  { position: "start-[36%] bottom-[10%] h-44 w-60", drift: "3.1s", glow: "2.6s" },
+  { position: "start-[34%] top-[46%] h-44 w-60", drift: "3.1s", glow: "2.6s" },
 ];
 
 export function AmbientShapes() {
