@@ -92,7 +92,7 @@ export default async function ServicesPage({
                       />
                     </h2>
                     <p className="mt-2 text-caption text-atlas">
-                      {service.kicker}
+                      {c(`kickers.${service.key}`)}
                     </p>
                   </BlockItem>
 

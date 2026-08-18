@@ -4,7 +4,7 @@
     "description": "Stratégie, création de contenu, branding et publicité digitale. Nous transformons les marques et entreprises en expériences digitales capables d'attirer, convaincre et convertir."
   },
   "hero": {
-    "eyebrow": "Adrar Media — Digital Agency",
+    "eyebrow": "Adrar Media — Agence digitale",
     "titleLines": [
       "From Local",
       "to Global."
@@ -15,11 +15,11 @@
     "since": "Agence créative"
   },
   "marquee": [
-    "Strategy",
-    "Creative",
-    "Content",
+    "Stratégie",
+    "Création",
+    "Contenu",
     "Performance",
-    "Growth"
+    "Croissance"
   ],
   "intro": {
     "eyebrow": "Notre approche",
@@ -98,27 +98,27 @@
     ],
     "items": {
       "strategy": {
-        "title": "Strategy First",
+        "title": "La stratégie d'abord",
         "body": "Nous comprenons le business avant de créer."
       },
       "creative": {
-        "title": "Creative Thinking",
+        "title": "Pensée créative",
         "body": "Nous transformons les idées en expériences qui attirent l'attention."
       },
       "data": {
-        "title": "Data Driven",
+        "title": "Guidés par la donnée",
         "body": "Nous mesurons les performances et nous optimisons."
       },
       "local": {
-        "title": "Local Understanding",
+        "title": "Ancrage local",
         "body": "Nous connaissons le marché marocain et ses réalités."
       },
       "partner": {
-        "title": "One Creative Partner",
+        "title": "Un seul partenaire créatif",
         "body": "Stratégie, contenu, design, publicité et digital réunis."
       },
       "growth": {
-        "title": "Growth Mindset",
+        "title": "Culture de la croissance",
         "body": "Nous cherchons des résultats business, pas des métriques de vanité."
       }
     }
@@ -133,27 +133,27 @@
     "cta": "Découvrir la méthode complète",
     "steps": {
       "discover": {
-        "title": "Discover",
+        "title": "Comprendre",
         "body": "Audit du business, du marché, de la concurrence et de la présence digitale."
       },
       "strategize": {
-        "title": "Strategize",
+        "title": "Structurer",
         "body": "Positionnement, stratégie, objectifs et plan d'action."
       },
       "create": {
-        "title": "Create",
+        "title": "Créer",
         "body": "Production de contenus, design, vidéos et assets."
       },
       "distribute": {
-        "title": "Distribute",
+        "title": "Diffuser",
         "body": "Publication et diffusion sur les bons canaux."
       },
       "optimize": {
-        "title": "Optimize",
+        "title": "Optimiser",
         "body": "Analyse des données, tests et optimisation."
       },
       "scale": {
-        "title": "Scale",
+        "title": "Développer",
         "body": "Développement et augmentation des performances."
       }
     }

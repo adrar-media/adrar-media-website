@@ -13,7 +13,7 @@ export async function ServicesSection({ locale }: { locale: Locale }) {
 
   const rows: ServiceRow[] = services.map((service) => ({
     index: service.index,
-    kicker: service.kicker,
+    kicker: c(`kickers.${service.key}`),
     name: c(service.nameKey),
     description: t(service.descriptionKey),
     // Ancre plutôt que route de détail : aucun lien ne pointe dans le vide.

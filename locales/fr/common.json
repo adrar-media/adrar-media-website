@@ -48,5 +48,14 @@
     "production": "Production Audiovisuelle",
     "performance": "Publicité Digitale",
     "web": "Création de sites web"
+  },
+  "kickers": {
+    "strategy": "Stratégie",
+    "social": "Social",
+    "content": "Contenu",
+    "brand": "Marque",
+    "production": "Production",
+    "performance": "Performance",
+    "web": "Digital"
   }
 }

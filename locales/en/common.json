@@ -48,5 +48,14 @@
     "production": "Video Production",
     "performance": "Digital Advertising",
     "web": "Web Design"
+  },
+  "kickers": {
+    "strategy": "Strategy",
+    "social": "Social",
+    "content": "Content",
+    "brand": "Brand",
+    "production": "Production",
+    "performance": "Performance",
+    "web": "Digital"
   }
 }
