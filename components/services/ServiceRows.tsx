@@ -53,7 +53,7 @@ export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
                   <span
                     aria-hidden
                     className={cn(
-                      "block h-2.5 w-2.5 shrink-0 rounded-pill transition-colors duration-base ease-brand",
+                      "block h-2.5 w-2.5 shrink-0 animate-dot-pulse rounded-pill transition-colors duration-base ease-brand",
                       isActive ? "bg-atlas" : "bg-light",
                     )}
                   />

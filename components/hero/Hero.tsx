@@ -76,7 +76,7 @@ export async function Hero({ locale }: { locale: Locale }) {
 
           {badge && (
             <Block className="md:col-span-4 md:col-start-9">
-              <div className="inline-flex animate-glow-pulse flex-col gap-1 rounded-lg bg-light px-7 py-6 shadow-glow">
+              <div className="inline-flex animate-glow-pulse flex-col gap-1 rounded-lg bg-light px-7 py-6">
                 <span className="text-h3 leading-none text-deep">
                   {badge.value}
                   {badge.suffix}

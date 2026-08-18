@@ -135,19 +135,30 @@ const config: Config = {
           "50%": { transform: "translateY(-12px)" },
         },
         /**
-         * Respiration lente du halo vert. C'est le seul mouvement permanent
-         * de la page : assez lent pour ne pas capter le regard, assez présent
-         * pour que la composition ne paraisse pas figée.
+         * Halo vert qui enfle puis retombe.
+         *
+         * L'amplitude est volontairement large (12vw, soit ~200 px sur un
+         * grand écran) : c'est ce qui fait respirer la page. Une pulsation
+         * discrète en `scale` ne se voit pas — essayé, sans effet perceptible.
+         *
+         * L'unité `vw` fait suivre l'amplitude à la taille de l'écran, donc
+         * l'effet reste proportionné du mobile au grand format.
          */
         "glow-pulse": {
-          "0%, 100%": { opacity: "0.55", transform: "scale(1)" },
-          "50%": { opacity: "1", transform: "scale(1.04)" },
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(62, 213, 152, 0)" },
+          "50%": { boxShadow: "0 0 12vw 0 rgba(62, 213, 152, 0.85)" },
+        },
+        /** Pastilles vertes : battement léger, pour que les repères vivent. */
+        "dot-pulse": {
+          "0%, 100%": { transform: "scale(0.8)" },
+          "50%": { transform: "scale(1.2)" },
         },
       },
       animation: {
         marquee: "marquee 30s linear infinite",
         float: "float 7s ease-in-out infinite",
         "glow-pulse": "glow-pulse 4s ease-in-out infinite",
+        "dot-pulse": "dot-pulse 2.4s ease-in-out infinite",
       },
     },
   },

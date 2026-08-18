@@ -88,7 +88,7 @@ export default async function ServicesPage({
                       {c(service.nameKey)}
                       <span
                         aria-hidden
-                        className="block h-2.5 w-2.5 shrink-0 rounded-pill bg-light"
+                        className="block h-2.5 w-2.5 shrink-0 animate-dot-pulse rounded-pill bg-light"
                       />
                     </h2>
                     <p className="mt-2 text-caption text-atlas">
