@@ -21,6 +21,16 @@ export const projects: Project[] = [
       label: "metrics.facebookViews",
       source: "Meta — phase de lancement",
     },
+    caseStudy: {
+      context: "projects.bricodi.context",
+      approach: "projects.bricodi.approach",
+      deliverables: [
+        "projects.bricodi.deliverables.0",
+        "projects.bricodi.deliverables.1",
+        "projects.bricodi.deliverables.2",
+      ],
+      disclosure: "projects.bricodi.disclosure",
+    },
     featured: true,
   },
   {
@@ -30,26 +40,35 @@ export const projects: Project[] = [
     categories: ["social-media", "branding", "video"],
     services: ["social", "content", "brand"],
     summary: "projects.bigFamily.summary",
-    featured: true,
-  },
-  {
-    slug: "ruchendo",
-    client: "Ruch'Endo",
-    // DATA_REQUIRED — secteur non confirmé par la direction.
-    industry: "industry.pending",
-    categories: ["publicite", "social-media"],
-    services: ["strategy", "performance"],
-    summary: "projects.ruchendo.summary",
+    caseStudy: {
+      context: "projects.bigFamily.context",
+      approach: "projects.bigFamily.approach",
+      deliverables: [
+        "projects.bigFamily.deliverables.0",
+        "projects.bigFamily.deliverables.1",
+        "projects.bigFamily.deliverables.2",
+      ],
+      disclosure: "projects.bigFamily.disclosure",
+    },
     featured: true,
   },
   {
     slug: "wlidatna",
     client: "Wlidatna",
-    // DATA_REQUIRED — secteur non confirmé par la direction.
-    industry: "industry.pending",
+    industry: "industry.association",
     categories: ["video", "social-media"],
     services: ["content", "production"],
     summary: "projects.wlidatna.summary",
+    caseStudy: {
+      context: "projects.wlidatna.context",
+      approach: "projects.wlidatna.approach",
+      deliverables: [
+        "projects.wlidatna.deliverables.0",
+        "projects.wlidatna.deliverables.1",
+        "projects.wlidatna.deliverables.2",
+      ],
+      disclosure: "projects.wlidatna.disclosure",
+    },
     featured: true,
   },
 ];

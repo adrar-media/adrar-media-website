@@ -10,8 +10,13 @@
  * formes sont décoratives, donc masquées aux technologies d'assistance, et
  * l'ensemble s'immobilise sous prefers-reduced-motion.
  *
- * La section parente conserve `overflow-hidden` : le halo mesure jusqu'à 12vw
- * et déborderait sinon la page sur les côtés.
+ * Le halo passe par `.halo` (globals.css) : un dégradé radial dont seuls
+ * l'opacité et l'échelle varient. La version précédente animait un
+ * `box-shadow` de 12vw, soit un flou de ~200 px repeint à chaque image sur
+ * trois formes en même temps — le poste le plus lourd du premier écran.
+ *
+ * La section parente conserve `overflow-hidden` : le halo déborde de 12vw de
+ * chaque côté de son cadre et sortirait sinon de la page.
  */
 const shapes = [
   { position: "start-[6%] top-[20%] h-40 w-64", drift: "0s", glow: "0s" },
@@ -30,11 +35,18 @@ export function AmbientShapes() {
         >
           {/* Le halo émane d'un cadre invisible : seule la lumière se voit. */}
           <div
-            className="absolute inset-0 animate-glow-pulse rounded-xl"
+            className="halo animate-glow-pulse"
             style={{ animationDelay: shape.glow }}
           />
-          <div className="ambient absolute inset-0 rounded-xl bg-light/20" />
-          <div className="absolute inset-0 rounded-xl border border-white/60 bg-white/35" />
+          <div className="absolute inset-0 rounded-xl bg-light/20 dark:bg-light/10" />
+          {/*
+            Le verre est réglé pour un fond clair : 35 % de blanc sur du crème
+            se lit comme une plaque translucide, la même valeur sur un fond de
+            nuit devient une dalle laiteuse qui écrase le titre. En thème
+            sombre la matière s'inverse — presque rien de blanc, un liseré à
+            peine posé : c'est le fond qui doit rester profond.
+          */}
+          <div className="absolute inset-0 rounded-xl border border-white/60 bg-white/35 dark:border-white/10 dark:bg-white/[0.03]" />
         </div>
       ))}
     </div>

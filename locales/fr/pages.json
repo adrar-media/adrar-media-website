@@ -1,0 +1,483 @@
+{
+  "quote": {
+    "meta": {
+      "title": "Demander un devis",
+      "description": "Décrivez votre projet en deux minutes. Nous revenons vers vous avec un périmètre chiffré et un calendrier réaliste."
+    },
+    "eyebrow": "Demande de devis",
+    "titleLines": [
+      "Parlons de votre projet.",
+      "Sans engagement."
+    ],
+    "intro": "Plus votre description est précise, plus notre réponse le sera. Comptez deux minutes pour remplir ce formulaire — nous revenons vers vous avec un périmètre, un budget et un calendrier.",
+    "form": {
+      "legendProject": "Votre projet",
+      "legendContact": "Vous joindre",
+      "name": "Nom et prénom",
+      "company": "Entreprise",
+      "email": "Adresse e-mail",
+      "phone": "Téléphone",
+      "services": "Ce qui vous intéresse",
+      "servicesHint": "Plusieurs choix possibles.",
+      "budget": "Budget envisagé",
+      "timeline": "Échéance souhaitée",
+      "message": "Votre projet en quelques lignes",
+      "messagePlaceholder": "Votre activité, ce que vous voulez obtenir, ce que vous avez déjà essayé…",
+      "privacyConsent": "J'accepte que mes informations soient utilisées pour traiter cette demande, selon la",
+      "privacyLink": "politique de confidentialité.",
+      "optional": "facultatif",
+      "required": "obligatoire",
+      "choose": "Choisir",
+      "submit": "Envoyer ma demande",
+      "budgets": [
+        "Moins de 10 000 MAD",
+        "10 000 à 30 000 MAD",
+        "30 000 à 75 000 MAD",
+        "Plus de 75 000 MAD",
+        "À définir ensemble"
+      ],
+      "timelines": [
+        "Dès que possible",
+        "Dans le mois",
+        "Dans les trois mois",
+        "Pas encore arrêté"
+      ],
+      "errors": {
+        "name": "Indiquez le nom sous lequel vous souhaitez être appelé.",
+        "email": "Cette adresse e-mail semble incomplète.",
+        "contact": "Laissez au moins un e-mail ou un téléphone, sans quoi nous ne pourrons pas répondre.",
+        "message": "Décrivez votre projet en quelques mots, même brièvement.",
+        "consent": "Votre accord est nécessaire pour transmettre cette demande."
+      },
+      "summaryTitle": "Votre demande",
+      "summaryHint": "Relisez, puis choisissez par quel canal l'envoyer.",
+      "sendEmail": "Envoyer par e-mail",
+      "sendWhatsapp": "Envoyer par WhatsApp",
+      "edit": "Modifier",
+      "noChannel": "Aucun canal d'envoi n'est configuré pour le moment. Copiez le récapitulatif ci-dessus et transmettez-le par le moyen de votre choix.",
+      "copy": "Copier le récapitulatif",
+      "copied": "Récapitulatif copié.",
+      "sending": "Envoi en cours…",
+      "trapLabel": "Ne pas remplir ce champ",
+      "sentTitle": "Votre demande est partie.",
+      "sentBody": "Nous l'avons bien reçue. Si votre projet est urgent, écrivez-nous directement — le message ci-dessus reste dans votre presse-papiers si vous l'avez copié.",
+      "sentHome": "Retour à l'accueil",
+      "sentWork": "Voir nos réalisations",
+      "failedNotice": "L'envoi automatique n'a pas abouti. Votre demande n'est pas perdue : elle est reprise ci-dessous, prête à partir par e-mail ou WhatsApp.",
+      "rateLimitedNotice": "Plusieurs demandes ont déjà été envoyées depuis cet appareil. Patientez quelques minutes, ou utilisez directement l'un des canaux ci-dessous."
+    },
+    "reassure": [
+      {
+        "title": "Un retour clair",
+        "body": "Si votre demande sort de notre périmètre, nous vous le disons franchement plutôt que de créer une attente inutile."
+      },
+      {
+        "title": "Un périmètre écrit",
+        "body": "Vous recevez ce qui est inclus, ce qui ne l'est pas, et le calendrier associé. Pas de forfait flou."
+      },
+      {
+        "title": "Aucun engagement",
+        "body": "Une demande de devis n'est pas une commande. Tant que rien n'est signé, rien n'est dû."
+      }
+    ]
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact",
+      "description": "Écrivez-nous, appelez-nous ou contactez-nous sur WhatsApp pour parler de votre projet avec l'équipe Adrar Media à Azrou."
+    },
+    "eyebrow": "Contact",
+    "titleLines": [
+      "Une question ?",
+      "Écrivez-nous."
+    ],
+    "intro": "Pour une demande chiffrée, le formulaire de devis va plus vite : il rassemble d'emblée ce dont nous avons besoin pour vous répondre précisément.",
+    "channelsTitle": "Nous joindre",
+    "quoteTitle": "Vous avez un projet précis ?",
+    "quoteBody": "Le formulaire de devis rassemble en une fois le périmètre, le budget et l'échéance. C'est le chemin le plus court vers une réponse utile.",
+    "pending": "Ce canal n'est pas encore ouvert.",
+    "pendingAll": "Nos coordonnées ne sont pas encore publiées sur le site. En attendant, la demande de devis reste le moyen le plus sûr de nous joindre.",
+    "hoursTitle": "Disponibilité",
+    "hoursBody": "Du lundi au vendredi, de 9 h à 18 h (heure du Maroc). Les messages reçus le week-end sont traités le lundi.",
+    "locationTitle": "Où nous sommes",
+    "map": {
+      "load": "Afficher la carte",
+      "notice": "La carte est fournie par Google. En l'affichant, vous acceptez que Google reçoive votre adresse IP.",
+      "frameTitle": "Carte de localisation d'Adrar Media",
+      "openExternal": "Ouvrir dans Google Maps"
+    }
+  },
+  "method": {
+    "meta": {
+      "title": "Comment nous travaillons",
+      "description": "Six étapes, du diagnostic à la montée en charge. Une méthode lisible, avec des livrables identifiés à chaque étape."
+    },
+    "eyebrow": "Comment nous travaillons",
+    "titleLines": [
+      "Comment",
+      "nous travaillons."
+    ],
+    "intro": "Une agence qui ne sait pas expliquer sa méthode facture surtout de l'opacité. Voici la nôtre, dans l'ordre, avec ce que vous recevez à chaque étape.",
+    "overviewLabel": "Le parcours",
+    "outputsLabel": "Ce que vous recevez",
+    "durationLabel": "Durée indicative",
+    "steps": {
+      "discover": {
+        "detail": "Nous partons de ce qui existe déjà : votre activité, vos clients, ce que vous avez tenté et ce qui n'a pas fonctionné. Cette étape évite de reconstruire ce qui tenait debout.",
+        "duration": "1 à 2 semaines",
+        "outputs": [
+          "Audit de la présence existante",
+          "Analyse du marché et de la concurrence",
+          "Restitution commentée"
+        ]
+      },
+      "strategize": {
+        "detail": "Le cap se fixe ici : à qui l'on parle, ce que l'on dit, sur quels canaux, et à quoi l'on mesurera que cela fonctionne. Sans cette étape, tout le reste devient une affaire de goût.",
+        "duration": "1 à 2 semaines",
+        "outputs": [
+          "Positionnement et messages clés",
+          "Plan de canaux",
+          "Indicateurs de suivi convenus"
+        ]
+      },
+      "create": {
+        "detail": "Identité, contenus, vidéos, pages : la production suit le cap fixé, jamais l'inverse. Chaque format est pensé pour l'endroit où il sera réellement vu.",
+        "duration": "2 à 6 semaines",
+        "outputs": [
+          "Contenus produits et validés",
+          "Déclinaisons par plateforme",
+          "Calendrier de publication"
+        ]
+      },
+      "distribute": {
+        "detail": "Publier ne suffit pas. La diffusion est organisée — rythme, ciblage, budget média — pour que le contenu atteigne les bonnes personnes plutôt que le plus grand nombre.",
+        "duration": "En continu",
+        "outputs": [
+          "Programmation des publications",
+          "Campagnes paramétrées",
+          "Ciblages documentés"
+        ]
+      },
+      "optimize": {
+        "detail": "Les chiffres décident. On garde ce qui produit, on coupe ce qui ne produit pas, et on explique pourquoi — y compris quand la réponse dérange.",
+        "duration": "Mensuel",
+        "outputs": [
+          "Rapport de performance",
+          "Décisions d'arbitrage",
+          "Ajustements appliqués"
+        ]
+      },
+      "scale": {
+        "detail": "Une fois qu'un dispositif fonctionne de façon reproductible, on augmente le volume sans casser ce qui marchait. C'est la seule étape qui suppose que les précédentes ont tenu.",
+        "duration": "Au-delà de 3 mois",
+        "outputs": [
+          "Extension des canaux",
+          "Budgets réalloués",
+          "Plan de montée en charge"
+        ]
+      }
+    },
+    "ctaTitle": "Vous voulez savoir à quoi cela ressemble sur votre cas ?",
+    "ctaBody": "La première étape est une conversation, pas un contrat."
+  },
+  "about": {
+    "meta": {
+      "title": "À propos",
+      "description": "Adrar Media, agence de communication et de marketing digital au Maroc. Ce que nous faisons, comment nous travaillons et ce que nous refusons."
+    },
+    "eyebrow": "À propos",
+    "titleLines": [
+      "Sept métiers,",
+      "une seule intention."
+    ],
+    "intro": "Adrar Media accompagne des marques et des entreprises marocaines qui veulent exister sérieusement en ligne — et pas seulement y être présentes.",
+    "briefLabel": "L'agence en bref",
+    "facts": [
+      {
+        "label": "Basés à",
+        "value": "Azrou, Maroc"
+      },
+      {
+        "label": "Langues de travail",
+        "value": "Français, anglais, arabe"
+      },
+      {
+        "label": "Domaines",
+        "value": "Sept, de la stratégie au web"
+      },
+      {
+        "label": "Modèle",
+        "value": "Stratégie, création et diffusion réunies"
+      }
+    ],
+    "missionTitle": "Notre mission",
+    "missionBody": "Rendre l'activité réelle de nos clients lisible, désirable et mesurable en ligne. Concrètement : réunir la stratégie, la création et la diffusion sous un même toit, pour qu'une intention ne se dilue pas en passant d'un prestataire à l'autre — et rendre compte de ce qu'elle produit, chiffres et sources à l'appui.",
+    "missionPoints": [
+      "Une seule intention, du positionnement à la conversion.",
+      "Un périmètre écrit avant de commencer, pas après.",
+      "Des résultats rapportés avec leur origine, y compris quand ils déçoivent."
+    ],
+    "visionTitle": "Notre vision",
+    "visionBody": "Des marques d'ici qui tiennent la comparaison avec n'importe quelle marque d'ailleurs. Nous ne croyons pas à un standard marocain plus indulgent : le niveau d'exigence est le même partout. « From local to global » n'est pas une formule de fin de page, c'est l'ordre dans lequel nous travaillons — l'ancrage d'abord, la portée ensuite.",
+    "visionPoints": [
+      "Le local n'est pas une limite, c'est un point de départ.",
+      "Un travail qui tient dans la durée plutôt qu'une tendance saisie à temps.",
+      "La montée en charge ne vient qu'après ce qui fonctionne déjà."
+    ],
+    "nameTitle": "Pourquoi « Adrar »",
+    "nameBody": "« Adrar » signifie montagne en amazigh. Le nom dit d'où nous venons et ce que nous cherchons à construire : quelque chose qui tient dans la durée, visible de loin, et qui ne dépend pas d'une tendance du moment.",
+    "storyTitle": "Ce que nous faisons",
+    "storyBody": [
+      "Nous réunissons sous un même toit la stratégie, la création et la diffusion. Cette réunion n'est pas un argument commercial : c'est ce qui permet de tenir une même intention depuis le positionnement jusqu'à la conversion, sans qu'elle se dilue en passant d'un prestataire à l'autre.",
+      "Nous travaillons avec des structures qui ont une activité réelle et des clients réels. Notre travail consiste à la rendre lisible, désirable et mesurable en ligne."
+    ],
+    "valuesTitle": "Ce à quoi nous tenons",
+    "values": [
+      {
+        "title": "Des chiffres sourcés",
+        "body": "Toute métrique que nous publions porte son origine. Un chiffre sans source est un argument de vente, pas un résultat."
+      },
+      {
+        "title": "Un périmètre écrit",
+        "body": "Ce qui est inclus est écrit, ce qui ne l'est pas aussi. Les mauvaises surprises se logent toujours dans le non-dit."
+      },
+      {
+        "title": "Dire non",
+        "body": "Quand une demande sort de notre périmètre ou ne servira pas votre activité, nous le disons. C'est moins agréable sur le moment et plus utile ensuite."
+      },
+      {
+        "title": "Le travail avant le discours",
+        "body": "Nos réalisations sont publiées avec l'accord des clients concernés. Tant qu'un accord manque, le projet n'apparaît pas."
+      }
+    ],
+    "teamTitle": "L'équipe",
+    "teamIntro": "Une équipe de trois personnes, réunie sous un même toit : Yassine pilote l'agence, Nabil anime les communautés et Zineb construit les univers graphiques.",
+    "teamPending": "Les présentations de l'équipe seront publiées ici une fois les portraits et les intitulés validés. Nous préférons cette page vide à des profils approximatifs.",
+    "ctaTitle": "Le reste se discute de vive voix.",
+    "ctaBody": "Décrivez-nous votre situation : nous vous dirons franchement si nous sommes les bons interlocuteurs."
+  },
+  "solutions": {
+    "meta": {
+      "title": "Solutions",
+      "description": "Trois façons de travailler ensemble : lancement, accompagnement continu ou mission ponctuelle."
+    },
+    "eyebrow": "Solutions",
+    "titleLines": [
+      "Trois façons",
+      "de travailler ensemble."
+    ],
+    "intro": "Les sept expertises se combinent différemment selon votre situation. Voici les trois formes que prend le plus souvent notre collaboration — chacune est ajustée après le premier échange.",
+    "forWhoLabel": "Pour qui",
+    "includesLabel": "Ce que cela comprend",
+    "packs": [
+      {
+        "key": "launch",
+        "name": "Lancement",
+        "tagline": "Poser des fondations qui tiennent.",
+        "forWho": "Une marque qui démarre, ou une activité existante dont la présence en ligne est à reconstruire.",
+        "includes": [
+          "Audit et positionnement",
+          "Identité de marque et charte",
+          "Premiers contenus et gabarits",
+          "Ouverture et paramétrage des canaux",
+          "Plan de publication sur trois mois"
+        ]
+      },
+      {
+        "key": "growth",
+        "name": "Accompagnement",
+        "tagline": "Tenir le rythme, mois après mois.",
+        "forWho": "Une entreprise déjà installée qui veut une présence régulière et des résultats suivis dans le temps.",
+        "includes": [
+          "Ligne éditoriale et calendrier",
+          "Production de contenus mensuelle",
+          "Animation et modération",
+          "Campagnes publicitaires pilotées",
+          "Rapport mensuel et arbitrages"
+        ]
+      },
+      {
+        "key": "project",
+        "name": "Mission ponctuelle",
+        "tagline": "Un besoin précis, un livrable précis.",
+        "forWho": "Une équipe qui sait exactement ce qu'elle cherche : une vidéo, un site, une identité, une campagne.",
+        "includes": [
+          "Cadrage et périmètre écrit",
+          "Production du livrable convenu",
+          "Allers-retours de validation",
+          "Fichiers sources remis",
+          "Transfert à votre équipe"
+        ]
+      }
+    ],
+    "customTitle": "Rien de tout cela ne correspond ?",
+    "customBody": "Ces trois formes ne sont que les plus fréquentes. Décrivez votre situation, nous construirons le périmètre qui lui convient."
+  },
+  "blog": {
+    "meta": {
+      "title": "Blog",
+      "description": "Guides pratiques d'Adrar Media sur la stratégie marketing, les réseaux sociaux et la production vidéo pour les entreprises au Maroc."
+    },
+    "eyebrow": "Blog",
+    "titleLines": [
+      "Ce que nous",
+      "apprenons en route."
+    ],
+    "intro": "Des méthodes directement applicables pour structurer votre marketing, produire de meilleurs contenus et mesurer ce qui fait avancer votre activité.",
+    "readingMinutes": "min de lecture",
+    "readArticle": "Lire le guide",
+    "takeawaysTitle": "À retenir",
+    "backToBlog": "Tous les guides",
+    "emptyTitle": "Aucun article publié pour l'instant.",
+    "emptyBody": "Nous préférons publier peu et publier utile. Les premiers articles paraîtront ici — ils porteront sur des cas que nous avons réellement traités, pas sur des généralités recopiées.",
+    "emptyCta": "En attendant, nos réalisations en disent davantage."
+  },
+  "legal": {
+    "meta": {
+      "title": "Mentions légales",
+      "description": "Éditeur, hébergement et propriété intellectuelle du site Adrar Media."
+    },
+    "eyebrow": "Mentions légales",
+    "titleLines": [
+      "Mentions légales"
+    ],
+    "intro": "Informations relatives à l'éditeur de ce site, à son hébergement et aux conditions d'utilisation de son contenu.",
+    "identityTitle": "Identité réglementaire",
+    "completeStatus": "Informations complètes",
+    "prelaunchStatus": "Mise en ligne bloquée tant que ces données manquent",
+    "notConfigured": "Non renseigné — requis avant publication",
+    "fields": {
+      "tradeName": "Nom commercial",
+      "legalName": "Raison sociale",
+      "legalForm": "Forme juridique",
+      "capital": "Capital social",
+      "tradeRegister": "Registre du commerce",
+      "taxId": "Identifiant fiscal",
+      "ice": "ICE",
+      "headquarters": "Siège social",
+      "publicationDirector": "Directeur de la publication",
+      "host": "Hébergeur",
+      "hostAddress": "Adresse de l'hébergeur",
+      "hostUrl": "Site de l'hébergeur"
+    },
+    "pendingLabel": "Information à publier",
+    "pendingNote": "Cette mention sera complétée dès que l'information officielle correspondante nous aura été communiquée. Nous préférons une mention manquante à une mention inexacte.",
+    "sections": [
+      {
+        "title": "Éditeur du site",
+        "body": "Le présent site est édité par Adrar Media, agence de communication et de marketing digital établie au Maroc.",
+        "pending": [
+          "Forme juridique et capital social",
+          "Numéro de registre du commerce",
+          "Identifiant fiscal et ICE",
+          "Adresse du siège social",
+          "Nom du directeur de la publication"
+        ]
+      },
+      {
+        "title": "Hébergement",
+        "body": "Le site est hébergé par un prestataire d'infrastructure tiers.",
+        "pending": [
+          "Raison sociale et adresse de l'hébergeur"
+        ]
+      },
+      {
+        "title": "Propriété intellectuelle",
+        "body": "L'ensemble des éléments originaux du site — textes, identité visuelle, mise en page et code — est protégé par le droit de la propriété intellectuelle. Toute reproduction, même partielle, est soumise à autorisation écrite préalable. Les marques et éléments visuels appartenant aux clients cités restent la propriété de leurs titulaires respectifs.",
+        "pending": []
+      },
+      {
+        "title": "Responsabilité",
+        "body": "Les informations publiées sur ce site sont fournies à titre indicatif et peuvent évoluer. Les chiffres de performance mentionnés proviennent de campagnes réelles et portent leur source ; ils décrivent des résultats obtenus dans un contexte donné et ne constituent aucune garantie de résultat pour un projet futur.",
+        "pending": []
+      },
+      {
+        "title": "Liens externes",
+        "body": "Ce site peut renvoyer vers des sites tiers. Adrar Media n'exerce aucun contrôle sur leur contenu et décline toute responsabilité à leur égard.",
+        "pending": []
+      }
+    ]
+  },
+  "privacy": {
+    "meta": {
+      "title": "Politique de confidentialité",
+      "description": "Quelles données ce site collecte, pourquoi, et comment exercer vos droits."
+    },
+    "eyebrow": "Confidentialité",
+    "titleLines": [
+      "Politique",
+      "de confidentialité"
+    ],
+    "intro": "Ce site collecte le minimum nécessaire à son fonctionnement. Cette page décrit précisément quoi, pourquoi, et ce que vous pouvez exiger.",
+    "pendingLabel": "Information à publier",
+    "pendingNote": "Cette mention sera complétée dès que l'information officielle correspondante nous aura été communiquée.",
+    "sections": [
+      {
+        "title": "Données que vous nous transmettez",
+        "body": "Lorsque vous envoyez un formulaire, les informations saisies sont transmises à notre serveur puis à notre prestataire technique d'envoi d'e-mails (Resend), uniquement pour acheminer votre demande vers contact@adrar.media. Si l'envoi automatique n'est pas configuré ou échoue, le site prépare un brouillon dans votre navigateur et rien n'est transmis tant que vous ne choisissez pas vous-même un canal d'envoi.",
+        "pending": []
+      },
+      {
+        "title": "Usage de ces données",
+        "body": "Les informations que vous nous adressez servent exclusivement à répondre à votre demande et à établir une proposition. Elles ne sont ni revendues, ni louées, ni transmises à des tiers à des fins commerciales.",
+        "pending": []
+      },
+      {
+        "title": "Préférence de langue",
+        "body": "Un cookie technique enregistre la langue que vous avez choisie, afin de ne pas vous la redemander à chaque visite. Il ne contient aucune donnée personnelle, ne suit pas votre navigation et n'est lu par aucun tiers. Vous pouvez le supprimer à tout moment depuis votre navigateur.",
+        "pending": []
+      },
+      {
+        "title": "Mesure d'audience",
+        "body": "Aucun outil de mesure d'audience tiers n'est actif sur ce site à ce jour. Si cela devait changer, cette page serait mise à jour avant la mise en service, et l'outil retenu serait configuré pour ne pas suivre les visiteurs d'un site à l'autre.",
+        "pending": []
+      },
+      {
+        "title": "Durée de conservation",
+        "body": "Les échanges liés à une demande commerciale sont conservés le temps de la relation, puis pendant la durée légale applicable aux documents commerciaux.",
+        "pending": []
+      },
+      {
+        "title": "Vos droits",
+        "body": "Conformément à la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel, vous disposez d'un droit d'accès, de rectification et d'opposition sur les données vous concernant. Pour l'exercer, écrivez-nous : votre demande sera traitée dans les meilleurs délais.",
+        "pending": [
+          "Adresse de contact dédiée aux demandes relatives aux données"
+        ]
+      }
+    ]
+  },
+  "work": {
+    "meta": {
+      "title": "Réalisations",
+      "description": "Projets réalisés pour des marques marocaines : social media, contenu, branding, production et publicité digitale."
+    },
+    "eyebrow": "Réalisations",
+    "titleLines": [
+      "Le travail",
+      "avant le discours."
+    ],
+    "intro": "Chaque projet publié ici l'est avec l'accord du client concerné. Les chiffres affichés proviennent des plateformes elles-mêmes et portent leur source.",
+    "industryLabel": "Secteur",
+    "servicesLabel": "Ce que nous avons fait",
+    "metricLabel": "Résultat mesuré",
+    "sourceLabel": "Source",
+    "backLabel": "Toutes les réalisations",
+    "nextLabel": "Projet suivant",
+    "casePending": "Les détails publiés sont limités aux faits validés et ne comportent aucune extrapolation.",
+    "caseContextLabel": "Contexte",
+    "caseApproachLabel": "Approche",
+    "caseDeliverablesLabel": "Périmètre livré",
+    "transparencyLabel": "Transparence sur la preuve",
+    "ctaTitle": "Un projet comparable en tête ?",
+    "ctaBody": "Décrivez-le nous : nous vous dirons ce qu'il est réaliste d'en attendre."
+  },
+  "serviceDetail": {
+    "backLabel": "Tous les services",
+    "approachLabel": "Comment nous procédons",
+    "scopeLabel": "Ce que cela comprend",
+    "othersTitle": "Les autres expertises",
+    "ctaTitle": "Ce service correspond à votre besoin ?",
+    "ctaBody": "Demandez un devis : vous recevrez un périmètre chiffré, pas une plaquette.",
+    "viewLabel": "Voir le détail"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "notFound": {
+    "code": "404",
+    "eyebrow": "Page introuvable",
+    "title": "Cette page n'existe pas",
+    "body": "L'adresse demandée ne correspond à aucune page du site. Elle a peut-être été renommée, ou le lien qui vous a amené ici comporte une erreur.",
+    "home": "Retour à l'accueil",
+    "work": "Voir nos réalisations",
+    "quote": "Demander un devis"
+  },
+  "error": {
+    "eyebrow": "Erreur",
+    "title": "Quelque chose s'est mal passé",
+    "body": "Cette page n'a pas pu s'afficher. L'incident est de notre côté, pas du vôtre. Réessayez — si le problème persiste, écrivez-nous et nous le corrigerons.",
+    "retry": "Réessayer",
+    "home": "Retour à l'accueil",
+    "reference": "Référence technique"
+  }
+}

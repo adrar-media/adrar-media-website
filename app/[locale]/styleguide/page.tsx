@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -10,9 +11,19 @@ import { Block, BlockItem } from "@/components/ui/Block";
 
 /**
  * Page de validation interne du design system.
- * Non indexée, non liée depuis la navigation. À retirer avant la mise en
- * production, ou à conserver derrière une variable d'environnement.
+ *
+ * Ni indexée, ni liée depuis la navigation, ni présente au sitemap — et
+ * désormais fermée par défaut : elle ne répond que si
+ * NEXT_PUBLIC_STYLEGUIDE vaut « 1 ». Laisser une page de contrôle interne
+ * publiquement accessible en production expose l'inventaire complet du
+ * système à qui devine l'URL, pour un usage qui n'est pas celui des visiteurs.
+ *
+ * Elle reste ouverte en développement, où elle sert à chaque revue visuelle.
  */
+const isVisible =
+  process.env.NEXT_PUBLIC_STYLEGUIDE === "1" ||
+  process.env.NODE_ENV !== "production";
+
 export const metadata: Metadata = {
   title: "Design System",
   robots: { index: false, follow: false },
@@ -20,7 +31,7 @@ export const metadata: Metadata = {
 
 const palette = [
   { name: "Atlas Green", hex: "#1F7A63", className: "bg-atlas" },
-  { name: "Deep Digital Blue", hex: "#0A2540", className: "bg-deep" },
+  { name: "Deep Digital Blue", hex: "#0A2540", className: "bg-surface" },
   { name: "Earth Beige", hex: "#D6C2A1", className: "bg-beige" },
   { name: "Anthracite", hex: "#2B2B2B", className: "bg-anthracite" },
   { name: "Light Green", hex: "#3ED598", className: "bg-light" },
@@ -55,8 +66,12 @@ function Spec({
 }
 
 export default function StyleguidePage() {
+  if (!isVisible) notFound();
+
   return (
-    <main className="py-section">
+    /* Le layout fournit déjà le repère principal : un second <main> imbriqué
+       en produirait deux dans le document. */
+    <div className="py-section">
       <Container>
         <SectionHeader
           as="h1"
@@ -64,7 +79,7 @@ export default function StyleguidePage() {
           titleLines={["Fondations", "visuelles."]}
           intro="Tokens, primitives et règles de mouvement. Toute page du site est construite à partir de ces éléments — aucun style arbitraire au cas par cas."
           align="split"
-          className="mb-20"
+          className="mb-14"
         />
 
         <Spec title="01 — Palette">
@@ -75,7 +90,7 @@ export default function StyleguidePage() {
                   className={`${color.className} h-24 w-full rounded border border-canvas-gray`}
                 />
                 <p className="mt-3 text-small font-medium">{color.name}</p>
-                <p className="text-small text-anthracite/50">{color.hex}</p>
+                <p className="text-small text-anthracite/70">{color.hex}</p>
               </div>
             ))}
           </div>
@@ -88,7 +103,7 @@ export default function StyleguidePage() {
                 key={item.token}
                 className="grid gap-2 md:grid-cols-12 md:items-baseline"
               >
-                <p className="text-small text-anthracite/50 md:col-span-2">
+                <p className="text-small text-anthracite/70 md:col-span-2">
                   {item.token}
                 </p>
                 <p className={`${item.className} md:col-span-10`}>
@@ -115,7 +130,7 @@ export default function StyleguidePage() {
             </Button>
             <Button disabled>Désactivé</Button>
           </div>
-          <div className="mt-8 bg-deep p-8">
+          <div className="mt-8 bg-surface p-8">
             <Button variant="invert" arrow>
               Sur fond sombre
             </Button>
@@ -151,13 +166,13 @@ export default function StyleguidePage() {
               </BlockItem>
             ))}
           </Block>
-          <p className="mt-6 max-w-prose text-small text-anthracite/60">
+          <p className="mt-6 max-w-prose text-small text-anthracite/70">
             Une seule courbe d&apos;accélération sur tout le site. Chaque
             apparition ne joue qu&apos;une fois. Sous prefers-reduced-motion,
             tout est neutralisé et le contenu reste intégralement lisible.
           </p>
         </Spec>
       </Container>
-    </main>
+    </div>
   );
 }

@@ -27,10 +27,10 @@ export async function TrustSection({ locale }: { locale: Locale }) {
         >
           {statistics.map((stat) => (
             <BlockItem key={stat.label}>
-              <p className="text-h1 leading-none text-deep">
+              <p className="text-h1 leading-none text-ink">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="mt-3 text-small text-anthracite/60">
+              <p className="mt-3 text-small text-anthracite/70">
                 {t(stat.label)}
               </p>
             </BlockItem>

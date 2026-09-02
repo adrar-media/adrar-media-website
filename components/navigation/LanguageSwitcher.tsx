@@ -42,7 +42,6 @@ export function LanguageSwitcher({
     document.cookie = `${localeCookie.name}=${locale}; path=/; max-age=${localeCookie.maxAgeSeconds}; samesite=lax`;
     startTransition(() => {
       router.push(localizePathname(pathname, locale));
-      router.refresh();
     });
   };
 
@@ -50,10 +49,10 @@ export function LanguageSwitcher({
     <div
       role="group"
       aria-label={label}
+      aria-busy={isPending}
       className={cn(
         "flex items-center",
         variant === "inline" ? "gap-1" : "gap-2",
-        isPending && "opacity-60",
         className,
       )}
     >
@@ -74,8 +73,10 @@ export function LanguageSwitcher({
               "rounded px-1 py-1 text-caption uppercase transition-colors duration-fast ease-brand",
               locale === current
                 ? "text-atlas underline underline-offset-4"
-                : "opacity-60 hover:opacity-100",
-              variant === "stacked" && "px-3 py-2 text-body",
+                : "text-anthracite/70 hover:text-ink",
+              // Même règle que la bascule de thème : 44 px au doigt.
+              variant === "stacked" &&
+                "inline-flex min-h-11 items-center justify-center px-4 py-2.5 text-body",
             )}
           >
             {variant === "stacked" ? localeNames[locale] : localeLabels[locale]}

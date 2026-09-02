@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/buttons/Button";
 import { Block } from "@/components/ui/Block";
+import { Reveal } from "@/components/motion/Reveal";
 import { ProjectVisual } from "@/components/portfolio/ProjectVisual";
 import { cn } from "@/lib/utils";
 
@@ -29,7 +30,7 @@ export async function SelectedWork({ locale }: { locale: Locale }) {
   const t = await getTranslator(locale, "home");
 
   return (
-    <section className="border-b border-white/10 bg-deep py-section text-white">
+    <section className="border-b border-white/10 bg-surface py-section text-white">
       <Container>
         <SectionHeader
           eyebrow={t("work.eyebrow")}
@@ -37,19 +38,20 @@ export async function SelectedWork({ locale }: { locale: Locale }) {
           intro={t("work.intro")}
           align="split"
           tone="light"
-          className="mb-20"
+          className="mb-14"
         />
 
-        <div className="grid gap-y-20 md:grid-cols-12 md:gap-x-grid">
+        <div className="grid gap-y-16 md:grid-cols-12 md:gap-x-grid">
           {featuredProjects.map((project, index) => {
             const layout = layouts[index % layouts.length]!;
             const metric = project.headlineMetric;
 
             return (
-              <article
+              <Reveal
                 key={project.slug}
                 className={cn(layout.span, layout.start)}
               >
+                <article>
                 <Link
                   href={`${href(locale, "realisations")}/${project.slug}`}
                   className="group block"
@@ -63,21 +65,21 @@ export async function SelectedWork({ locale }: { locale: Locale }) {
                   <Block>
                     <div className="mt-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
                       <h3 className="text-h3 text-white">{project.client}</h3>
-                      <p className="text-caption text-white/40">
+                      <p className="text-caption text-white/70">
                         {t(project.industry)}
                       </p>
                     </div>
 
-                    <p className="mt-3 max-w-prose text-small text-white/60">
+                    <p className="mt-3 max-w-prose text-small text-white/70">
                       {t(project.summary)}
                     </p>
 
                     {metric && (
                       <p className="mt-6 flex items-baseline gap-3">
-                        <span className="text-h2 text-light">
+                        <bdi className="text-h2 text-light">
                           {metric.value}
-                        </span>
-                        <span className="text-small text-white/60">
+                        </bdi>
+                        <span className="text-small text-white/70">
                           {t(metric.label)}
                         </span>
                       </p>
@@ -85,21 +87,19 @@ export async function SelectedWork({ locale }: { locale: Locale }) {
 
                     <span className="mt-6 inline-flex items-center gap-2 text-button text-light">
                       {t("work.viewCase")}
-                      <span
-                        aria-hidden
-                        className="transition-transform duration-fast ease-brand group-hover:translate-x-1 rtl:-scale-x-100"
-                      >
+                      <span aria-hidden className="arrow-nudge">
                         →
                       </span>
                     </span>
                   </Block>
                 </Link>
-              </article>
+                </article>
+              </Reveal>
             );
           })}
         </div>
 
-        <div className="mt-20">
+        <div className="mt-16">
           <Button href={href(locale, "realisations")} variant="invert" arrow>
             {t("work.all")}
           </Button>

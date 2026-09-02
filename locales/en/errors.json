@@ -1,0 +1,19 @@
+{
+  "notFound": {
+    "code": "404",
+    "eyebrow": "Page not found",
+    "title": "This page doesn't exist",
+    "body": "The address you requested doesn't match any page on this site. It may have been renamed, or the link that brought you here contains a mistake.",
+    "home": "Back to home",
+    "work": "See our work",
+    "quote": "Request a quote"
+  },
+  "error": {
+    "eyebrow": "Error",
+    "title": "Something went wrong",
+    "body": "This page could not be displayed. The fault is on our side, not yours. Try again — if the problem persists, write to us and we'll fix it.",
+    "retry": "Try again",
+    "home": "Back to home",
+    "reference": "Technical reference"
+  }
+}

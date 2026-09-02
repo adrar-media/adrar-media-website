@@ -7,12 +7,14 @@
   "nav": {
     "label": "Main navigation",
     "services": "Services",
+    "solutions": "Solutions",
     "work": "Work",
-    "method": "Method",
+    "method": "How we work",
     "about": "About",
     "contact": "Contact",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "blog": "Blog"
   },
   "cta": {
     "quote": "Request a quote",
@@ -26,6 +28,12 @@
     "current": "Current language",
     "heading": "Language"
   },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
   "suggestion": {
     "detected": "English detected",
     "accept": "Use English",
@@ -38,7 +46,38 @@
     "follow": "Follow us",
     "legal": "Legal notice",
     "privacy": "Privacy policy",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "form": {
+      "title": "A question? Write to us.",
+      "intro": "Three fields to ask your question. For a full brief, use the quote form instead.",
+      "name": "Your name",
+      "email": "Your email",
+      "message": "Message",
+      "messagePlaceholder": "In a few lines, what you need.",
+      "privacyConsent": "I agree that my information may be used to answer this request, as described in the",
+      "privacyLink": "privacy policy.",
+      "submit": "Send",
+      "sending": "Sending…",
+      "sentTitle": "Message received.",
+      "sentBody": "Your message has been sent to the team.",
+      "trapLabel": "Do not fill in this field",
+      "errors": {
+        "name": "Please enter your name.",
+        "email": "Please enter a valid email address.",
+        "message": "Tell us what you need in a few words.",
+        "consent": "Your consent is required to send this request."
+      },
+      "fallbackNotice": "Automatic sending is unavailable.",
+      "fallbackAction": "Send by email",
+      "rateLimited": "Too many attempts. Please try again in a few minutes."
+    },
+    "channels": {
+      "mobile": "Mobile",
+      "landline": "Landline",
+      "email": "Email",
+      "recruitment": "Careers",
+      "address": "Address"
+    }
   },
   "services": {
     "strategy": "Marketing Strategy",
@@ -57,5 +96,45 @@
     "production": "Production",
     "performance": "Performance",
     "web": "Digital"
+  },
+  "consent": {
+    "title": "Audience measurement",
+    "body": "We would like to measure site traffic to learn what is useful to you. These tools set cookies and are only enabled with your consent. The site works exactly the same if you decline.",
+    "accept": "Accept",
+    "refuse": "Decline",
+    "learnMore": "Privacy policy"
+  },
+  "imagery": {
+    "pending": "Visual in preparation",
+    "home-hero": "The Atlas foothills at first light, layered ridgelines fading into haze, a single road tracing the valley floor.",
+    "home-intro": "Overhead view of a working table: printed audience maps, a channel plan annotated in pencil, a hand moving a card.",
+    "home-services": "Interior of a creative studio at dusk: a lit edit bay on one side, a product-shoot corner on the other.",
+    "home-why": "Hands pinning printed frames to a research wall already covered in storyboards, lit by a raking lamp.",
+    "home-results": "A laptop on a desk showing a rising audience curve, beside an annotated printed report.",
+    "services-hero": "Seven printed briefs laid out in a row on a large table, each open to a different spread, in morning light.",
+    "service-strategie-marketing": "A quarterly plan drawn by hand across large wall paper, marked out with coloured tags.",
+    "service-social-media": "Nine vertical-format frames arranged on a light table, being reordered by hand.",
+    "service-creation-contenu": "A small shoot set being built: product on a beige riser, diffuser panel, camera on a low tripod.",
+    "service-branding": "A brand system laid out flat: paper swatches, three weights of a typeface printed large, folded stationery.",
+    "service-production-audiovisuelle": "A film set between takes: camera facing the lit set, a large soft source off to one side.",
+    "service-publicite-digitale": "Two screens side by side showing an ad account and a performance curve, a notebook of figures in front.",
+    "service-web": "The same page shown across three aligned devices — laptop, tablet, phone — beside wireframe sketches.",
+    "method-hero": "A wall of six sheets pinned side by side, each denser than the last, watched from a distance by a figure.",
+    "method-discover": "An interview underway at a small table: a recorder between two people, a notebook filling up.",
+    "method-strategize": "A sheet carrying a positioning line written by hand, surrounded by crossed-out earlier drafts.",
+    "method-create": "A grading station mid-session: a graded frame on a calibrated monitor, graphics tablet and pen in use.",
+    "method-distribute": "A publishing calendar filled across a month, a phone beside it showing a post just gone live.",
+    "method-optimize": "A printed performance report comparing two variants, one circled in green pencil.",
+    "method-scale": "A wide window view over a Moroccan city at dusk, from a working floor with the day still open on the desk.",
+    "about-name": "A lone High Atlas peak in afternoon light, snow across the upper third, ochre scree in the foreground.",
+    "about-story": "A modest first workspace: two desks pushed together, a window, equipment cases stacked against the wall.",
+    "about-values": "Hands squaring up a stack of printed proofs on a workbench, one sheet held to the light to check.",
+    "solutions-hero": "Three folders of differing thickness lined up on a clean surface, each tabbed with a coloured marker.",
+    "solutions-pack-launch": "A single sheet on a clear desk, one line written at the top, a pen resting across it.",
+    "solutions-pack-growth": "A monthly wall planner two-thirds filled with coloured markers, a hand adding the next block.",
+    "solutions-pack-project": "A production case open on the floor, lenses and cards set in foam, one slot empty.",
+    "contact": "An editorial Middle Atlas landscape with cedar forest, layered ridges and a winding road in late-afternoon light.",
+    "blog": "A closed notebook and a fountain pen on a bare table, crossed by a shaft of light.",
+    "quote": "A short printed brief on a table, a pen laid diagonally across it, a phone face-down beside it."
   }
 }

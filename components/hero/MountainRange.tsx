@@ -43,7 +43,7 @@ const ridges: Ridge[] = [
   {
     // Proche : la plus marquée, elle ancre la composition au sol.
     path: "M0,266 L120,228 L250,262 L380,204 L500,250 L640,192 L770,244 L900,212 L1040,254 L1200,266 L1200,320 L0,320 Z",
-    className: "fill-deep/[0.18]",
+    className: "fill-ink/[0.18]",
     duration: "70s",
     height: "h-[46%]",
   },

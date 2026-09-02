@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Stagger } from "@/components/motion/Stagger";
 import { cn } from "@/lib/utils";
 
 export interface ServiceRow {
@@ -27,21 +28,24 @@ export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
   const [active, setActive] = useState<string | null>(null);
 
   return (
-    <ul className="border-t border-anthracite/12">
+    <Stagger as="ul" className="border-t border-anthracite/[0.12]">
       {rows.map((row) => {
         const isActive = active === row.index;
         return (
-          <li key={row.index} className="border-b border-anthracite/12">
+          <li
+            key={row.index}
+            className="border-b border-anthracite/[0.12]"
+          >
             <Link
               href={row.href}
               onMouseEnter={() => setActive(row.index)}
               onMouseLeave={() => setActive(null)}
               onFocus={() => setActive(row.index)}
               onBlur={() => setActive(null)}
-              className="group flex flex-col gap-5 py-10 md:flex-row md:items-center md:gap-12 md:py-14"
+              className="group flex flex-col gap-4 py-7 md:flex-row md:items-center md:gap-12 md:py-9"
             >
               <div className="flex-1">
-                <h3 className="flex items-center gap-3 text-h3 text-deep">
+                <h3 className="flex items-center gap-3 text-h3 text-ink">
                   <span
                     className={cn(
                       "transition-transform duration-base ease-brand",
@@ -58,7 +62,7 @@ export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
                     )}
                   />
                 </h3>
-                <p className="mt-4 max-w-xl text-body-lg text-anthracite/65">
+                <p className="mt-3 max-w-xl text-body-lg text-anthracite/70">
                   {row.description}
                 </p>
               </div>
@@ -77,7 +81,7 @@ export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
                 <span
                   className={cn(
                     "-ms-2 text-h3 leading-none transition-colors duration-base ease-brand",
-                    isActive ? "text-atlas" : "text-anthracite/40",
+                    isActive ? "text-atlas" : "text-anthracite/70",
                   )}
                 >
                   ›
@@ -87,6 +91,6 @@ export function ServiceRows({ rows }: { rows: ServiceRow[] }) {
           </li>
         );
       })}
-    </ul>
+    </Stagger>
   );
 }

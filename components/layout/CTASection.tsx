@@ -2,6 +2,7 @@ import type { Locale } from "@/config/i18n";
 import { getTranslator } from "@/lib/i18n/dictionaries";
 import { href } from "@/lib/i18n/routing";
 import { whatsappLink } from "@/config/site";
+import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { Headline } from "@/components/ui/Headline";
 import { Block } from "@/components/ui/Block";
@@ -20,18 +21,18 @@ export async function CTASection({ locale }: { locale: Locale }) {
   const whatsapp = whatsappLink();
 
   return (
-    <section className="bg-deep py-section text-white">
+    <section className="bg-surface py-section text-white">
       <Container>
         <div className="grid gap-12 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-8">
+          <Reveal className="md:col-span-8">
             <Headline
               as="h2"
               lines={t.list("cta.titleLines")}
               className="text-h1 text-white"
             />
-          </div>
+          </Reveal>
 
-          <Block className="md:col-span-4">
+          <Block delay={120} className="md:col-span-4">
             <p className="max-w-prose text-body-lg text-white/70">
               {t("cta.body")}
             </p>
@@ -45,21 +46,14 @@ export async function CTASection({ locale }: { locale: Locale }) {
                 {c("cta.quote")}
               </Button>
               {whatsapp ? (
-                <Button
-                  href={whatsapp}
-                  external
-                  variant="secondary"
-                  size="lg"
-                  className="border-white/30 text-white hover:border-white hover:bg-white hover:text-deep"
-                >
+                <Button href={whatsapp} external variant="outline" size="lg">
                   {c("cta.whatsapp")}
                 </Button>
               ) : (
                 <Button
                   href={href(locale, "contact")}
-                  variant="secondary"
+                  variant="outline"
                   size="lg"
-                  className="border-white/30 text-white hover:border-white hover:bg-white hover:text-deep"
                 >
                   {c("cta.contact")}
                 </Button>

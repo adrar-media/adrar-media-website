@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Adrar Media — Agence de communication et marketing digital au Maroc",
-    "description": "Stratégie, création de contenu, branding et publicité digitale. Nous transformons les marques et entreprises en expériences digitales capables d'attirer, convaincre et convertir."
+    "title": "Agence de marketing digital au Maroc — Adrar Media",
+    "description": "Stratégie, réseaux sociaux, contenu, branding, production, publicité et sites web : Adrar Media accompagne les marques depuis Azrou, au Maroc."
   },
   "hero": {
     "eyebrow": "Adrar Media — Agence digitale",
@@ -59,26 +59,48 @@
     "intro": "Chaque projet part d'un enjeu business réel. Nous racontons ce que nous avons fait, et ce que cela a produit.",
     "viewCase": "Voir l'étude de cas",
     "all": "Toutes les réalisations",
-    "visualPending": "Visuel à venir"
+    "visualPending": "Présentation du projet"
   },
   "projects": {
     "bricodi": {
-      "summary": "Lancement digital d'une enseigne de bricolage et d'outillage professionnel."
+      "summary": "Lancement digital d'une enseigne de bricolage et d'outillage professionnel.",
+      "context": "Bricodi Pro préparait sa phase de lancement et avait besoin d'une présence digitale cohérente pour présenter son offre au marché.",
+      "approach": "Adrar Media a structuré le lancement autour d'un langage visuel homogène, de contenus adaptés aux plateformes sociales et d'une diffusion orientée visibilité.",
+      "deliverables": [
+        "Ligne éditoriale et contenus social media",
+        "Création photo, vidéo et formats de campagne",
+        "Suivi de diffusion et lecture des performances Meta"
+      ],
+      "disclosure": "Le seul résultat chiffré publié est celui qui a été vérifié dans les données de la phase de lancement. Aucun taux d'engagement, volume de prospects ou chiffre commercial n'est extrapolé."
     },
     "bigFamily": {
-      "summary": "Construction d'une image premium pour un salon de coiffure et d'esthétique."
-    },
-    "ruchendo": {
-      "summary": "Campagne publicitaire digitale et accompagnement stratégique."
+      "summary": "Construction d'une image premium pour un salon de coiffure et d'esthétique.",
+      "context": "The Big Family souhaitait rendre sa présence sociale plus cohérente avec l'expérience proposée dans son salon.",
+      "approach": "L'accompagnement organise les prises de parole, la direction visuelle et les formats courts autour d'une image claire et reconnaissable.",
+      "deliverables": [
+        "Organisation de la présence social media",
+        "Direction visuelle et déclinaisons graphiques",
+        "Création de contenus photo et vidéo"
+      ],
+      "disclosure": "Il s'agit d'un accompagnement social media en formule gratuite. Aucun résultat chiffré n'est publié tant qu'une mesure vérifiée et un accord de publication ne sont pas disponibles."
     },
     "wlidatna": {
-      "summary": "Direction créative et production vidéo."
+      "summary": "Communication sociale et production de contenus pour une association locale d'accompagnement des enfants en situation de handicap.",
+      "context": "Wlidatna mène à Azrou une mission associative auprès d'enfants en situation de handicap et de leurs familles. Sa communication doit rendre les actions compréhensibles avec respect et clarté.",
+      "approach": "Adrar Media accompagne la présence sociale avec une direction créative sobre, des formats vidéo accessibles et une organisation éditoriale adaptée au contexte associatif.",
+      "deliverables": [
+        "Organisation de la communication social media",
+        "Conception de formats éditoriaux",
+        "Production et montage de contenus vidéo"
+      ],
+      "disclosure": "Il s'agit d'un accompagnement social media en formule gratuite. Le site décrit le périmètre de travail sans publier de donnée sensible, de témoignage bénéficiaire ou de résultat non validé."
     }
   },
   "industry": {
     "hardware": "Bricolage & outillage",
     "barbershop": "Coiffure & esthétique",
-    "pending": "Secteur à confirmer"
+    "pending": "Secteur à confirmer",
+    "association": "Association & action sociale"
   },
   "results": {
     "eyebrow": "Résultats",
@@ -88,7 +110,23 @@
     ],
     "intro": "Nous ne publions que des chiffres vérifiés, avec leur source. Cette section s'enrichit à mesure que les campagnes sont mesurées.",
     "bricodiViews": "vues Facebook générées",
-    "sourceLabel": "Source"
+    "sourceLabel": "Source",
+    "series": {
+      "bricodiViews": "Vues Facebook — lancement Bricodi Pro",
+      "reach": "Portée générée",
+      "engagement": "Taux d'engagement moyen",
+      "leads": "Demandes entrantes générées",
+      "retention": "Clients qui renouvellent"
+    },
+    "placeholderNotice": "Données illustratives — ces valeurs servent à la mise en page et ne sont pas des mesures. Seuls les chiffres portant une source sont vérifiés."
+  },
+  "testimonials": {
+    "eyebrow": "Témoignages",
+    "titleLines": [
+      "Ce que disent",
+      "ceux qui travaillent avec nous."
+    ],
+    "intro": "Chaque témoignage est publié avec l'accord écrit du client concerné."
   },
   "why": {
     "eyebrow": "Pourquoi Adrar",
@@ -124,13 +162,13 @@
     }
   },
   "method": {
-    "eyebrow": "Méthode",
+    "eyebrow": "Comment nous travaillons",
     "titleLines": [
       "De l'idée",
       "à la croissance."
     ],
     "intro": "Six étapes, toujours dans le même ordre. C'est ce qui rend le travail prévisible et mesurable.",
-    "cta": "Découvrir la méthode complète",
+    "cta": "Voir comment nous travaillons",
     "steps": {
       "discover": {
         "title": "Comprendre",

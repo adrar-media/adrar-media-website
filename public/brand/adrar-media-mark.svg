@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Adrar Media">
+  <title>Adrar Media</title>
+  <rect width="512" height="512" rx="112" fill="#0A2540"/>
+  <path d="M104 214a152 152 0 0 1 304 0" fill="none" stroke="#1F7A63" stroke-width="16" stroke-linecap="round"/>
+  <path d="M52 350 L148 212 L196 268 L256 126 L318 246 L364 200 L460 350 Z" fill="#FFFFFF"/>
+  <path d="M256 126 L292 196 L256 216 L221 194 Z" fill="#0A2540" opacity="0.12"/>
+  <path d="M256 216 L302 350 L210 350 Z" fill="#3ED598"/>
+  <path d="M60 390 Q256 426 452 390" fill="none" stroke="#3ED598" stroke-width="14" stroke-linecap="round"/>
+</svg>

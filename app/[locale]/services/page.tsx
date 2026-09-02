@@ -2,12 +2,17 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/config/i18n";
 import { getTranslator } from "@/lib/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { services } from "@/data/services";
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Headline } from "@/components/ui/Headline";
 import { Block, BlockItem } from "@/components/ui/Block";
+import { PageHeader } from "@/components/layout/PageHeader";
+import { HeaderField } from "@/components/decor/HeaderField";
+import { Button } from "@/components/buttons/Button";
 import { CTASection } from "@/components/layout/CTASection";
+import { href } from "@/lib/i18n/routing";
+import { SectionImage } from "@/components/media/SectionImage";
+import { servicesHero } from "@/data/imagery";
 
 export async function generateMetadata({
   params,
@@ -17,7 +22,12 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const t = await getTranslator(locale, "services");
-  return { title: t("meta.title"), description: t("meta.description") };
+  return pageMetadata({
+    locale,
+    route: "services",
+    title: t("meta.title"),
+    description: t("meta.description"),
+  });
 }
 
 /**
@@ -27,10 +37,8 @@ export async function generateMetadata({
  * nom large, une explication rédigée et le périmètre réel du travail. Le
  * lecteur descend une liste éditoriale, il ne compare pas une grille.
  *
- * Les blocs portent une ancre (#slug) : les liens de la page d'accueil y
- * mènent directement. Les pages de détail par service viendront lorsque leur
- * contenu approfondi aura été validé — d'ici là, aucun lien ne pointe dans le
- * vide.
+ * Les blocs portent une ancre (#slug) et renvoient vers leur page de détail,
+ * désormais publiée : /services/<slug> dans les trois langues.
  */
 export default async function ServicesPage({
   params,
@@ -43,48 +51,47 @@ export default async function ServicesPage({
 
   const t = await getTranslator(typedLocale, "services");
   const c = await getTranslator(typedLocale, "common");
+  const p = await getTranslator(typedLocale, "pages");
 
   return (
     <>
-      <section className="pb-section pt-40 md:pt-48">
-        <Container>
-          <Block>
-            <Eyebrow>{t("hero.eyebrow")}</Eyebrow>
-          </Block>
-
-          <div className="mt-10 md:mt-12">
-            <Headline
-              as="h1"
-              lines={t.list("hero.titleLines")}
-              className="text-h1 text-deep"
-            />
-          </div>
-
-          <Block>
-            <p className="mt-10 max-w-prose text-body-lg text-anthracite/75 md:ms-[14%]">
-              {t("hero.description")}
-            </p>
-          </Block>
-        </Container>
-      </section>
+      <PageHeader
+        eyebrow={t("hero.eyebrow")}
+        titleLines={t.list("hero.titleLines")}
+        intro={t("hero.description")}
+        backdrop={<HeaderField variant="services" />}
+      />
 
       <section className="pb-section">
         <Container>
-          <ul className="border-t border-anthracite/12">
+          {/*
+            Une seule image pour sept expertises. Illustrer chaque rangée
+            transformerait la liste en catalogue : le lecteur comparerait des
+            vignettes au lieu de lire des périmètres. L'image ouvre la liste,
+            les pages de détail portent le reste.
+          */}
+          <SectionImage
+            slot={servicesHero}
+            alt={c("imagery.services-hero")}
+            pendingLabel={c("imagery.pending")}
+            className="mb-14"
+          />
+
+          <ul className="border-t border-anthracite/[0.12]">
             {services.map((service) => (
               <li
                 key={service.slug}
                 id={service.slug}
-                className="scroll-mt-32 border-b border-anthracite/12"
+                className="scroll-mt-32 border-b border-anthracite/[0.12]"
               >
                 <Block
                   className="grid gap-8 py-14 md:grid-cols-12 md:gap-grid md:py-20"
                 >
                   <BlockItem className="md:col-span-4">
-                    <p className="text-caption text-anthracite/35">
+                    <p className="text-caption text-anthracite/70">
                       {service.index}
                     </p>
-                    <h2 className="mt-4 flex items-center gap-3 text-h3 text-deep">
+                    <h2 className="mt-4 flex items-center gap-3 text-h3 text-ink">
                       {c(service.nameKey)}
                       <span
                         aria-hidden
@@ -101,7 +108,17 @@ export default async function ServicesPage({
                       {t(`items.${service.key}.summary`)}
                     </p>
 
-                    <p className="mt-10 text-caption text-anthracite/40">
+                    <p className="mt-8">
+                      <Button
+                        href={`${href(typedLocale, "services")}/${service.slug}`}
+                        variant="link"
+                        arrow
+                      >
+                        {p("serviceDetail.viewLabel")}
+                      </Button>
+                    </p>
+
+                    <p className="mt-10 text-caption text-anthracite/70">
                       {t("scopeLabel")}
                     </p>
                     <ul className="mt-4 grid gap-x-grid gap-y-3 sm:grid-cols-2">
@@ -124,7 +141,7 @@ export default async function ServicesPage({
             ))}
           </ul>
 
-          <p className="mt-10 text-small text-anthracite/50">
+          <p className="mt-10 text-small text-anthracite/70">
             {t("detailNote")}
           </p>
         </Container>

@@ -12,9 +12,9 @@ export function Badge({ children, className, tone = "atlas" }: BadgeProps) {
     <span
       className={cn(
         "inline-flex items-center rounded-pill px-3 py-1 text-caption",
-        tone === "atlas" && "bg-atlas text-white",
-        tone === "light" && "bg-light text-deep",
-        tone === "deep" && "bg-deep text-white",
+        tone === "atlas" && "bg-atlas text-canvas",
+        tone === "light" && "bg-light text-surface",
+        tone === "deep" && "bg-surface text-white",
         className,
       )}
     >

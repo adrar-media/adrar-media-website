@@ -4,6 +4,8 @@
  * changer de source de données sans réécriture des composants.
  */
 
+import type { Locale } from "@/config/i18n";
+
 export type ServiceSlug =
   | "strategie-marketing"
   | "social-media"
@@ -53,6 +55,13 @@ export interface Project {
   summary: string;
   /** Résultat mis en avant sur la carte. Optionnel : absent si non vérifié. */
   headlineMetric?: Metric;
+  /** Contenu publiable de l'étude de cas, limité aux faits validés. */
+  caseStudy: {
+    context: string;
+    approach: string;
+    deliverables: string[];
+    disclosure: string;
+  };
   cover?: MediaAsset;
   featured: boolean;
 }
@@ -87,8 +96,40 @@ export interface Testimonial {
 }
 
 export interface TeamMember {
+  /**
+   * Identifiant stable, utilisé par `reportsTo`. Il ne s'affiche jamais : il
+   * ne sert qu'à relier deux entrées entre elles. Un nom ferait l'affaire
+   * jusqu'au jour où deux personnes en partagent un.
+   */
+  id: string;
+  /**
+   * Le nom ne se traduit pas. Il est écrit une fois, dans sa graphie latine,
+   * et sert tel quel dans les trois langues — y compris en arabe, où une
+   * translittération inventée pour l'occasion serait un second nom que
+   * personne ne porte.
+   */
   name: string;
-  role: string;
+  /**
+   * Les intitulés, UNE LISTE ET NON UNE CHAÎNE.
+   *
+   * Trois personnes en portent deux à la fois. Écrits « Chief Marketing
+   * Officer / Chief Technology Officer » sur une seule ligne, les deux titres
+   * se coupent n'importe où quand la carte rétrécit — souvent au milieu du
+   * premier, ce qui donne à lire un titre qui n'existe pas. Une entrée par
+   * titre laisse chacun sur sa ligne et se prête au balisage `Person` des
+   * données structurées, qui attend lui aussi une liste.
+   *
+   * Le dictionnaire par langue reste : une page arabe qui présente son équipe
+   * avec des intitulés français est une page à moitié traduite, et c'est celui
+   * de l'équipe qu'on remarque en premier.
+   */
+  role: Record<Locale, string[]>;
+  /**
+   * Identifiant du responsable hiérarchique. Absent pour la tête de
+   * l'organigramme — et une seule entrée doit l'être, sans quoi le schéma
+   * n'a pas de racine unique.
+   */
+  reportsTo?: string;
   photo?: MediaAsset;
 }
 

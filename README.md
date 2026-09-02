@@ -31,14 +31,14 @@ Aucun fichier extérieur à ce dossier n'est modifié, déplacé ou supprimé. A
 | Framework | Next.js 15 (App Router) | Aligné sur la stack interne Adrar OS |
 | Langage | TypeScript 5.7 (strict) | Fiabilité, maintenabilité |
 | Styles | Tailwind CSS 3.4 | Design system par tokens |
-| Animation | Framer Motion 12 | Uniquement quand cela apporte de la valeur |
+| Animation | CSS seul | Transitions et révélations en CSS ; aucune librairie d'animation n'a été nécessaire |
 | Backend | **aucun** | Frontend performant > backend massif |
 
 Aucune dépendance supplémentaire ne sera installée sans justification écrite dans ce README.
 
 ### Décisions d'architecture
 
-1. **Pas de backend en V1.** Le formulaire de devis passe par une Server Action Next.js. NestJS/PostgreSQL ne seront introduits que si une fonctionnalité l'exige réellement.
+1. **Pas de backend en V1.** Le formulaire de devis passe par une action serveur Next.js et un appel HTTP au service d'envoi. NestJS/PostgreSQL ne seront introduits que si une fonctionnalité l'exige réellement.
 2. **Pas de CMS en V1.** Le contenu vit dans `data/` en TypeScript typé. Les types sont calqués sur les entités métier pour qu'un CMS puisse s'y brancher plus tard sans refonte du front.
 3. **Multilingue dès la V1.** Français, anglais et arabe, avec RTL complet et détection du pays. Implémenté sans librairie i18n — voir la section dédiée plus bas.
 4. **Palette de référence.** Le site applique strictement la palette officielle ci-dessous. Adrar OS utilise des valeurs divergentes (`#0F2238`, `#1BA784`, `#3BC9A6`) : c'est un écart connu, à arbitrer côté Adrar OS ultérieurement. Rien n'est modifié dans Adrar OS depuis ce projet.
@@ -135,6 +135,8 @@ npm run build    # build de production
 npm run start    # servir le build de production
 npm run lint     # ESLint
 npm run typecheck # TypeScript sans émission
+
+node scripts/generate-brand-assets.mjs  # refaire favicon, icônes et images de partage
 ```
 
 Le port **3100** est utilisé volontairement pour ne jamais entrer en conflit avec Adrar OS (port 3000).
@@ -150,7 +152,8 @@ data/         contenu structuré : services, projets, témoignages, équipe, sta
 lib/          logique métier, utilitaires, SEO, intégrations
 hooks/        hooks React réutilisables
 types/        types partagés
-config/       configuration site : coordonnées, navigation, analytics
+config/       configuration site : coordonnées, langues
+scripts/      outillage hors build (génération des visuels de marque)
 public/       assets statiques (brand, images, vidéos, icônes, fonts)
 ```
 
@@ -167,6 +170,10 @@ cp .env.example .env.local
 ```
 
 `.env.local` n'est jamais committé. Aucune clé API, aucun secret, aucun token ne doit apparaître côté frontend — seules les variables préfixées `NEXT_PUBLIC_` sont exposées au navigateur, et elles ne doivent contenir que des informations publiques.
+
+Chaque variable est commentée dans `.env.example` : ce qu'elle alimente, et ce qui se passe si elle reste vide.
+
+**Mise en ligne : voir [DEPLOIEMENT.md](./DEPLOIEMENT.md)** — hébergement, DNS, envoi des devis, vérifications après déploiement.
 
 ---
 
@@ -208,7 +215,69 @@ Site web → Formulaire de devis → API → Adrar OS → CRM → Lead → Prosp
 
 L'architecture est préparée : la soumission du devis passera par une couche d'intégration isolée dans `lib/`, ce qui permettra de brancher Adrar OS sans toucher au formulaire ni aux composants.
 
-**Cette intégration n'est pas développée** tant que les APIs Adrar OS ne sont pas définies. Adrar OS ne dispose actuellement d'aucun modèle `Lead` ou `QuoteRequest`.
+La passerelle est écrite (`lib/leads/adrar-os.ts`) et reste **inactive tant qu'`ADRAR_OS_API_URL` n'est pas renseignée** — Adrar OS ne dispose à ce jour d'aucun modèle `Lead` ou `QuoteRequest`. L'appel est délibérément accessoire : si le CRM ne répond pas, la demande a déjà été transmise par e-mail et n'est pas perdue.
+
+---
+
+## SEO
+
+| Élément | Emplacement | Note |
+|---|---|---|
+| Titre, description, canonique, hreflang, Open Graph, Twitter | `lib/seo/metadata.ts` | Une seule fonction, `pageMetadata`, appelée par chaque page |
+| Données structurées (Organization, WebSite, Service, fil d'Ariane) | `lib/seo/structured-data.ts` | Un champ sans donnée n'est pas émis |
+| Sitemap | `app/sitemap.ts` | Une entrée par URL et par langue, avec ses alternatives |
+| robots.txt | `app/robots.ts` | Le guide de style interne est exclu |
+| Manifeste, favicon, icône iOS | `app/manifest.ts`, `app/icon.svg`, `app/apple-icon.png` | Produits par `scripts/generate-brand-assets.mjs` |
+| Images de partage | `public/brand/og-image-{fr,en,ar}.png` | Une par langue, statiques |
+
+> Les métadonnées d'URL ne doivent jamais être posées sur le layout : Next les
+> fusionne champ par champ, et une valeur héritée fait déclarer la même URL
+> canonique à toutes les pages. C'est le défaut qui existait ici — la totalité
+> du site canonisait vers la page d'accueil.
+
+---
+
+## États d'erreur
+
+| Cas | Fichier |
+|---|---|
+| URL inconnue sous une langue | `app/[locale]/[...introuvable]/page.tsx` → `app/[locale]/not-found.tsx` |
+| Slug de service ou de projet inconnu | même frontière |
+| URL sans langue valide | `app/not-found.tsx` (rend son propre document, propose les trois langues) |
+| Échec de rendu d'une page | `app/[locale]/error.tsx` |
+| Échec du layout racine | `app/global-error.tsx` |
+
+> Une frontière `not-found` placée sous un segment dynamique ne monte aucun
+> composant client : le rendu échoue en silence et Next lui substitue son écran
+> technique. La 404 localisée est donc un composant serveur, et reçoit sa
+> langue par l'en-tête `x-adrar-locale` posé par le middleware.
+
+---
+
+## Formulaire de devis
+
+Chaîne complète : `components/forms/QuoteForm.tsx` →
+`app/[locale]/demander-un-devis/actions.ts` → `lib/leads/`.
+
+L'action serveur revalide la saisie (`lib/leads/validate.ts`), écarte les
+robots par champ piège, limite le débit par origine (`lib/leads/rate-limit.ts`),
+envoie le message (`lib/leads/email.ts`, appel HTTP direct à Resend) puis
+transmet une copie au CRM s'il est configuré (`lib/leads/adrar-os.ts`).
+
+Si aucun service d'envoi n'est configuré, ou s'il échoue, le formulaire ne
+prétend pas avoir envoyé : il compose le message mis en forme et le visiteur le
+transmet par e-mail ou WhatsApp. Un « merci » affiché à quelqu'un dont la
+demande n'est arrivée nulle part est la pire issue possible pour un formulaire
+commercial.
+
+---
+
+## Mesure d'audience et consentement
+
+`lib/analytics/` et `components/consent/`. Aucun script tiers n'est chargé
+avant un accord explicite ; l'absence de réponse vaut refus. Refuser est aussi
+accessible qu'accepter — même taille, même place. Sans identifiant configuré,
+aucune bannière ne s'affiche : il n'y aurait rien à consentir.
 
 ---
 
@@ -224,16 +293,19 @@ L'architecture est préparée : la soumission du devis passera par une couche d'
 | 06 | Architecture i18n (FR / EN / AR) | ✅ |
 | 07 | Détection du pays | ✅ |
 | 08 | Navbar + Language Switcher + Footer | ✅ |
-| 09 | Hero | à venir |
-| 10 | Homepage complète | à venir |
-| 11 | Portfolio + Case Studies | à venir |
-| 12 | Services | à venir |
-| 13 | À propos + Méthode | à venir |
-| 14 | Contact + Formulaire de devis | à venir |
-| 15 | SEO multilingue | à venir |
-| 16 | Performance | à venir |
-| 17 | Accessibilité | à venir |
-| 18 | QA | à venir |
+| 09 | Hero | ✅ |
+| 10 | Homepage complète | ✅ |
+| 11 | Portfolio + pages projet | ✅ |
+| 12 | Services + pages service | ✅ |
+| 13 | À propos + Méthode + Solutions + Blog + pages légales | ✅ |
+| 14 | Contact + Formulaire de devis (action serveur, envoi réel) | ✅ |
+| 15 | SEO multilingue (canonique, hreflang, sitemap, robots, JSON-LD, Open Graph) | ✅ |
+| 16 | Performance (visuels statiques, aucune dépendance ajoutée) | ✅ |
+| 17 | Accessibilité (repères, page courante, isolation bidirectionnelle, états d'erreur) | ✅ |
+| 18 | QA (build, typage, lint, parcours navigateur, 404 et pannes) | ✅ |
+
+Reste à faire, hors code : renseigner les valeurs d'environnement et fournir
+le contenu listé plus haut. Voir [DEPLOIEMENT.md](./DEPLOIEMENT.md).
 
 ---
 

@@ -86,7 +86,7 @@ export function LocaleSuggestion({ current, labels }: LocaleSuggestionProps) {
           <button
             type="button"
             onClick={dismiss}
-            className="text-small text-anthracite/60 underline underline-offset-4 transition-colors duration-fast hover:text-anthracite"
+            className="text-small text-anthracite/70 underline underline-offset-4 transition-colors duration-fast hover:text-anthracite"
           >
             {copy.dismiss.replace("{language}", localeNames[current])}
           </button>

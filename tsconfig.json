@@ -11,6 +11,15 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    /*
+     * `scripts/generate-imagery.ts` est exécuté directement par Node
+     * (retrait des types natif, ≥ 22.18), ce qui impose d'écrire
+     * l'extension .ts dans ses imports. Sans cette option, tsc rejette
+     * un fichier qui s'exécute pourtant sans étape de compilation.
+     * Sans effet sur le bundle : `noEmit` est actif et Next résout ses
+     * propres imports sans extension comme avant.
+     */
+    "allowImportingTsExtensions": true,
     "jsx": "preserve",
     "incremental": true,
     "noUncheckedIndexedAccess": true,

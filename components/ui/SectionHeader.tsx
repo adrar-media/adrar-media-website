@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Headline } from "@/components/ui/Headline";
 import { cn } from "@/lib/utils";
@@ -38,24 +39,42 @@ export function SectionHeader({
         className,
       )}
     >
+      {/*
+        LE TITRE N'EST PLUS ENVELOPPÉ DANS UNE RÉVÉLATION.
+
+        Il l'était, et les deux mouvements se marchaient dessus : le conteneur
+        montait le bloc entier en le faisant apparaître, pendant que les
+        lettres, à l'intérieur, jouaient leur propre découpe. Deux courbes, deux
+        durées, sur les mêmes pixels — la découpe se lisait à travers un fondu
+        qui n'avait pas fini, et l'onde des caractères disparaissait dans le
+        déplacement du parent.
+
+        Le surtitre garde sa révélation : c'est un bloc, il se pose. Le titre
+        porte la sienne (`Headline` → `SplitHeadline`), il se découpe. Chacun
+        n'a plus qu'une seule animation, et elles partent au même moment
+        puisqu'elles répondent au même seuil de défilement.
+      */}
       <div className={cn(align === "split" && "md:col-span-7")}>
         {eyebrow && (
-          <Eyebrow className="mb-8" tone={tone === "dark" ? "dark" : "light"}>
-            {eyebrow}
-          </Eyebrow>
+          <Reveal>
+            <Eyebrow className="mb-8" tone={tone === "dark" ? "dark" : "light"}>
+              {eyebrow}
+            </Eyebrow>
+          </Reveal>
         )}
         <Headline
           as={as}
           lines={titleLines}
           className={cn(
             titleSize,
-            tone === "dark" ? "text-deep" : "text-white",
+            tone === "dark" ? "text-ink" : "text-white",
           )}
         />
       </div>
 
       {(intro || action) && (
-        <div
+        <Reveal
+          delay={120}
           className={cn(
             align === "split" ? "md:col-span-4 md:col-start-9" : "mt-8",
           )}
@@ -71,7 +90,7 @@ export function SectionHeader({
             </p>
           )}
           {action && <div className="mt-6">{action}</div>}
-        </div>
+        </Reveal>
       )}
     </div>
   );

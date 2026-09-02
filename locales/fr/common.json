@@ -7,12 +7,14 @@
   "nav": {
     "label": "Navigation principale",
     "services": "Services",
+    "solutions": "Solutions",
     "work": "Réalisations",
     "method": "Méthode",
     "about": "À propos",
     "contact": "Contact",
     "openMenu": "Ouvrir le menu",
-    "closeMenu": "Fermer le menu"
+    "closeMenu": "Fermer le menu",
+    "blog": "Blog"
   },
   "cta": {
     "quote": "Demander un devis",
@@ -26,6 +28,12 @@
     "current": "Langue active",
     "heading": "Langue"
   },
+  "theme": {
+    "label": "Thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
   "suggestion": {
     "detected": "Français détecté",
     "accept": "Passer en français",
@@ -38,7 +46,38 @@
     "follow": "Suivez-nous",
     "legal": "Mentions légales",
     "privacy": "Politique de confidentialité",
-    "rights": "Tous droits réservés."
+    "rights": "Tous droits réservés.",
+    "form": {
+      "title": "Une question ? Écrivez-nous.",
+      "intro": "Trois champs pour poser votre question. Pour un cadrage complet, passez plutôt par le devis.",
+      "name": "Votre nom",
+      "email": "Votre e-mail",
+      "message": "Message",
+      "messagePlaceholder": "En quelques lignes, ce dont vous avez besoin.",
+      "privacyConsent": "J'accepte que mes informations soient utilisées pour répondre à cette demande, selon la",
+      "privacyLink": "politique de confidentialité.",
+      "submit": "Envoyer",
+      "sending": "Envoi…",
+      "sentTitle": "Message reçu.",
+      "sentBody": "Votre message a bien été transmis à l'équipe.",
+      "trapLabel": "Ne remplissez pas ce champ",
+      "errors": {
+        "name": "Indiquez votre nom.",
+        "email": "Indiquez une adresse e-mail valide.",
+        "message": "Décrivez votre besoin en quelques mots.",
+        "consent": "Votre accord est nécessaire pour transmettre cette demande."
+      },
+      "fallbackNotice": "L'envoi automatique n'est pas disponible.",
+      "fallbackAction": "Transmettre par e-mail",
+      "rateLimited": "Trop de tentatives. Réessayez dans quelques minutes."
+    },
+    "channels": {
+      "mobile": "Mobile",
+      "landline": "Fixe",
+      "email": "E-mail",
+      "recruitment": "Recrutement",
+      "address": "Adresse"
+    }
   },
   "services": {
     "strategy": "Stratégie Marketing",
@@ -57,5 +96,45 @@
     "production": "Production",
     "performance": "Performance",
     "web": "Digital"
+  },
+  "consent": {
+    "title": "Mesure d'audience",
+    "body": "Nous aimerions mesurer la fréquentation du site pour savoir ce qui vous est utile. Ces outils déposent des cookies et ne sont activés qu'avec votre accord. Le site fonctionne à l'identique si vous refusez.",
+    "accept": "Accepter",
+    "refuse": "Refuser",
+    "learnMore": "Politique de confidentialité"
+  },
+  "imagery": {
+    "pending": "Visuel en préparation",
+    "home-hero": "Les contreforts de l'Atlas au petit matin, crêtes superposées s'effaçant dans la brume, une route traçant le fond de la vallée.",
+    "home-intro": "Vue en plongée d'une table de travail : cartes d'audience imprimées, plan de diffusion annoté au crayon, une main déplaçant une fiche.",
+    "home-services": "Intérieur d'un studio de création au crépuscule : banc de montage éclairé d'un côté, coin de prise de vue produit de l'autre.",
+    "home-why": "Des mains épinglant des images imprimées sur un mur de recherche déjà couvert de storyboards, éclairé en lumière rasante.",
+    "home-results": "Un ordinateur portable posé sur un bureau affichant une courbe d'audience en hausse, à côté d'un rapport imprimé annoté.",
+    "services-hero": "Sept dossiers imprimés étalés en ligne sur une grande table, chacun ouvert sur une page différente, en lumière du matin.",
+    "service-strategie-marketing": "Un plan trimestriel dessiné à la main sur un grand papier mural, jalonné d'étiquettes de couleur.",
+    "service-social-media": "Neuf visuels au format vertical disposés sur une table lumineuse, en cours de réorganisation à la main.",
+    "service-creation-contenu": "Un petit décor de prise de vue en cours d'installation : produit sur socle beige, panneau diffuseur, caméra sur pied bas.",
+    "service-branding": "Un système de marque étalé à plat : nuanciers papier, trois graisses d'un caractère imprimées en grand, papeterie pliée.",
+    "service-production-audiovisuelle": "Un plateau de tournage entre deux prises : caméra face au décor éclairé, grande source douce sur le côté.",
+    "service-publicite-digitale": "Deux écrans côte à côte affichant un compte publicitaire et une courbe de performance, carnet de chiffres au premier plan.",
+    "service-web": "Une même page affichée sur trois appareils alignés — ordinateur, tablette, téléphone — à côté de croquis de maquette.",
+    "method-hero": "Un mur de six feuilles épinglées côte à côte, de plus en plus denses, qu'une silhouette observe à distance.",
+    "method-discover": "Un entretien en cours autour d'une petite table : enregistreur posé entre deux personnes, carnet qui se remplit.",
+    "method-strategize": "Une feuille portant une phrase de positionnement écrite à la main, entourée de brouillons raturés.",
+    "method-create": "Un poste d'étalonnage en cours de session : image étalonnée sur écran calibré, tablette graphique et stylet en main.",
+    "method-distribute": "Un calendrier de publication rempli sur un mois, un téléphone à côté affichant une publication qui vient de paraître.",
+    "method-optimize": "Un rapport de performance imprimé comparant deux variantes, l'une entourée au crayon vert.",
+    "method-scale": "Vue par une large fenêtre sur une ville marocaine au crépuscule, depuis un plateau de travail encore ouvert.",
+    "about-name": "Un sommet isolé du Haut Atlas en lumière d'après-midi, neige sur le tiers supérieur, éboulis ocre au premier plan.",
+    "about-story": "Un premier atelier modeste : deux bureaux accolés, une fenêtre, des caisses de matériel empilées contre le mur.",
+    "about-values": "Des mains égalisant une pile d'épreuves imprimées sur un établi, une feuille tenue à contre-jour pour vérification.",
+    "solutions-hero": "Trois chemises d'épaisseurs différentes alignées sur une surface claire, chacune marquée d'un onglet de couleur.",
+    "solutions-pack-launch": "Une feuille seule sur un bureau dégagé, une ligne écrite en tête, un stylo posé en travers.",
+    "solutions-pack-growth": "Un planning mural mensuel rempli aux deux tiers de repères de couleur, une main ajoutant le bloc suivant.",
+    "solutions-pack-project": "Une valise de production ouverte au sol, optiques et cartes calées dans la mousse, un logement vide.",
+    "contact": "Un paysage éditorial du Moyen Atlas : forêt de cèdres, reliefs superposés et route sinueuse dans la lumière de fin de journée.",
+    "blog": "Un carnet fermé et un stylo plume sur une table nue, traversés par un rai de lumière.",
+    "quote": "Un bref imprimé posé sur une table, un stylo en diagonale par-dessus, un téléphone retourné à côté."
   }
 }

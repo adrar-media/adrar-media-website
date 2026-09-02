@@ -4,6 +4,9 @@ import { isLocale, localeCookie } from "@/config/i18n";
 /** Indice de langue recommandée, lu par l'interface pour proposer un changement. */
 export const suggestionCookie = "adrar_locale_hint";
 
+/** Langue de la requête, transmise aux rendus serveur qui ne reçoivent pas les paramètres de route. */
+export const localeHeader = "x-adrar-locale";
+
 import { toCanonicalSegment, toPublicSegment } from "@/lib/i18n/routing";
 import { resolveLocale } from "@/lib/i18n/resolve-locale";
 
@@ -43,15 +46,25 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(url, 308);
     }
 
+    /**
+     * La langue est recopiée dans un en-tête de requête.
+     *
+     * La page 404 en a besoin et ne peut pas la lire ailleurs : une frontière
+     * `not-found` ne reçoit pas les paramètres de route, et un composant client
+     * ne s'y rend pas. L'en-tête est la seule voie qui traverse la réécriture.
+     */
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set(localeHeader, first);
+
     // Réécriture du segment public vers le dossier canonique (/en/work → …/realisations).
     const needsRewrite = canonical.some((seg, i) => seg !== rest[i]);
     const response = needsRewrite
       ? (() => {
           const url = request.nextUrl.clone();
           url.pathname = `/${[first, ...canonical].join("/")}`;
-          return NextResponse.rewrite(url);
+          return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
         })()
-      : NextResponse.next();
+      : NextResponse.next({ request: { headers: requestHeaders } });
 
     /**
      * Suggestion, pas imposition : si le visiteur n'a jamais choisi de langue

@@ -2,13 +2,182 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * MADANI ARABIC — caractère principal de la version arabe.
+ *
+ * Auto-hébergé depuis /public/fonts : aucune requête vers un domaine tiers,
+ * et la police part du même serveur que la page. Les fichiers sont produits
+ * par scripts/build-madani-webfonts.py, qui convertit les OTF d'origine
+ * (≈ 410 Ko chacun) en WOFF2 (≈ 55 Ko) et neutralise au passage les chiffres
+ * de la version DEMO, dessinés comme des pavés hachurés — ils sont rendus par
+ * la police de repli.
+ *
+ * La famille ne fournit que quatre graisses : 100, 400, 700, 900. Le système
+ * typographique du site demande 500 (boutons, légendes) et 600 (titres) ; le
+ * navigateur résout 500 vers 400 et 600 vers 700, sans graisse synthétique.
+ * C'est le comportement voulu — `font-synthesis: none` l'impose plus bas.
+ *
+ * `font-display: swap` : le texte arabe s'affiche immédiatement dans la
+ * police de repli (Readex Pro), puis bascule. Jamais de texte invisible.
+ */
+@font-face {
+  font-family: "Madani Arabic";
+  src: url("/fonts/madani-arabic-thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Madani Arabic";
+  src: url("/fonts/madani-arabic-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Madani Arabic";
+  src: url("/fonts/madani-arabic-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Madani Arabic";
+  src: url("/fonts/madani-arabic-black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
+  /*
+   * =========================================================================
+   * THÈME SOMBRE — LE THÈME OFFICIEL, ET DONC LA BASE
+   * =========================================================================
+   *
+   * LE SOMBRE EST POSÉ SUR `:root` NU. C'est ce qui en fait le thème du site
+   * plutôt qu'une option : il s'applique sans attribut, sans script, sans
+   * préférence système — y compris si le JavaScript ne s'exécute jamais. Le
+   * clair est devenu la variante, et il lui faut désormais un attribut pour
+   * exister. L'ordre des deux blocs ci-dessous EST la décision.
+   *
+   * Ce n'est pas une inversion : une page inversée mécaniquement donne du
+   * blanc pur sur du noir pur, deux valeurs que l'œil ne supporte pas
+   * longtemps. Le fond est un bleu de nuit très sombre — la marque reste
+   * bleue — et l'encre un blanc légèrement froid, jamais #FFF.
+   *
+   * DEUX POINTS QUI DEMANDENT UNE DÉCISION, PAS UNE FORMULE :
+   *
+   * 1. `--surface` MONTE au lieu de descendre. En thème clair, les sections
+   *    de ponctuation sont sombres parce que la page est claire ; si elles
+   *    s'assombrissaient encore en thème sombre, elles disparaîtraient dans
+   *    le fond. Elles s'éclaircissent donc d'un cran : le contraste avec la
+   *    page est conservé, le rythme de la composition aussi. C'est la raison
+   *    d'être de la séparation entre `ink` et `surface`.
+   *
+   * 2. `--beige` reste chaud. Le beige est la respiration tiède entre deux
+   *    sections froides ; le rendre gris ferait perdre au thème sombre la
+   *    seule alternance de température de la page.
+   *
+   * Le vert clair ne bouge pas : il est déjà lisible sur les deux fonds, et
+   * c'est le repère qui doit rester identique d'un thème à l'autre.
+   *
+   * Canaux RVB séparés par des espaces, jamais `#rrggbb` : c'est ce format
+   * que `rgb(var(--x) / <alpha-value>)` attend dans tailwind.config.ts, et
+   * c'est lui qui garde vivants les 93 `text-anthracite/75` du site. Une
+   * couleur écrite en hexadécimal dans une variable ne peut pas recevoir de
+   * canal alpha — toutes les opacités du site tomberaient d'un coup.
+   *
+   * `color-scheme` n'est pas décoratif : il indique au navigateur quelle
+   * famille utiliser pour ce qu'il peint lui-même — barres de défilement,
+   * menus déroulants natifs, coche des cases. Sans lui, un thème sombre garde
+   * des ascenseurs blancs et des `<select>` clairs.
+   */
+  :root,
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+
+    /* Vert relevé : à 31 122 99 sur fond de nuit, le rapport tombe sous 3:1. */
+    --atlas: 63 184 148;
+    /* Le survol ÉCLAIRCIT en thème sombre — assombrir y serait un recul. */
+    --atlas-dark: 122 220 186;
+    --ink: 233 238 243;
+    --surface: 22 40 60;
+    --surface-soft: 30 53 80;
+    /* Beige lisible sur les surfaces bleu nuit (contraste AA pour le texte). */
+    --beige: 214 194 161;
+    --beige-soft: 28 24 17;
+    --anthracite: 195 203 212;
+    --light: 62 213 152;
+    --canvas: 13 18 25;
+    --canvas-raised: 21 28 37;
+    --canvas-gray: 42 51 63;
+    --canvas-off: 17 23 31;
+
+    --shadow-tint: 0 0 0;
+    --grid-line: 233 238 243;
+  }
+
+  /*
+   * =========================================================================
+   * THÈME CLAIR — la variante
+   * =========================================================================
+   *
+   * IL N'Y A PLUS DE BLOC `@media (prefers-color-scheme: …)` DANS CETTE
+   * FEUILLE, et c'est délibéré.
+   *
+   * La préférence système est désormais résolue en JavaScript, au tout début
+   * du document : le script lit le choix stocké, le confronte à `matchMedia`
+   * s'il vaut « système », et écrit UN attribut concret — `dark` ou `light` —
+   * sur `<html>`. La feuille n'a donc plus qu'à connaître deux états, au lieu
+   * de quatre combinaisons dont deux dupliquaient la même palette.
+   *
+   * Ce n'est pas qu'une simplification. Tailwind est configuré sur
+   * `darkMode: ["class", '[data-theme="dark"]']` : les utilitaires `dark:` du
+   * site — l'inversion du logo, les formes d'ambiance du Hero — ne se
+   * déclenchaient QUE sur l'attribut. Un visiteur dont le système est en
+   * sombre recevait donc la palette sombre par la requête média, mais gardait
+   * un logo en version claire et des formes calées pour un fond clair, sans
+   * qu'aucune règle ne soit fausse. Résoudre la préférence en amont fait
+   * disparaître l'écart : palette et utilitaires lisent la même source.
+   */
+  :root[data-theme="light"] {
+    color-scheme: light;
+
+    /* Vert suffisamment profond pour rester AA jusque sur le beige doux. */
+    --atlas: 23 96 77;
+    --atlas-dark: 16 72 58;
+    --ink: 10 37 64;
+    --surface: 10 37 64;
+    --surface-soft: 18 51 86;
+    --beige: 214 194 161;
+    --beige-soft: 232 222 203;
+    --anthracite: 43 43 43;
+    --light: 62 213 152;
+    --canvas: 244 242 238;
+    --canvas-raised: 255 255 255;
+    --canvas-gray: 231 228 221;
+    --canvas-off: 250 248 244;
+
+    /* Teinte des ombres : le bleu de la marque en clair, du noir en sombre. */
+    --shadow-tint: 10 37 64;
+    /* Trait de la grille de repères du Hero. */
+    --grid-line: 10 37 64;
+  }
+
+  /*
+   * Anciens noms, conservés pour les règles de cette feuille qui les
+   * utilisent encore (`.card-sweep` lit `--light-green`). Ils suivent
+   * désormais les jetons du thème au lieu de porter une valeur figée.
+   */
   :root {
-    --atlas-green: #1f7a63;
-    --deep-blue: #0a2540;
-    --earth-beige: #d6c2a1;
-    --anthracite: #2b2b2b;
-    --light-green: #3ed598;
+    --atlas-green: rgb(var(--atlas));
+    --deep-blue: rgb(var(--surface));
+    --earth-beige: rgb(var(--beige));
+    --light-green: rgb(var(--light));
   }
 
   html {
@@ -27,11 +196,103 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* L'arabe supporte mal les interlettrages serrés du latin. */
+  /*
+   * MÉTRIQUES ARABES
+   *
+   * L'échelle typographique du site est réglée pour le latin : interlettrage
+   * négatif jusqu'à -0.03em et interlignes très serrés (1.04 sur le display).
+   * Appliquées telles quelles à l'arabe, ces valeurs produisent exactement ce
+   * qui faisait paraître la version arabe amateur :
+   *
+   * - l'interlettrage négatif rapproche des lettres qui, en arabe, sont déjà
+   *   liées entre elles. Le mot se tasse et le tracé de liaison s'épaissit ;
+   * - un interligne de 1.04 ne laisse aucune place aux hampes hautes ni aux
+   *   points diacritiques sous la ligne, qui viennent toucher la ligne
+   *   voisine. C'est le défaut le plus visible sur les grands titres ;
+   * - la casse n'existe pas en arabe : les graisses très lourdes, qui
+   *   remplacent les capitales en latin, y produisent surtout du bruit.
+   *
+   * On rétablit donc un interlettrage neutre, des interlignes ouverts, et une
+   * graisse légèrement plus contenue sur les grands titres. Les tailles ne
+   * sont pas touchées : l'arabe a une hauteur d'œil plus généreuse que le
+   * latin, il occupe déjà correctement l'espace.
+   *
+   * Les sélecteurs visent les classes utilitaires plutôt que les balises :
+   * c'est là que Tailwind pose interligne et interlettrage.
+   */
+  [dir="rtl"] {
+    letter-spacing: 0;
+    /*
+     * Madani ne fournit ni 500 ni 600 : le navigateur résout ces graisses vers
+     * 400 et 700, qui existent. On lui interdit d'y ajouter un gras ou un
+     * italique simulés — sur de l'arabe, un gras synthétique épaissit les
+     * liaisons entre lettres et empâte le tracé.
+     */
+    font-synthesis: none;
+  }
+
   [dir="rtl"] h1,
   [dir="rtl"] h2,
-  [dir="rtl"] h3 {
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] .text-display,
+  [dir="rtl"] .text-h1,
+  [dir="rtl"] .text-h2,
+  [dir="rtl"] .text-h3 {
     letter-spacing: 0;
+  }
+
+  [dir="rtl"] .text-display {
+    line-height: 1.24;
+    font-weight: 600;
+  }
+
+  [dir="rtl"] .text-h1 {
+    line-height: 1.28;
+  }
+
+  [dir="rtl"] .text-h2 {
+    line-height: 1.34;
+  }
+
+  [dir="rtl"] .text-h3 {
+    line-height: 1.4;
+  }
+
+  /* Texte courant : l'arabe se lit avec plus d'air entre les lignes. */
+  [dir="rtl"] .text-body,
+  [dir="rtl"] body {
+    line-height: 1.85;
+  }
+
+  [dir="rtl"] .text-body-lg {
+    line-height: 1.7;
+  }
+
+  [dir="rtl"] .text-small {
+    line-height: 1.8;
+  }
+
+  /*
+   * Les petites étiquettes du latin passent en capitales espacées ; l'arabe
+   * n'ayant pas de capitales, `uppercase` n'a aucun effet sur lui mais
+   * s'applique quand même aux sigles latins mêlés au texte (FR, EN). On
+   * neutralise l'espacement, qui lui disloquerait un mot arabe voisin.
+   */
+  [dir="rtl"] .text-caption,
+  [dir="rtl"] .text-button {
+    letter-spacing: 0;
+    line-height: 1.7;
+  }
+
+  /*
+   * Chiffres : on force les formes latines (1234) plutôt que les chiffres
+   * arabes-indiens (١٢٣٤). Les métriques du site — « 516K+ » — viennent de
+   * tableaux de bord publicitaires et sont citées telles quelles par les
+   * prospects ; les convertir les rendrait impossibles à recouper.
+   */
+  [dir="rtl"] {
+    font-variant-numeric: lining-nums;
   }
 
   /* Focus visible cohérent sur tout le site, jamais supprimé. */
@@ -72,10 +333,538 @@
     content: "";
     @apply block h-2 w-2 rounded-pill bg-light;
   }
+
+  /*
+   * Halo vert qui enfle puis retombe autour d'un élément.
+   *
+   * Le dégradé radial remplace le `box-shadow` flouté d'avant : un flou animé
+   * est repeint par le processeur à chaque image, alors qu'un dégradé est
+   * peint une seule fois puis simplement mis à l'échelle par le GPU. Le
+   * rendu est identique, le coût par image disparaît.
+   *
+   * S'utilise en frère de l'élément éclairé, jamais en parent, avec la
+   * keyframe Tailwind : `<span class="halo animate-glow-pulse" />`.
+   * `--halo-spread` règle la portée au cas par cas — 12vw fait respirer un
+   * fond de section, c'est trop pour une pastille isolée.
+   */
+  .halo {
+    --halo-spread: 12vw;
+    content: "";
+    position: absolute;
+    inset: calc(var(--halo-spread) * -1);
+    border-radius: 999px;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at center,
+      rgb(var(--light) / 0.5) 0%,
+      rgb(var(--light) / 0.24) 38%,
+      rgb(var(--light) / 0) 70%
+    );
+    /* Prévient le compositeur : la couche reste sur le GPU d'un bout à l'autre. */
+    will-change: transform, opacity;
+  }
+
+  /* Portée resserrée, pour un halo posé sur un élément qu'on vient lire. */
+  .halo-sm {
+    --halo-spread: 7vw;
+  }
+
+  /*
+   * Révélation à l'entrée dans l'écran (voir components/motion/Reveal.tsx).
+   *
+   * La montée est courte et la durée longue : 16 px sur 700 ms se lit comme
+   * un contenu qui se pose, alors qu'une amplitude plus large donne un
+   * carrousel. La page reste calme même quand vingt blocs se révèlent à la
+   * suite.
+   */
+  /*
+   * =========================================================================
+   * ÉTAT INITIAL DES RÉVÉLATIONS
+   * =========================================================================
+   *
+   * Cette feuille ne décrit plus QUE l'état de départ. Le mouvement appartient
+   * désormais à GSAP (components/motion/Reveal.tsx et Stagger.tsx) : aucune
+   * transition n'est déclarée ici, sans quoi deux systèmes écriraient la même
+   * transformation et se l'écraseraient d'une image à l'autre.
+   *
+   * Pourquoi garder un état masqué en CSS alors que GSAP sait le poser :
+   * parce qu'il doit exister AVANT que le script s'exécute. Rendu par le
+   * serveur, il évite que le contenu soit peint puis retiré — un clignotement
+   * bien plus visible qu'une apparition. GSAP écrit ensuite des styles en
+   * ligne, qui l'emportent sur ces règles.
+   *
+   * La montée est courte et la durée longue — 16 px sur 700 ms, réglés côté
+   * GSAP : cela se lit comme un contenu qui se pose, alors qu'une amplitude
+   * plus large donnerait un carrousel. La page reste calme même quand vingt
+   * blocs se révèlent à la suite.
+   */
+  .reveal[data-reveal="out"]:not(.reveal-media),
+  .reveal-stagger[data-reveal="out"] > * {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  /*
+   * ORGANIGRAMME — état de départ (voir components/team/ChartMotion.tsx).
+   *
+   * Les traits sont écrasés à zéro sur leur axe, les cartes masquées et
+   * décalées. GSAP écrit ensuite en ligne, ce qui l'emporte sur ces règles :
+   * elles ne servent qu'à l'instant qui précède son exécution, exactement
+   * comme `data-reveal="out"` au-dessus.
+   *
+   * `scaleX` sur les barres et `scaleY` sur les montants, jamais `width` ou
+   * `height` : le schéma serait remesuré à chaque image.
+   */
+  [data-chart-motion="out"] [data-chart-node] {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  [data-chart-motion="out"] [data-chart-line="v"] {
+    transform: scaleY(0);
+  }
+
+  [data-chart-motion="out"] [data-chart-line="h"] {
+    transform: scaleX(0);
+  }
+
+  /*
+   * TITRES DÉCOUPÉS — la place des jambages sous la ligne.
+   *
+   * `SplitText` enveloppe chaque ligne dans un masque à débord caché, pour que
+   * les lettres montent depuis derrière le bord du texte. Ce masque est taillé
+   * sur la BOÎTE DE LIGNE, et les titres du site sont composés en interlignage
+   * serré — moins de 1 — donc la boîte de ligne est PLUS COURTE que les
+   * lettres qu'elle contient. Résultat : les jambages passent dessous et se
+   * font trancher net. « faire grandir une marque » perdait la queue de son
+   * « g » et de son « q », et l'accent d'un « É » capital subissait le même
+   * sort en haut.
+   *
+   * Le masque est donc rallongé vers le bas, et le décalage repris par une
+   * marge négative de même valeur : la zone visible descend sous la ligne,
+   * mais la composition ne bouge pas d'un pixel. Aucun titre ne se déplace,
+   * aucune grille ne change — seule la découpe cesse de mordre.
+   *
+   * En `em` : la correction suit le corps du texte, d'un titre de section à
+   * l'affichage du premier écran, sans valeur à retoucher par palier.
+   */
+  .split-headline > * {
+    padding-bottom: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  /*
+   * Les cadres d'images partent fermés, pas masqués.
+   *
+   * `opacity: 0` conviendrait à un bloc de texte ; sur un cadre d'image, il
+   * laisse un trou aux proportions exactes de l'image, bordé et arrondi, que
+   * l'œil lit comme un visuel qui n'a pas chargé. Un cadre fermé par le bas
+   * n'occupe visuellement rien, et ce qu'il libère en s'ouvrant est déjà à sa
+   * place définitive.
+   */
+  .reveal-media[data-reveal="out"] {
+    clip-path: inset(0% 0% 100% 0%);
+  }
+
+  /*
+   * Pose de l'image : elle entre légèrement agrandie et rejoint son échelle
+   * pendant que le cadre se révèle. Le grossissement est faible — 6 % — et la
+   * durée nettement plus longue que celle de la révélation (1200 ms contre
+   * 700). C'est ce décalage qui donne la profondeur ; deux durées égales se
+   * liraient comme un seul mouvement, et une amplitude plus large donnerait un
+   * zoom, c'est-à-dire un effet, là où on veut une masse qui se stabilise.
+   *
+   * Les deux mouvements ne sont plus liés par un sélecteur d'état mais par une
+   * chronologie commune, dans `Reveal` : ils démarrent ensemble parce que
+   * c'est écrit, non parce qu'un attribut a basculé.
+   */
+  .reveal[data-reveal="out"] .media-settle {
+    transform: scale(1.06);
+  }
+
+  .media-settle {
+    transform-origin: center;
+  }
+
+  /*
+   * Bande défilante : les mots se fondent aux deux bords au lieu d'être
+   * tranchés net sur l'arête du conteneur.
+   *
+   * Le masque est en unités relatives à la largeur du conteneur, donc la
+   * zone de fondu reste proportionnée du mobile au grand format.
+   */
+  .marquee {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+  }
+
+  /*
+   * Le sens de défilement suit le sens de lecture. En arabe, une bande qui
+   * part vers la gauche remonte le texte à contresens ; inversée, les mots
+   * entrent par la gauche comme ils se lisent. La boucle reste continue :
+   * la séquence est dupliquée, les deux sens sont donc également raccords.
+   */
+  [dir="rtl"] .animate-marquee {
+    animation-direction: reverse;
+  }
+
+  /*
+   * DÉCOR DU HERO — second plan
+   *
+   * Dégradé conique en rotation lente, posé sous les formes d'ambiance. Même
+   * règle que `.halo` : le dégradé et son flou sont peints une fois, seule la
+   * transformation varie ensuite. Un `filter: blur()` recalculé à chaque image
+   * serait le poste le plus lourd du premier écran ; ici il est figé dans une
+   * couche que le compositeur se contente de faire tourner.
+   *
+   * Le mouvement est appliqué depuis le JSX (`animate-gradient-drift`), afin
+   * que la keyframe reste un jeton du système et non une règle isolée.
+   */
+  .hero-mesh {
+    position: absolute;
+    inset: -20%;
+    /*
+     * Aucun `z-index` : l'ordre du DOM suffit, le décor est posé avant le
+     * contenu. Un `z-index: -1` ferait passer la couche derrière le fond du
+     * `body`, qui est peint — le dégradé disparaîtrait purement et simplement.
+     */
+    pointer-events: none;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      rgb(var(--atlas) / 0.35),
+      rgb(var(--light) / 0.25),
+      rgb(var(--surface) / 0.4),
+      rgb(var(--atlas) / 0.35)
+    );
+    filter: blur(80px);
+    /*
+     * Promeut une grande couche floutée pour toute la durée de vie de la
+     * page. C'est le bon compromis tant que le Hero reste peint sans image ;
+     * si le premier écran devait accrocher sur un appareil d'entrée de gamme,
+     * c'est la première ligne à retirer.
+     */
+    will-change: transform;
+  }
+
+  /*
+   * Grille de repères, très basse opacité : la texture « instrument » sous le
+   * titre. Le masque la fait disparaître avant les bords, sinon la grille se
+   * termine par une arête franche au milieu du décor.
+   */
+  .grid-field {
+    /*
+     * Le trait suit le thème. Peint en bleu de marque, il disparaissait
+     * purement et simplement sur le fond de nuit : une texture qui ne se voit
+     * que dans un thème sur deux n'est pas une texture, c'est un oubli.
+     */
+    background-image:
+      linear-gradient(
+        to right,
+        rgb(var(--grid-line) / 0.06) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgb(var(--grid-line) / 0.06) 1px,
+        transparent 1px
+      );
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      #000 40%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      #000 40%,
+      transparent 100%
+    );
+  }
+
+  /*
+   * Bordure balayée par une lumière, au survol d'une carte.
+   *
+   * La bordure est un dégradé découpé au masque : `padding: 1px` réserve le
+   * liseré, et la composition `exclude` évide l'intérieur. Un dégradé animé
+   * sur la seule `background-position` ne provoque ni repeinture du contenu
+   * ni recalcul de mise en page.
+   *
+   * L'animation ne tourne qu'au survol. Une bordure qui se balaie en
+   * permanence sur toutes les cartes d'une page anime du hors-champ pour
+   * rien, et transforme une page calme en tableau de bord.
+   *
+   * `@apply` plutôt qu'une déclaration `animation` écrite ici : la keyframe
+   * vit dans le système (tailwind.config.ts) et n'est utilisée que depuis ce
+   * pseudo-élément, donc jamais rencontrée par l'analyse des classes.
+   */
+  .card-sweep {
+    position: relative;
+  }
+
+  .card-sweep::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--light-green),
+        transparent
+      )
+      0 / 200% 100%;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity theme("transitionDuration.fast")
+      theme("transitionTimingFunction.standard");
+  }
+
+  .card-sweep:hover::before,
+  .card-sweep:focus-within::before {
+    @apply animate-border-sweep;
+    opacity: 1;
+  }
+
+  /*
+   * Flèche de continuité qui avance vers ce qu'elle désigne.
+   *
+   * Elle avance au survol comme au focus clavier : le retour n'est jamais
+   * réservé à la souris.
+   *
+   * En RTL la flèche est retournée pour pointer vers la gauche, et son
+   * déplacement doit l'être aussi. Ce n'était pas le cas : `translate-x-1`
+   * s'applique dans le repère du parent, pas dans celui de la flèche
+   * retournée, donc elle pointait à gauche et glissait à droite. Les deux
+   * cas sont donc écrits ici plutôt que composés par des variantes — la
+   * variante `rtl:` de Tailwind passe par `:where()`, de spécificité nulle,
+   * et ne peut pas surcharger de façon fiable un `group-hover:` concurrent.
+   */
+  .arrow-nudge {
+    display: inline-block;
+    transition: transform theme("transitionDuration.base")
+      theme("transitionTimingFunction.brand");
+  }
+
+  .group:hover .arrow-nudge,
+  .group:focus-visible .arrow-nudge {
+    transform: translateX(0.25rem);
+  }
+
+  [dir="rtl"] .arrow-nudge {
+    transform: scaleX(-1);
+  }
+
+  [dir="rtl"] .group:hover .arrow-nudge,
+  [dir="rtl"] .group:focus-visible .arrow-nudge {
+    transform: translateX(-0.25rem) scaleX(-1);
+  }
+
+  /*
+   * Soulignement qui se déploie depuis le bord d'attaque du texte.
+   *
+   * Un lien qui ne change que de couleur ne signale presque rien : le trait
+   * qui pousse donne un retour net, et il pousse aussi au focus clavier —
+   * l'état actif n'est jamais réservé à la souris.
+   *
+   * `currentColor` fait suivre le trait à la couleur du lien, donc la même
+   * classe sert sur fond clair comme sur fond foncé.
+   */
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: -0.2em;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform theme("transitionDuration.base")
+      theme("transitionTimingFunction.brand");
+  }
+
+  /* En RTL le trait doit naître à droite, sinon il pousse à rebours du texte. */
+  [dir="rtl"] .link-underline::after {
+    transform-origin: right center;
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
+  }
 }
 
 @layer utilities {
 }
+
+/*
+ * =============================================================================
+ * MOUVEMENTS LIÉS AU DÉFILEMENT
+ * =============================================================================
+ *
+ * La dérive des visuels et la barre de progression vivaient ici, en
+ * chronologies de défilement CSS (`animation-timeline: view()` et
+ * `scroll()`), enfermées dans un `@supports`. L'intention était juste — un
+ * mouvement lié au défilement, sans script, composé hors du fil principal —
+ * mais la fonctionnalité n'existe que dans Chrome et Edge. Le `@supports`
+ * faisait donc exactement ce pour quoi il est écrit : sur Safari et Firefox,
+ * les deux effets ne dégradaient pas, ils étaient absents. Silencieusement.
+ *
+ * Les deux sont désormais pilotés par ScrollTrigger
+ * (components/motion/ScrollMotion.tsx), qui produit le même résultat partout.
+ * Aucune animation n'est déclarée ici : deux systèmes qui écriraient la même
+ * transformation se l'écraseraient d'une image à l'autre.
+ *
+ * `.parallax` ne subsiste que comme repère — c'est le sélecteur que le script
+ * ramasse. Seule l'origine de la barre reste en CSS, parce qu'elle doit
+ * s'inverser en arabe et que c'est une affaire de direction de lecture, pas
+ * d'animation.
+ */
+@layer components {
+  .scroll-progress {
+    transform-origin: left center;
+  }
+
+  [dir="rtl"] .scroll-progress {
+    transform-origin: right center;
+  }
+
+  /*
+   * =========================================================================
+   * CURSEUR PERSONNALISÉ
+   * =========================================================================
+   *
+   * Les deux éléments sont posés en `fixed` et déplacés uniquement par
+   * `transform`, écrit image par image depuis components/cursor/Cursor.tsx.
+   * Rien ici ne connaît la position : cette feuille ne décrit que l'apparence
+   * et les états.
+   *
+   * `pointer-events: none` est vital — sans lui, le curseur se survolerait
+   * lui-même et aucun lien de la page ne recevrait plus un seul clic.
+   *
+   * Les couleurs sont des jetons : le curseur suit donc le thème sans une
+   * ligne de plus, et reste lisible sur les deux fonds.
+   */
+  .cursor-dot,
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+    border-radius: 999px;
+    /*
+     * Invisible au départ, et révélé au premier mouvement de souris par le
+     * composant. Sans cela, les deux nœuds seraient peints en haut à gauche
+     * de la page le temps que la souris bouge une première fois.
+     *
+     * `visibility` autant qu'`opacity` : c'est ce que `autoAlpha` pilote côté
+     * GSAP, et c'est ce qui sort les nœuds du travail de composition quand ils
+     * ne servent pas.
+     */
+    opacity: 0;
+    visibility: hidden;
+    /*
+     * Déclaré parce que ces deux éléments sont, littéralement, les seuls de la
+     * page qui se transforment en permanence. C'est le cas d'école de
+     * `will-change` — et non la précaution posée partout « au cas où », qui
+     * revient à demander une couche de composition pour chaque élément.
+     */
+    will-change: transform;
+  }
+
+  .cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: rgb(var(--atlas));
+  }
+
+  .cursor-ring {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgb(var(--ink) / 0.35);
+    /*
+     * Seules les couleurs sont animées ici. Position et échelle appartiennent
+     * à GSAP : deux systèmes qui écrivent la même matrice de transformation se
+     * l'écrasent mutuellement d'une image à l'autre.
+     *
+     * La version précédente faisait varier `width` et `height` pour grossir
+     * l'anneau et effacer le point. Ce sont des propriétés de mise en page :
+     * chaque image d'une telle transition force un recalcul, sur un élément
+     * fixe posé au-dessus de toute la page. Elles sont désormais figées, et
+     * c'est `scale` — composée par le processeur graphique — qui travaille.
+     */
+    transition:
+      background-color theme("transitionDuration.base")
+        theme("transitionTimingFunction.brand"),
+      border-color theme("transitionDuration.base")
+        theme("transitionTimingFunction.brand");
+  }
+
+  /*
+   * Au-dessus d'un élément actionnable, l'anneau se remplit et s'ouvre autour
+   * du point, qui s'efface : à ce moment-là c'est l'anneau qui désigne, et
+   * deux marques superposées se gêneraient.
+   */
+  .cursor-ring[data-over="true"] {
+    background: rgb(var(--atlas) / 0.12);
+    border-color: rgb(var(--atlas) / 0.7);
+  }
+
+  .cursor-ring[data-down="true"] {
+    background: rgb(var(--atlas) / 0.22);
+  }
+
+  /*
+   * Le curseur natif ne disparaît que lorsque le remplaçant est réellement
+   * monté — l'attribut est posé par le composant, jamais rendu côté serveur.
+   * Sans cette condition, un visiteur au doigt ou en mouvement réduit se
+   * retrouverait sans curseur du tout.
+   */
+  html[data-cursor="custom"],
+  html[data-cursor="custom"] * {
+    cursor: none;
+  }
+
+  /*
+   * Sauf là où le curseur natif porte une information que l'anneau ne sait
+   * pas dire : la barre en I marque le point d'insertion du texte, et la
+   * flèche de redimensionnement une direction.
+   */
+  html[data-cursor="custom"] input,
+  html[data-cursor="custom"] textarea,
+  html[data-cursor="custom"] select,
+  html[data-cursor="custom"] [contenteditable="true"] {
+    cursor: auto;
+  }
+}
+
 
 /* Le mouvement est un enrichissement, jamais une condition de lecture. */
 @media (prefers-reduced-motion: reduce) {
@@ -89,5 +878,83 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /*
+   * Rien ne doit rester masqué en attendant une animation qui ne jouera pas.
+   *
+   * `Reveal` et `Stagger` posent déjà l'état final sans animation sous ce
+   * réglage. Ces règles couvrent l'instant qui précède leur exécution : entre
+   * le HTML servi et le montage du script, l'état de départ s'appliquerait
+   * sinon quand même, et un contenu masqué une demi-seconde reste un contenu
+   * masqué.
+   */
+  .reveal[data-reveal="out"],
+  .reveal-stagger[data-reveal="out"] > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* L'organigramme est posé, traits tracés et cartes en place. */
+  [data-chart-motion="out"] [data-chart-node],
+  [data-chart-motion="out"] [data-chart-line="v"],
+  [data-chart-motion="out"] [data-chart-line="h"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Le cadre est ouvert : il n'y a pas d'ouverture à jouer. */
+  .reveal-media[data-reveal="out"] {
+    clip-path: none;
+  }
+
+  /*
+   * Même raison pour la pose des images : l'état de départ est un
+   * agrandissement, pas un masquage. Laissé tel quel, il servirait une image
+   * définitivement recadrée à 106 % au lieu de la neutraliser.
+   */
+  .reveal[data-reveal="out"] .media-settle {
+    transform: none;
+  }
+
+  /*
+   * Le halo garde sa lumière, il cesse seulement de battre.
+   *
+   * Sans cette reprise il repasserait à pleine échelle et pleine opacité :
+   * une animation terminée sans `forwards` rend la main à la valeur de base,
+   * et la base d'un halo est son état le plus lumineux. Neutraliser le
+   * mouvement rendrait donc le halo plus voyant qu'il ne l'est en marche.
+   */
+  .halo {
+    opacity: 0.6;
+    transform: scale(0.85);
+  }
+
+  /*
+   * Les animations liées au défilement ignorent `animation-duration` : leur
+   * progression vient de la barre de défilement, pas du temps. La règle
+   * générale ci-dessus ne les arrête donc pas — il faut les couper une à une.
+   * La parallaxe s'immobilise, la barre de progression disparaît plutôt que
+   * de rester figée à zéro, ce qui laisserait un trait mort en tête de page.
+   */
+  .parallax {
+    animation: none;
+    transform: none;
+  }
+
+  .scroll-progress {
+    display: none;
+  }
+
+  /*
+   * L'écran de chargement n'a pas de version réduite : il est retiré.
+   *
+   * Le composant le neutralise déjà côté script, mais il le fait au montage,
+   * c'est-à-dire APRÈS la première image peinte. Un voile opaque affiché même
+   * un dixième de seconde à quelqu'un qui a demandé moins de mouvement est
+   * exactement ce qu'on lui refuse. Retiré ici, il n'est jamais peint du tout.
+   */
+  .preloader {
+    display: none;
   }
 }

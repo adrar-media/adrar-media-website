@@ -8,7 +8,7 @@ import { defaultLocale, type Locale } from "@/config/i18n";
  * composants — ceux-ci ne manipulent que des clés.
  */
 
-export type Namespace = "common" | "home" | "services";
+export type Namespace = "common" | "home" | "services" | "pages" | "errors";
 
 type Dictionary = Record<string, unknown>;
 
@@ -17,16 +17,22 @@ const loaders: Record<Locale, Record<Namespace, () => Promise<Dictionary>>> = {
     common: () => import("@/locales/fr/common.json").then((m) => m.default),
     home: () => import("@/locales/fr/home.json").then((m) => m.default),
     services: () => import("@/locales/fr/services.json").then((m) => m.default),
+    pages: () => import("@/locales/fr/pages.json").then((m) => m.default),
+    errors: () => import("@/locales/fr/errors.json").then((m) => m.default),
   },
   en: {
     common: () => import("@/locales/en/common.json").then((m) => m.default),
     home: () => import("@/locales/en/home.json").then((m) => m.default),
     services: () => import("@/locales/en/services.json").then((m) => m.default),
+    pages: () => import("@/locales/en/pages.json").then((m) => m.default),
+    errors: () => import("@/locales/en/errors.json").then((m) => m.default),
   },
   ar: {
     common: () => import("@/locales/ar/common.json").then((m) => m.default),
     home: () => import("@/locales/ar/home.json").then((m) => m.default),
     services: () => import("@/locales/ar/services.json").then((m) => m.default),
+    pages: () => import("@/locales/ar/pages.json").then((m) => m.default),
+    errors: () => import("@/locales/ar/errors.json").then((m) => m.default),
   },
 };
 
@@ -47,6 +53,16 @@ export type Translator = {
   (key: string): string;
   /** Récupère un tableau de chaînes (lignes de titre, listes). */
   list: (key: string) => string[];
+  /**
+   * Récupère un tableau d'entrées structurées — sections légales, valeurs,
+   * formules. Le contenu de ces pages est une liste d'objets et non de
+   * chaînes : le rédiger dans le dictionnaire plutôt que dans le composant
+   * garde la traduction au même endroit que le reste.
+   *
+   * Le type de retour reste volontairement large ; chaque page décrit la
+   * forme qu'elle attend et lit les champs qui l'intéressent.
+   */
+  entries: <T = Record<string, unknown>>(key: string) => T[];
 };
 
 /**
@@ -90,6 +106,21 @@ export async function getTranslator(
     return Array.isArray(value)
       ? value.filter((v): v is string => typeof v === "string")
       : [];
+  };
+
+  t.entries = <T,>(key: string): T[] => {
+    const value = resolve(key);
+    if (!Array.isArray(value)) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn(
+          `MISSING_TRANSLATION [${locale}/${namespace}] ${key} — tableau attendu`,
+        );
+      }
+      return [];
+    }
+    return value.filter(
+      (entry): entry is T => typeof entry === "object" && entry !== null,
+    );
   };
 
   return t;

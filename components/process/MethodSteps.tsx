@@ -3,7 +3,7 @@ import { getTranslator } from "@/lib/i18n/dictionaries";
 import { href } from "@/lib/i18n/routing";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Block, BlockItem } from "@/components/ui/Block";
+import { Stagger } from "@/components/motion/Stagger";
 import { Button } from "@/components/buttons/Button";
 
 const steps = [
@@ -34,12 +34,10 @@ export async function MethodSteps({ locale }: { locale: Locale }) {
           titleLines={t.list("method.titleLines")}
           intro={t("method.intro")}
           align="split"
-          className="mb-20"
+          className="mb-14"
         />
 
-        <Block
-          className="relative grid gap-y-10 md:grid-cols-6 md:gap-x-8"
-        >
+        <Stagger className="relative grid gap-y-10 md:grid-cols-6 md:gap-x-8">
           {/* Ligne de progression : verticale sur mobile, horizontale sur desktop. */}
           <span
             aria-hidden
@@ -47,7 +45,10 @@ export async function MethodSteps({ locale }: { locale: Locale }) {
           />
 
           {steps.map((step, index) => (
-            <BlockItem key={step} className="relative ps-8 md:ps-0 md:pt-8">
+            <div
+              key={step}
+              className="relative ps-8 md:ps-0 md:pt-8"
+            >
               <span
                 aria-hidden
                 className="absolute start-0 top-1 block h-[15px] w-[15px] rounded-full border border-anthracite/30 bg-beige-soft md:top-0"
@@ -55,15 +56,15 @@ export async function MethodSteps({ locale }: { locale: Locale }) {
               <p className="text-caption text-atlas">
                 {String(index + 1).padStart(2, "0")}
               </p>
-              <h3 className="mt-3 text-h3 text-deep">
+              <h3 className="mt-3 text-h3 text-ink">
                 {t(`method.steps.${step}.title`)}
               </h3>
-              <p className="mt-2 text-small text-anthracite/65">
+              <p className="mt-2 text-small text-anthracite/70">
                 {t(`method.steps.${step}.body`)}
               </p>
-            </BlockItem>
+            </div>
           ))}
-        </Block>
+        </Stagger>
 
         <div className="mt-16">
           <Button href={href(locale, "methode")} variant="secondary" arrow>
