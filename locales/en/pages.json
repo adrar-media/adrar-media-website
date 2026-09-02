@@ -342,10 +342,8 @@
       "Legal notice"
     ],
     "intro": "Information about the publisher of this site, its hosting, and the terms under which its content may be used.",
-    "identityTitle": "Regulatory identity",
-    "completeStatus": "Information complete",
-    "prelaunchStatus": "Publication blocked until these details are supplied",
-    "notConfigured": "Not supplied — required before publication",
+    "identityTitle": "Official legal information",
+    "completeStatus": "Official information",
     "fields": {
       "tradeName": "Trade name",
       "legalName": "Legal name",
@@ -354,47 +352,35 @@
       "tradeRegister": "Trade register",
       "taxId": "Tax identifier",
       "ice": "ICE",
+      "professionalTax": "Professional tax",
       "headquarters": "Registered office",
+      "manager": "Manager",
       "publicationDirector": "Publication director",
+      "email": "Email",
+      "website": "Website",
       "host": "Hosting provider",
-      "hostAddress": "Host address",
-      "hostUrl": "Host website"
+      "hostAddress": "Host address"
     },
-    "pendingLabel": "Information to be published",
-    "pendingNote": "This entry will be completed as soon as the corresponding official information is provided to us. We prefer a missing entry over an inaccurate one.",
     "sections": [
       {
         "title": "Site publisher",
-        "body": "This site is published by Adrar Media, a communication and digital marketing agency established in Morocco.",
-        "pending": [
-          "Legal form and share capital",
-          "Trade register number",
-          "Tax identifier and ICE",
-          "Registered office address",
-          "Name of the publication director"
-        ]
+        "body": "The website https://adrar.media is published by ADRAR MEDIA, a Société à Responsabilité Limitée à Associé Unique (SARL AU) with share capital of 100 000 MAD, registered with the Azrou Trade Register under number RC 2643. Its registered office is located at N47, Nakhil 6, Azrou, Morocco. Its manager and publication director is Kanoun Alaoui Yassine. Contact: contact@adrar.media."
       },
       {
         "title": "Hosting",
-        "body": "The site is hosted by a third-party infrastructure provider.",
-        "pending": [
-          "Host company name and address"
-        ]
+        "body": "The site is hosted by Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, United States."
       },
       {
         "title": "Intellectual property",
-        "body": "All original elements of this site — text, visual identity, layout and code — are protected by intellectual property law. Any reproduction, even partial, requires prior written permission. Trademarks and visual elements belonging to the clients mentioned remain the property of their respective holders.",
-        "pending": []
+        "body": "All original elements of this site — text, visual identity, layout and code — are protected by intellectual property law. Any reproduction, even partial, requires prior written permission. Trademarks and visual elements belonging to the clients mentioned remain the property of their respective holders."
       },
       {
         "title": "Liability",
-        "body": "The information published on this site is indicative and may change. The performance figures mentioned come from real campaigns and carry their source; they describe results obtained in a given context and constitute no guarantee of results for a future project.",
-        "pending": []
+        "body": "The information published on this site is indicative and may change. The performance figures mentioned come from real campaigns and carry their source; they describe results obtained in a given context and constitute no guarantee of results for a future project."
       },
       {
         "title": "External links",
-        "body": "This site may link to third-party sites. Adrar Media exercises no control over their content and accepts no responsibility for it.",
-        "pending": []
+        "body": "This site may link to third-party sites. Adrar Media exercises no control over their content and accepts no responsibility for it."
       }
     ]
   },
@@ -409,40 +395,41 @@
       "policy"
     ],
     "intro": "This site collects the minimum needed to function. This page describes exactly what, why, and what you can require of us.",
-    "pendingLabel": "Information to be published",
-    "pendingNote": "This entry will be completed as soon as the corresponding official information is provided to us.",
+    "dataContactLabel": "Personal data contact",
+    "complianceLabel": "Personal data protection",
+    "complianceStatement": "Personal data processing is managed in accordance with the applicable regulations.",
     "sections": [
       {
+        "title": "Data controller",
+        "body": "ADRAR MEDIA, a Société à Responsabilité Limitée à Associé Unique (SARL AU) with share capital of 100 000 MAD, registered under RC 2643 in Azrou, tax identifier 73274886, ICE 003988605000072 and professional tax number 18605317, with its registered office at N47, Nakhil 6, Azrou, Morocco, is the controller for personal data processed through https://adrar.media. The company is represented by its manager, Kanoun Alaoui Yassine. Contact: contact@adrar.media."
+      },
+      {
         "title": "Data you send us",
-        "body": "When you submit a form, the information you entered is sent to our server and then to our technical email provider (Resend), solely to deliver your request to contact@adrar.media. If automatic delivery is not configured or fails, the site prepares a draft in your browser and nothing is transmitted until you choose a sending channel yourself.",
-        "pending": []
+        "body": "When you submit a form, the information you entered is sent to our server and then to our technical email provider (Resend), solely to deliver your request to contact@adrar.media. If automatic delivery is not configured or fails, the site prepares a draft in your browser and nothing is transmitted until you choose a sending channel yourself."
+      },
+      {
+        "title": "Hosting and technical providers",
+        "body": "The infrastructure for https://adrar.media is hosted by Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, United States. Automatic email delivery for enquiries relies on Resend when that service is configured."
       },
       {
         "title": "How that data is used",
-        "body": "The information you send us is used solely to answer your request and prepare a proposal. It is not sold, rented, or passed to third parties for commercial purposes.",
-        "pending": []
+        "body": "The information you send us is used solely to answer your request and prepare a proposal. It is not sold, rented, or passed to third parties for commercial purposes."
       },
       {
         "title": "Language preference",
-        "body": "A technical cookie records the language you chose, so you are not asked again on every visit. It holds no personal data, does not track your browsing, and is read by no third party. You can delete it at any time from your browser.",
-        "pending": []
+        "body": "A technical cookie records the language you chose, so you are not asked again on every visit. It holds no personal data, does not track your browsing, and is read by no third party. You can delete it at any time from your browser."
       },
       {
         "title": "Audience measurement",
-        "body": "No third-party analytics tool is active on this site today. Should that change, this page would be updated before it goes live, and the chosen tool would be configured not to track visitors across sites.",
-        "pending": []
+        "body": "No third-party analytics tool is active on this site today. Should that change, this page would be updated before it goes live, and the chosen tool would be configured not to track visitors across sites."
       },
       {
         "title": "Retention",
-        "body": "Exchanges relating to a commercial enquiry are kept for the duration of the relationship, then for the legal period applicable to commercial records.",
-        "pending": []
+        "body": "Exchanges relating to a commercial enquiry are kept for the duration of the relationship, then for the legal period applicable to commercial records."
       },
       {
         "title": "Your rights",
-        "body": "Under Moroccan law 09-08 on the protection of individuals with regard to the processing of personal data, you have rights of access, rectification and objection concerning your data. To exercise them, write to us: your request will be handled promptly.",
-        "pending": [
-          "Dedicated contact address for data requests"
-        ]
+        "body": "Under Moroccan law 09-08 on the protection of individuals with regard to the processing of personal data, you have rights of access, rectification and objection concerning your data. To exercise these rights, write to contact@adrar.media."
       }
     ]
   },

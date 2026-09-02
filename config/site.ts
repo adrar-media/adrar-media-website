@@ -32,7 +32,7 @@ export const siteConfig = {
   tagline: "From Local to Global.",
   description:
     "Nous transformons les marques et entreprises en expériences digitales capables d'attirer, convaincre et convertir.",
-  url: env("NEXT_PUBLIC_SITE_URL"),
+  url: env("NEXT_PUBLIC_SITE_URL", "https://adrar.media"),
   locale: "fr-MA",
 } as const;
 

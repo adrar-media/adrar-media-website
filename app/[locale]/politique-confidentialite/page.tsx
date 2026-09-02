@@ -24,15 +24,7 @@ export async function generateMetadata({
   });
 }
 
-/**
- * Page réglementaire.
- *
- * Les informations officielles qui n'ont pas été communiquées (immatriculation,
- * siège, directeur de publication, hébergeur) ne sont ni inventées ni passées
- * sous silence : chaque section liste nommément ce qui manque. C'est la seule
- * forme honnête tant que la direction n'a pas fourni ces éléments, et cela
- * garde la liste des manques sous les yeux au lieu de l'enterrer.
- */
+/** Politique de confidentialité multilingue d'Adrar Media. */
 export default async function Page({
   params,
 }: {
@@ -43,12 +35,7 @@ export default async function Page({
   const typedLocale = locale as Locale;
 
   const t = await getTranslator(typedLocale, "pages");
-  const rawSections = t.entries<ProseSection>("privacy.sections");
-  const sections = rawSections.map((section, index) =>
-    index === rawSections.length - 1 && legalConfig.cndpReceipt
-      ? { ...section, pending: [] }
-      : section,
-  );
+  const sections = t.entries<ProseSection>("privacy.sections");
 
   return (
     <>
@@ -66,26 +53,22 @@ export default async function Page({
                 {t("privacy.dataContactLabel")}
               </h2>
               <p className="mt-2 text-body text-ink">
-                {legalConfig.dataContact || t("privacy.notConfigured")}
+                {legalConfig.dataContact}
               </p>
             </div>
             <div>
               <h2 className="text-caption text-anthracite/70">
-                {t("privacy.cndpLabel")}
+                {t("privacy.complianceLabel")}
               </h2>
               <p className="mt-2 text-body text-ink">
-                {legalConfig.cndpReceipt || t("privacy.notConfigured")}
+                {t("privacy.complianceStatement")}
               </p>
             </div>
           </div>
         </Container>
       </section>
 
-      <ProseSections
-        sections={sections}
-        pendingLabel={t("privacy.pendingLabel")}
-        pendingNote={t("privacy.pendingNote")}
-      />
+      <ProseSections sections={sections} pendingLabel="" pendingNote="" />
     </>
   );
 }

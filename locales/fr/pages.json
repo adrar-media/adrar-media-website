@@ -342,10 +342,8 @@
       "Mentions légales"
     ],
     "intro": "Informations relatives à l'éditeur de ce site, à son hébergement et aux conditions d'utilisation de son contenu.",
-    "identityTitle": "Identité réglementaire",
-    "completeStatus": "Informations complètes",
-    "prelaunchStatus": "Mise en ligne bloquée tant que ces données manquent",
-    "notConfigured": "Non renseigné — requis avant publication",
+    "identityTitle": "Informations juridiques officielles",
+    "completeStatus": "Informations officielles",
     "fields": {
       "tradeName": "Nom commercial",
       "legalName": "Raison sociale",
@@ -354,47 +352,35 @@
       "tradeRegister": "Registre du commerce",
       "taxId": "Identifiant fiscal",
       "ice": "ICE",
+      "professionalTax": "Taxe professionnelle",
       "headquarters": "Siège social",
+      "manager": "Gérant",
       "publicationDirector": "Directeur de la publication",
+      "email": "E-mail",
+      "website": "Site",
       "host": "Hébergeur",
-      "hostAddress": "Adresse de l'hébergeur",
-      "hostUrl": "Site de l'hébergeur"
+      "hostAddress": "Adresse de l'hébergeur"
     },
-    "pendingLabel": "Information à publier",
-    "pendingNote": "Cette mention sera complétée dès que l'information officielle correspondante nous aura été communiquée. Nous préférons une mention manquante à une mention inexacte.",
     "sections": [
       {
         "title": "Éditeur du site",
-        "body": "Le présent site est édité par Adrar Media, agence de communication et de marketing digital établie au Maroc.",
-        "pending": [
-          "Forme juridique et capital social",
-          "Numéro de registre du commerce",
-          "Identifiant fiscal et ICE",
-          "Adresse du siège social",
-          "Nom du directeur de la publication"
-        ]
+        "body": "Le présent site https://adrar.media est édité par ADRAR MEDIA, Société à Responsabilité Limitée à Associé Unique (SARL AU) au capital social de 100 000 MAD, immatriculée au Registre du commerce d'Azrou sous le numéro RC 2643. Son siège social est situé N47, Nakhil 6, Azrou, Maroc. Le gérant et directeur de la publication est Kanoun Alaoui Yassine. Contact : contact@adrar.media."
       },
       {
         "title": "Hébergement",
-        "body": "Le site est hébergé par un prestataire d'infrastructure tiers.",
-        "pending": [
-          "Raison sociale et adresse de l'hébergeur"
-        ]
+        "body": "Le site est hébergé par Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, États-Unis."
       },
       {
         "title": "Propriété intellectuelle",
-        "body": "L'ensemble des éléments originaux du site — textes, identité visuelle, mise en page et code — est protégé par le droit de la propriété intellectuelle. Toute reproduction, même partielle, est soumise à autorisation écrite préalable. Les marques et éléments visuels appartenant aux clients cités restent la propriété de leurs titulaires respectifs.",
-        "pending": []
+        "body": "L'ensemble des éléments originaux du site — textes, identité visuelle, mise en page et code — est protégé par le droit de la propriété intellectuelle. Toute reproduction, même partielle, est soumise à autorisation écrite préalable. Les marques et éléments visuels appartenant aux clients cités restent la propriété de leurs titulaires respectifs."
       },
       {
         "title": "Responsabilité",
-        "body": "Les informations publiées sur ce site sont fournies à titre indicatif et peuvent évoluer. Les chiffres de performance mentionnés proviennent de campagnes réelles et portent leur source ; ils décrivent des résultats obtenus dans un contexte donné et ne constituent aucune garantie de résultat pour un projet futur.",
-        "pending": []
+        "body": "Les informations publiées sur ce site sont fournies à titre indicatif et peuvent évoluer. Les chiffres de performance mentionnés proviennent de campagnes réelles et portent leur source ; ils décrivent des résultats obtenus dans un contexte donné et ne constituent aucune garantie de résultat pour un projet futur."
       },
       {
         "title": "Liens externes",
-        "body": "Ce site peut renvoyer vers des sites tiers. Adrar Media n'exerce aucun contrôle sur leur contenu et décline toute responsabilité à leur égard.",
-        "pending": []
+        "body": "Ce site peut renvoyer vers des sites tiers. Adrar Media n'exerce aucun contrôle sur leur contenu et décline toute responsabilité à leur égard."
       }
     ]
   },
@@ -409,40 +395,41 @@
       "de confidentialité"
     ],
     "intro": "Ce site collecte le minimum nécessaire à son fonctionnement. Cette page décrit précisément quoi, pourquoi, et ce que vous pouvez exiger.",
-    "pendingLabel": "Information à publier",
-    "pendingNote": "Cette mention sera complétée dès que l'information officielle correspondante nous aura été communiquée.",
+    "dataContactLabel": "Contact pour vos données personnelles",
+    "complianceLabel": "Protection des données personnelles",
+    "complianceStatement": "Les traitements de données personnelles sont gérés conformément à la réglementation applicable.",
     "sections": [
       {
+        "title": "Responsable du traitement",
+        "body": "ADRAR MEDIA, Société à Responsabilité Limitée à Associé Unique (SARL AU) au capital social de 100 000 MAD, immatriculée au RC 2643 à Azrou, identifiant fiscal 73274886, ICE 003988605000072 et taxe professionnelle 18605317, dont le siège social est situé N47, Nakhil 6, Azrou, Maroc, est responsable des traitements de données personnelles réalisés via le site https://adrar.media. La société est représentée par son gérant, Kanoun Alaoui Yassine. Contact : contact@adrar.media."
+      },
+      {
         "title": "Données que vous nous transmettez",
-        "body": "Lorsque vous envoyez un formulaire, les informations saisies sont transmises à notre serveur puis à notre prestataire technique d'envoi d'e-mails (Resend), uniquement pour acheminer votre demande vers contact@adrar.media. Si l'envoi automatique n'est pas configuré ou échoue, le site prépare un brouillon dans votre navigateur et rien n'est transmis tant que vous ne choisissez pas vous-même un canal d'envoi.",
-        "pending": []
+        "body": "Lorsque vous envoyez un formulaire, les informations saisies sont transmises à notre serveur puis à notre prestataire technique d'envoi d'e-mails (Resend), uniquement pour acheminer votre demande vers contact@adrar.media. Si l'envoi automatique n'est pas configuré ou échoue, le site prépare un brouillon dans votre navigateur et rien n'est transmis tant que vous ne choisissez pas vous-même un canal d'envoi."
+      },
+      {
+        "title": "Hébergement et prestataires techniques",
+        "body": "L'infrastructure du site https://adrar.media est hébergée par Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, États-Unis. L'acheminement automatique des demandes par e-mail s'appuie sur Resend lorsque ce service est configuré."
       },
       {
         "title": "Usage de ces données",
-        "body": "Les informations que vous nous adressez servent exclusivement à répondre à votre demande et à établir une proposition. Elles ne sont ni revendues, ni louées, ni transmises à des tiers à des fins commerciales.",
-        "pending": []
+        "body": "Les informations que vous nous adressez servent exclusivement à répondre à votre demande et à établir une proposition. Elles ne sont ni revendues, ni louées, ni transmises à des tiers à des fins commerciales."
       },
       {
         "title": "Préférence de langue",
-        "body": "Un cookie technique enregistre la langue que vous avez choisie, afin de ne pas vous la redemander à chaque visite. Il ne contient aucune donnée personnelle, ne suit pas votre navigation et n'est lu par aucun tiers. Vous pouvez le supprimer à tout moment depuis votre navigateur.",
-        "pending": []
+        "body": "Un cookie technique enregistre la langue que vous avez choisie, afin de ne pas vous la redemander à chaque visite. Il ne contient aucune donnée personnelle, ne suit pas votre navigation et n'est lu par aucun tiers. Vous pouvez le supprimer à tout moment depuis votre navigateur."
       },
       {
         "title": "Mesure d'audience",
-        "body": "Aucun outil de mesure d'audience tiers n'est actif sur ce site à ce jour. Si cela devait changer, cette page serait mise à jour avant la mise en service, et l'outil retenu serait configuré pour ne pas suivre les visiteurs d'un site à l'autre.",
-        "pending": []
+        "body": "Aucun outil de mesure d'audience tiers n'est actif sur ce site à ce jour. Si cela devait changer, cette page serait mise à jour avant la mise en service, et l'outil retenu serait configuré pour ne pas suivre les visiteurs d'un site à l'autre."
       },
       {
         "title": "Durée de conservation",
-        "body": "Les échanges liés à une demande commerciale sont conservés le temps de la relation, puis pendant la durée légale applicable aux documents commerciaux.",
-        "pending": []
+        "body": "Les échanges liés à une demande commerciale sont conservés le temps de la relation, puis pendant la durée légale applicable aux documents commerciaux."
       },
       {
         "title": "Vos droits",
-        "body": "Conformément à la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel, vous disposez d'un droit d'accès, de rectification et d'opposition sur les données vous concernant. Pour l'exercer, écrivez-nous : votre demande sera traitée dans les meilleurs délais.",
-        "pending": [
-          "Adresse de contact dédiée aux demandes relatives aux données"
-        ]
+        "body": "Conformément à la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel, vous disposez d'un droit d'accès, de rectification et d'opposition sur les données vous concernant. Pour exercer ces droits, écrivez à contact@adrar.media."
       }
     ]
   },

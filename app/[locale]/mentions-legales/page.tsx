@@ -24,15 +24,7 @@ export async function generateMetadata({
   });
 }
 
-/**
- * Page réglementaire.
- *
- * Les informations officielles qui n'ont pas été communiquées (immatriculation,
- * siège, directeur de publication, hébergeur) ne sont ni inventées ni passées
- * sous silence : chaque section liste nommément ce qui manque. C'est la seule
- * forme honnête tant que la direction n'a pas fourni ces éléments, et cela
- * garde la liste des manques sous les yeux au lieu de l'enterrer.
- */
+/** Page réglementaire alimentée par l'identité officielle centralisée. */
 export default async function Page({
   params,
 }: {
@@ -43,28 +35,11 @@ export default async function Page({
   const typedLocale = locale as Locale;
 
   const t = await getTranslator(typedLocale, "pages");
-  const rawSections = t.entries<ProseSection>("legal.sections");
-  const publisherFlags = [
-    Boolean(legalConfig.legalForm && legalConfig.capital),
-    Boolean(legalConfig.tradeRegister),
-    Boolean(legalConfig.taxId && legalConfig.ice),
-    Boolean(legalConfig.headquarters),
-    Boolean(legalConfig.publicationDirector),
-  ];
-  const sections = rawSections.map((section, index) => {
-    if (index === 0) {
-      return {
-        ...section,
-        pending: (section.pending ?? []).filter((_, itemIndex) =>
-          !publisherFlags[itemIndex]
-        ),
-      };
-    }
-    if (index === 1 && legalConfig.hostName && legalConfig.hostAddress) {
-      return { ...section, pending: [] };
-    }
-    return section;
-  });
+  const sections = t.entries<ProseSection>("legal.sections");
+
+  if (!legalIdentityComplete()) {
+    throw new Error("Official legal identity configuration is incomplete.");
+  }
 
   return (
     <>
@@ -80,15 +55,9 @@ export default async function Page({
             <div className="flex flex-wrap items-center justify-between gap-4">
               <h2 className="text-h3 text-ink">{t("legal.identityTitle")}</h2>
               <span
-                className={
-                  legalIdentityComplete()
-                    ? "rounded-pill bg-atlas/15 px-4 py-2 text-caption text-atlas-dark"
-                    : "rounded-pill bg-beige-soft px-4 py-2 text-caption text-anthracite"
-                }
+                className="rounded-pill bg-atlas/15 px-4 py-2 text-caption text-atlas-dark"
               >
-                {legalIdentityComplete()
-                  ? t("legal.completeStatus")
-                  : t("legal.prelaunchStatus")}
+                {t("legal.completeStatus")}
               </span>
             </div>
 
@@ -101,17 +70,18 @@ export default async function Page({
                 [t("legal.fields.tradeRegister"), legalConfig.tradeRegister],
                 [t("legal.fields.taxId"), legalConfig.taxId],
                 [t("legal.fields.ice"), legalConfig.ice],
+                [t("legal.fields.professionalTax"), legalConfig.professionalTax],
                 [t("legal.fields.headquarters"), legalConfig.headquarters],
+                [t("legal.fields.manager"), legalConfig.manager],
                 [t("legal.fields.publicationDirector"), legalConfig.publicationDirector],
+                [t("legal.fields.email"), legalConfig.dataContact],
+                [t("legal.fields.website"), legalConfig.website],
                 [t("legal.fields.host"), legalConfig.hostName],
                 [t("legal.fields.hostAddress"), legalConfig.hostAddress],
-                [t("legal.fields.hostUrl"), legalConfig.hostUrl],
               ].map(([label, value]) => (
                 <div key={label}>
                   <dt className="text-caption text-anthracite/70">{label}</dt>
-                  <dd className="mt-2 text-small text-ink">
-                    {value || t("legal.notConfigured")}
-                  </dd>
+                  <dd className="mt-2 text-small text-ink">{value}</dd>
                 </div>
               ))}
             </dl>
@@ -119,11 +89,7 @@ export default async function Page({
         </Container>
       </section>
 
-      <ProseSections
-        sections={sections}
-        pendingLabel={t("legal.pendingLabel")}
-        pendingNote={t("legal.pendingNote")}
-      />
+      <ProseSections sections={sections} pendingLabel="" pendingNote="" />
     </>
   );
 }
