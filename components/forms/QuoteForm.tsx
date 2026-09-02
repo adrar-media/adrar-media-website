@@ -236,10 +236,9 @@ export function QuoteForm({
           source: "quote",
           trap,
         });
-      } catch (error) {
+      } catch {
         // Coupure réseau, action indisponible : la demande n'est pas perdue,
         // elle repart par le canal manuel.
-        console.error("[adrar] action de devis injoignable", error);
         result = { status: "error" };
       }
 

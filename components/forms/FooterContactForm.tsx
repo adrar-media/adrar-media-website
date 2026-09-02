@@ -137,24 +137,30 @@ export function FooterContactForm({
 
     setNotice(null);
     startTransition(async () => {
-      const result = await action({
-        name: values.name,
-        email: values.email,
-        message: values.message,
-        company: "",
-        phone: "",
-        services: [],
-        budget: "",
-        timeline: "",
-        consent,
-        locale,
-        /*
-         * Le formulaire court se déclare : il aboutit dans la même boîte que
-         * le devis, et sans cela les deux y arrivent sous le même objet.
-         */
-        source: "contact",
-        trap,
-      });
+      let result: QuoteResult;
+      try {
+        result = await action({
+          name: values.name,
+          email: values.email,
+          message: values.message,
+          company: "",
+          phone: "",
+          services: [],
+          budget: "",
+          timeline: "",
+          consent,
+          locale,
+          /*
+           * Le formulaire court se déclare : il aboutit dans la même boîte que
+           * le devis, et sans cela les deux y arrivent sous le même objet.
+           */
+          source: "contact",
+          trap,
+        });
+      } catch {
+        // Coupure réseau ou action indisponible : le fallback manuel reste actif.
+        result = { status: "error" };
+      }
 
       if (result.status === "sent") {
         setPhase("sent");

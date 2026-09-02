@@ -32,6 +32,12 @@ export interface QuoteRequest {
   trap?: string;
 }
 
+/** Métadonnées calculées côté serveur, jamais acceptées depuis le navigateur. */
+export interface LeadRequestContext {
+  receivedAt: string;
+  sourcePage?: string;
+}
+
 export type QuoteFieldError =
   | "name"
   | "email"

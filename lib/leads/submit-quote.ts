@@ -2,7 +2,7 @@ import { forwardToCrm } from "@/lib/leads/adrar-os";
 import { emailTransport, sendQuoteEmail } from "@/lib/leads/email";
 import { allowRequest } from "@/lib/leads/rate-limit";
 import { parseQuote } from "@/lib/leads/validate";
-import type { QuoteResult } from "@/lib/leads/types";
+import type { LeadRequestContext, QuoteResult } from "@/lib/leads/types";
 
 /**
  * Traitement d'une demande de devis.
@@ -18,6 +18,7 @@ import type { QuoteResult } from "@/lib/leads/types";
 export async function submitQuote(
   input: unknown,
   clientKey: string,
+  context: LeadRequestContext = { receivedAt: new Date().toISOString() },
 ): Promise<QuoteResult> {
   const { data, errors } = parseQuote(input);
 
@@ -34,7 +35,7 @@ export async function submitQuote(
 
   if (!allowRequest(clientKey)) return { status: "rate-limited" };
 
-  const delivered = await sendQuoteEmail(transport, data);
+  const delivered = await sendQuoteEmail(transport, data, context);
   if (!delivered) return { status: "error" };
 
   // Le CRM est accessoire : la demande est déjà arrivée, on n'attend rien de lui.

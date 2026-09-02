@@ -4,6 +4,17 @@ import { headers } from "next/headers";
 import { submitQuote } from "@/lib/leads/submit-quote";
 import type { QuoteResult } from "@/lib/leads/types";
 
+const sourcePageFromReferer = (referer: string | null): string | undefined => {
+  if (!referer) return undefined;
+
+  try {
+    const pathname = new URL(referer).pathname;
+    return (pathname || "/").slice(0, 300);
+  } catch {
+    return undefined;
+  }
+};
+
 /**
  * Action serveur des formulaires de prise de contact.
  *
@@ -30,5 +41,8 @@ export async function sendLeadAction(input: unknown): Promise<QuoteResult> {
   const clientKey =
     forwarded || headerList.get("x-real-ip")?.trim() || "origine-inconnue";
 
-  return submitQuote(input, clientKey);
+  return submitQuote(input, clientKey, {
+    receivedAt: new Date().toISOString(),
+    sourcePage: sourcePageFromReferer(headerList.get("referer")),
+  });
 }

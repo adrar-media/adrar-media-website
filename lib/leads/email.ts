@@ -1,12 +1,14 @@
-import type { QuoteRequest } from "@/lib/leads/types";
+import "server-only";
+
+import { Resend } from "resend";
+import type { LeadRequestContext, QuoteRequest } from "@/lib/leads/types";
 
 /**
  * ENVOI DE LA DEMANDE PAR EMAIL
  *
- * Appel HTTP direct à l'API Resend, sans SDK. Le SDK ferait exactement ce
- * `fetch` : l'ajouter reviendrait à embarquer une dépendance et sa chaîne de
- * mises à jour pour une seule requête POST. Le README interdit toute
- * dépendance non justifiée — celle-ci ne l'est pas.
+ * Le SDK officiel Resend est instancié uniquement après lecture des deux
+ * variables serveur requises. Ce module est explicitement server-only : la clé
+ * ne peut pas entrer dans un bundle navigateur.
  *
  * LE DESTINATAIRE EST LA BOÎTE COMMERCIALE CONFIRMÉE DE L'AGENCE, ET IL N'EST
  * PLUS À CONFIGURER.
@@ -23,17 +25,16 @@ import type { QuoteRequest } from "@/lib/leads/types";
  * configuration fait proprement basculer le formulaire sur l'envoi manuel. Un
  * repli inventé transformerait donc un repli qui marche en panne silencieuse.
  *
- * Il reste donc deux variables à fournir pour activer l'envoi automatique :
+ * Le transport automatique exige deux variables serveur :
  * `EMAIL_API_KEY` et `QUOTE_NOTIFICATION_FROM`. Tant que l'une manque, le
  * formulaire propose au visiteur d'écrire lui-même — jamais un « merci »
  * affiché à quelqu'un dont la demande n'est arrivée nulle part.
  */
 
-const endpoint = "https://api.resend.com/emails";
 export const notificationRecipient = "contact@adrar.media";
 
 interface Transport {
-  apiKey: string;
+  resend: Resend;
   to: string;
   from: string;
 }
@@ -42,7 +43,11 @@ export function emailTransport(): Transport | null {
   const apiKey = process.env.EMAIL_API_KEY?.trim();
   const from = process.env.QUOTE_NOTIFICATION_FROM?.trim();
   if (!apiKey || !from) return null;
-  return { apiKey, to: notificationRecipient, from };
+  if (/[\r\n]/.test(apiKey) || /[\r\n]/.test(from)) {
+    console.error("[adrar] configuration Resend invalide");
+    return null;
+  }
+  return { resend: new Resend(apiKey), to: notificationRecipient, from };
 }
 
 const escapeHtml = (value: string) =>
@@ -54,6 +59,23 @@ const escapeHtml = (value: string) =>
 
 const optionalValue = (value: string): string => value || "Non renseigné";
 
+const safeSubjectPart = (value: string): string =>
+  value
+    .replace(/[\u0000-\u001f\u007f]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const receivedAt = (value: string): string => {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+
+  return `${new Intl.DateTimeFormat("fr-MA", {
+    dateStyle: "full",
+    timeStyle: "long",
+    timeZone: "Africa/Casablanca",
+  }).format(date)} (${date.toISOString()})`;
+};
+
 /**
  * Tous les champs réellement présentés dans le formulaire d'origine.
  *
@@ -63,7 +85,10 @@ const optionalValue = (value: string): string => value || "Non renseigné";
  * consentement. Le champ anti-robot est une mesure technique et n'est jamais
  * une donnée métier à envoyer.
  */
-const rows = (quote: QuoteRequest): [string, string][] => {
+const rows = (
+  quote: QuoteRequest,
+  context: LeadRequestContext,
+): [string, string][] => {
   const common: [string, string][] = [
     ["Type de demande", origin(quote)],
     ["Nom", quote.name],
@@ -85,15 +110,27 @@ const rows = (quote: QuoteRequest): [string, string][] => {
     ...common,
     ...quoteFields,
     ["Langue du site", quote.locale.toUpperCase()],
+    ...(context.sourcePage
+      ? ([["Page d'origine", context.sourcePage]] as [string, string][])
+      : []),
+    ["Date/heure de réception", receivedAt(context.receivedAt)],
     ["Consentement au traitement", quote.consent ? "Oui" : "Non"],
   ];
 };
 
+const messageLabel = (quote: QuoteRequest): string =>
+  quote.source === "contact"
+    ? "Message"
+    : "Description du projet / informations complémentaires";
+
 /** Version texte : certaines boîtes professionnelles bloquent le HTML. */
-export const plainText = (quote: QuoteRequest): string =>
-  `${rows(quote)
+export const plainText = (
+  quote: QuoteRequest,
+  context: LeadRequestContext,
+): string =>
+  `${rows(quote, context)
     .map(([label, value]) => `${label} : ${value}`)
-    .join("\n")}\n\nMessage :\n${quote.message}`;
+    .join("\n")}\n\n${messageLabel(quote)} :\n${quote.message}`;
 
 /**
  * Intitulé du formulaire d'origine, en français.
@@ -104,15 +141,17 @@ export const plainText = (quote: QuoteRequest): string =>
  * langue répondre.
  */
 const origin = (quote: QuoteRequest): string =>
-  quote.source === "contact" ? "message du site" : "demande de devis";
+  quote.source === "contact"
+    ? "formulaire de contact / pied de page"
+    : "formulaire de demande de devis";
 
-const html = (quote: QuoteRequest): string => `
+const html = (quote: QuoteRequest, context: LeadRequestContext): string => `
 <div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;color:#2B2B2B;line-height:1.6">
   <p style="margin:0 0 24px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#1F7A63">
     Adrar Media — nouveau ${escapeHtml(origin(quote))}
   </p>
   <table style="border-collapse:collapse;width:100%;max-width:640px">
-    ${rows(quote)
+    ${rows(quote, context)
       .map(
         ([label, value]) => `<tr>
       <td style="padding:8px 16px 8px 0;color:#6b6b6b;white-space:nowrap;vertical-align:top">${escapeHtml(label)}</td>
@@ -121,7 +160,7 @@ const html = (quote: QuoteRequest): string => `
       )
       .join("")}
   </table>
-  <p style="margin:28px 0 8px;color:#6b6b6b">Message</p>
+  <p style="margin:28px 0 8px;color:#6b6b6b">${escapeHtml(messageLabel(quote))}</p>
   <div style="white-space:pre-wrap;padding:16px 20px;background:#F4F2EE;border-radius:12px;color:#0A2540">${escapeHtml(
     quote.message,
   )}</div>
@@ -130,6 +169,7 @@ const html = (quote: QuoteRequest): string => `
 export async function sendQuoteEmail(
   transport: Transport,
   quote: QuoteRequest,
+  context: LeadRequestContext,
 ): Promise<boolean> {
   /*
    * L'OBJET DIT D'OÙ VIENT LE MESSAGE, parce que les deux formulaires
@@ -137,48 +177,35 @@ export async function sendQuoteEmail(
    * pour le devis : le formulaire court ne la demande pas, et un objet qui se
    * termine par une parenthèse vide se lit comme un bogue.
    */
+  const name = safeSubjectPart(quote.name);
+  const company = safeSubjectPart(quote.company);
   const subject =
     quote.source === "contact"
-      ? `Message du site — ${quote.name}`
-      : `Demande de devis — ${quote.name}${
-          quote.company ? ` (${quote.company})` : ""
-        }`;
+      ? `[Nouveau contact Adrar Media] ${name}`
+      : `[Nouvelle demande de devis] ${name}${company ? ` / ${company}` : ""}`;
 
   try {
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${transport.apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: transport.from,
-        to: [transport.to],
-        subject,
-        text: plainText(quote),
-        html: html(quote),
-        /*
-         * Répondre au message dans la boîte de réception écrit directement au
-         * prospect, sans recopier son adresse. Sans cet en-tête, la réponse
-         * part vers l'expéditeur technique et se perd.
-         */
-        ...(quote.email ? { reply_to: quote.email } : {}),
-      }),
-      // Une demande de devis ne doit jamais bloquer le fil de rendu.
-      signal: AbortSignal.timeout(10_000),
+    const { error } = await transport.resend.emails.send({
+      from: transport.from,
+      to: [transport.to],
+      subject,
+      text: plainText(quote, context),
+      html: html(quote, context),
+      /*
+       * Répondre au message dans la boîte de réception écrit directement au
+       * prospect, sans recopier son adresse. Sans cet en-tête, la réponse
+       * part vers l'expéditeur technique et se perd.
+       */
+      ...(quote.email ? { replyTo: quote.email } : {}),
     });
 
-    if (!response.ok) {
-      console.error(
-        "[adrar] envoi du devis refusé",
-        response.status,
-        await response.text().catch(() => ""),
-      );
+    if (error) {
+      console.error("[adrar] envoi Resend refusé", { type: error.name });
       return false;
     }
     return true;
-  } catch (error) {
-    console.error("[adrar] envoi du devis en échec", error);
+  } catch {
+    console.error("[adrar] requête Resend en échec");
     return false;
   }
 }
