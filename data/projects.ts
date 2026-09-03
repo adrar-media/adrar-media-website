@@ -245,8 +245,8 @@ export const projects: Project[] = [
     logo: {
       src: "/images/projects/zenori-cafe-logo.jpg",
       alt: "Zenori Café",
-      width: 200,
-      height: 200,
+      width: 320,
+      height: 320,
     },
     gallery: [
       {
