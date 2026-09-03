@@ -10,6 +10,7 @@ import {
   type FooterFormLabels,
 } from "@/components/forms/FooterContactForm";
 import { sendLeadAction } from "@/lib/leads/actions";
+import { FooterContactSection } from "@/components/layout/FooterContactSection";
 
 /**
  * Pied de page.
@@ -105,25 +106,30 @@ export async function Footer({ locale }: { locale: Locale }) {
         {/* ------------------------------------------------------------------
             PRISE DE CONTACT — la seule zone active du pied de page.
             ------------------------------------------------------------------ */}
-        <div className="grid gap-10 border-b border-white/15 pb-16 md:grid-cols-12 md:gap-grid md:pb-20">
-          <div className="md:col-span-5">
-            <h2 className="text-h3 text-white">{formLabels.title}</h2>
-            <p className="mt-4 max-w-prose text-body text-white/70">
-              {formLabels.intro}
-            </p>
-          </div>
+        <FooterContactSection contactHref={href(locale, "contact")}>
+          <div
+            data-contact-form-location="footer"
+            className="grid gap-10 border-b border-white/15 pb-16 md:grid-cols-12 md:gap-grid md:pb-20"
+          >
+            <div className="md:col-span-5">
+              <h2 className="text-h3 text-white">{formLabels.title}</h2>
+              <p className="mt-4 max-w-prose text-body text-white/70">
+                {formLabels.intro}
+              </p>
+            </div>
 
-          <div className="md:col-span-6 md:col-start-7">
-            <FooterContactForm
-              labels={formLabels}
-              locale={locale}
-              action={sendLeadAction}
-              email={contact.email}
-              subjectPrefix={t("brand.name")}
-              privacyHref={href(locale, "politique-confidentialite")}
-            />
+            <div className="md:col-span-6 md:col-start-7">
+              <FooterContactForm
+                labels={formLabels}
+                locale={locale}
+                action={sendLeadAction}
+                email={contact.email}
+                subjectPrefix={t("brand.name")}
+                privacyHref={href(locale, "politique-confidentialite")}
+              />
+            </div>
           </div>
-        </div>
+        </FooterContactSection>
 
         <div className="mt-16 grid gap-12 md:grid-cols-12">
           <div className="md:col-span-3">

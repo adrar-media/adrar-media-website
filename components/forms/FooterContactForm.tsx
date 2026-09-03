@@ -43,6 +43,8 @@ interface FooterContactFormProps {
   /** Objet du message de repli. */
   subjectPrefix: string;
   privacyHref: string;
+  /** Active le retour de focus accessible sur la page Contact uniquement. */
+  focusFirstErrorOnInvalid?: boolean;
 }
 
 type Field = "name" | "email" | "message";
@@ -79,6 +81,7 @@ export function FooterContactForm({
   email,
   subjectPrefix,
   privacyHref,
+  focusFirstErrorOnInvalid = false,
 }: FooterContactFormProps) {
   const id = useId();
   const [values, setValues] = useState({ name: "", email: "", message: "" });
@@ -129,11 +132,36 @@ export function FooterContactForm({
     )}&body=${encodeURIComponent(body)}`;
   };
 
+  const focusFirstInvalidField = (found: Errors) => {
+    if (!focusFirstErrorOnInvalid) return;
+
+    const firstError = (["name", "email", "message", "consent"] as const).find(
+      (fieldName) => Boolean(found[fieldName]),
+    );
+    if (!firstError) return;
+
+    window.requestAnimationFrame(() => {
+      const field = document.getElementById(`${id}-${firstError}`);
+      if (!(field instanceof HTMLElement)) return;
+
+      field.focus({ preventScroll: true });
+      field.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        block: "center",
+      });
+    });
+  };
+
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const found = validate();
     setErrors(found);
-    if (Object.keys(found).length > 0) return;
+    if (Object.keys(found).length > 0) {
+      focusFirstInvalidField(found);
+      return;
+    }
 
     setNotice(null);
     startTransition(async () => {
@@ -167,12 +195,14 @@ export function FooterContactForm({
         return;
       }
       if (result.status === "invalid") {
-        setErrors({
+        const serverErrors: Errors = {
           ...(result.errors.name && { name: labels.errors.name }),
           ...(result.errors.email && { email: labels.errors.email }),
           ...(result.errors.message && { message: labels.errors.message }),
           ...(result.errors.consent && { consent: labels.errors.consent }),
-        });
+        };
+        setErrors(serverErrors);
+        focusFirstInvalidField(serverErrors);
         return;
       }
       setNotice(result.status === "rate-limited" ? "rate-limited" : "fallback");

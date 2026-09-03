@@ -14,6 +14,11 @@ import { SectionImage } from "@/components/media/SectionImage";
 import { contactImage } from "@/data/imagery";
 import { LocationMap } from "@/components/contact/LocationMap";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import {
+  FooterContactForm,
+  type FooterFormLabels,
+} from "@/components/forms/FooterContactForm";
+import { sendLeadAction } from "@/lib/leads/actions";
 
 export async function generateMetadata({
   params,
@@ -56,6 +61,31 @@ export default async function ContactPage({
    * défaut, le libellé fait l'affaire. Les deux vides, la carte disparaît.
    */
   const mapQuery = contact.mapQuery || contact.location;
+
+  const formLabels: FooterFormLabels = {
+    title: c("footer.form.title"),
+    intro: c("footer.form.intro"),
+    name: c("footer.form.name"),
+    email: c("footer.form.email"),
+    message: c("footer.form.message"),
+    messagePlaceholder: c("footer.form.messagePlaceholder"),
+    privacyConsent: c("footer.form.privacyConsent"),
+    privacyLink: c("footer.form.privacyLink"),
+    submit: c("footer.form.submit"),
+    sending: c("footer.form.sending"),
+    sentTitle: c("footer.form.sentTitle"),
+    sentBody: c("footer.form.sentBody"),
+    trapLabel: c("footer.form.trapLabel"),
+    errors: {
+      name: c("footer.form.errors.name"),
+      email: c("footer.form.errors.email"),
+      message: c("footer.form.errors.message"),
+      consent: c("footer.form.errors.consent"),
+    },
+    fallbackNotice: c("footer.form.fallbackNotice"),
+    fallbackAction: c("footer.form.fallbackAction"),
+    rateLimited: c("footer.form.rateLimited"),
+  };
 
   const channels = [
     contact.email && {
@@ -165,22 +195,35 @@ export default async function ContactPage({
                 </div>
               )}
 
-              {/*
-                L'image ferme la colonne des coordonnées : elle situe l'agence
-                dans une ville plutôt que dans un formulaire. Elle vient après
-                les canaux — un visiteur venu chercher un numéro doit le
-                trouver avant tout le reste.
-              */}
-              <SectionImage
-                slot={contactImage}
-                alt={c("imagery.contact")}
-                pendingLabel={c("imagery.pending")}
-                className="mt-14"
-              />
             </Block>
 
             <Block delay={120} className="md:col-span-5 md:col-start-8">
-              <div className="card-sweep rounded-lg bg-surface p-8 text-white md:p-10">
+              <div
+                id="contact-form"
+                data-contact-form-location="main"
+                className="rounded-lg bg-surface p-8 text-white md:p-10"
+              >
+                <h2 className="text-h3 text-white">{formLabels.title}</h2>
+                <p className="mt-4 max-w-prose text-body text-white/70">
+                  {formLabels.intro}
+                </p>
+                <div className="mt-8">
+                  <FooterContactForm
+                    labels={formLabels}
+                    locale={typedLocale}
+                    action={sendLeadAction}
+                    email={contact.email}
+                    subjectPrefix={c("brand.name")}
+                    privacyHref={href(
+                      typedLocale,
+                      "politique-confidentialite",
+                    )}
+                    focusFirstErrorOnInvalid
+                  />
+                </div>
+              </div>
+
+              <div className="card-sweep mt-8 rounded-lg bg-surface p-8 text-white md:p-10">
                 <h2 className="text-h3 text-white">
                   {t("contact.quoteTitle")}
                 </h2>
@@ -198,6 +241,19 @@ export default async function ContactPage({
                   </Button>
                 </div>
               </div>
+            </Block>
+
+            {/*
+              L'image reste après les coordonnées et vient désormais après le
+              formulaire sur mobile. Sur desktop, elle prolonge la colonne des
+              coordonnées sans éloigner le formulaire de l'introduction.
+            */}
+            <Block delay={180} className="md:col-span-6">
+              <SectionImage
+                slot={contactImage}
+                alt={c("imagery.contact")}
+                pendingLabel={c("imagery.pending")}
+              />
             </Block>
           </div>
 
