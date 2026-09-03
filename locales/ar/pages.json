@@ -27,6 +27,10 @@
       "privacyLink": "سياسة الخصوصية.",
       "optional": "اختياري",
       "required": "إلزامي",
+      "contactRequirement": "أدخل على الأقل بريدًا إلكترونيًا أو رقم هاتف.",
+      "step": "الخطوة",
+      "continueToProject": "المتابعة إلى تفاصيل المشروع",
+      "backToContact": "العودة إلى بيانات التواصل",
       "choose": "اختر",
       "submit": "إرسال الطلب",
       "budgets": [

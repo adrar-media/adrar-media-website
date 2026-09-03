@@ -24,6 +24,10 @@ export interface QuoteFormLabels {
   privacyLink: string;
   optional: string;
   required: string;
+  contactRequirement: string;
+  step: string;
+  continueToProject: string;
+  backToContact: string;
   choose: string;
   submit: string;
   budgets: string[];
@@ -120,6 +124,7 @@ export function QuoteForm({
   const [services, setServices] = useState<string[]>([]);
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
+  const [mobileStep, setMobileStep] = useState<1 | 2>(1);
   /**
    * `form` — saisie ; `review` — envoi manuel proposé ; `sent` — demande
    * transmise. Un seul état plutôt que trois booléens : deux écrans ne peuvent
@@ -139,6 +144,8 @@ export function QuoteForm({
   const [trap, setTrap] = useState("");
   const summaryRef = useRef<HTMLDivElement>(null);
   const sentRef = useRef<HTMLDivElement>(null);
+  const contactStepRef = useRef<HTMLFieldSetElement>(null);
+  const projectStepRef = useRef<HTMLFieldSetElement>(null);
 
   const set = (key: keyof typeof values) => (
     event: React.ChangeEvent<
@@ -182,7 +189,7 @@ export function QuoteForm({
     return `${filled}\n\n${labels.message} :\n${values.message}`;
   }, [labels, values, services]);
 
-  const validate = (): Errors => {
+  const validateContact = (): Errors => {
     const next: Errors = {};
     if (values.name.trim().length < 2) next.name = labels.errors.name;
     // On n'exige pas les deux : un numéro suffit à rappeler quelqu'un.
@@ -191,6 +198,11 @@ export function QuoteForm({
     } else if (values.email.trim() && !/^\S+@\S+\.\S{2,}$/.test(values.email)) {
       next.email = labels.errors.email;
     }
+    return next;
+  };
+
+  const validate = (): Errors => {
+    const next = validateContact();
     if (values.message.trim().length < 10) next.message = labels.errors.message;
     if (!consent) next.consent = labels.errors.consent;
     return next;
@@ -200,13 +212,37 @@ export function QuoteForm({
   const focusFirstError = (found: Errors) => {
     const first = Object.keys(found)[0];
     if (!first) return;
+    const field = first === "contact" ? "email" : first;
+    setMobileStep(
+      field === "name" || field === "email" || field === "phone" ? 1 : 2,
+    );
     // Le premier champ en défaut reçoit le focus : sans cela l'erreur peut se
     // produire hors de l'écran et le formulaire paraît ne rien faire.
-    document
-      .querySelector<HTMLElement>(
-        `[data-field="${first === "contact" ? "email" : first}"]`,
-      )
-      ?.focus();
+    requestAnimationFrame(() => {
+      document.querySelector<HTMLElement>(`[data-field="${field}"]`)?.focus();
+    });
+  };
+
+  const continueToProject = () => {
+    const found = validateContact();
+    setErrors((current) => ({
+      ...current,
+      name: found.name,
+      email: found.email,
+      contact: found.contact,
+    }));
+    if (Object.keys(found).length > 0) {
+      focusFirstError(found);
+      return;
+    }
+
+    setMobileStep(2);
+    requestAnimationFrame(() => projectStepRef.current?.focus());
+  };
+
+  const backToContact = () => {
+    setMobileStep(1);
+    requestAnimationFrame(() => contactStepRef.current?.focus());
   };
 
   /** Bascule vers l'envoi manuel, en annonçant le cas échéant pourquoi. */
@@ -398,10 +434,44 @@ export function QuoteForm({
 
   return (
     <form noValidate onSubmit={onSubmit} className="flex flex-col gap-12">
-      <fieldset className="border-0 p-0">
+      <div className="md:hidden" aria-live="polite">
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-caption text-atlas">
+            {labels.step} <span dir="ltr">{mobileStep}/2</span>
+          </p>
+          <p className="text-small text-anthracite/70">
+            {mobileStep === 1 ? labels.legendContact : labels.legendProject}
+          </p>
+        </div>
+        <div className="mt-3 grid grid-cols-2 gap-2" aria-hidden>
+          <span className="h-1 rounded-pill bg-atlas" />
+          <span
+            className={cn(
+              "h-1 rounded-pill",
+              mobileStep === 2 ? "bg-atlas" : "bg-anthracite/15",
+            )}
+          />
+        </div>
+      </div>
+
+      <fieldset
+        ref={contactStepRef}
+        tabIndex={-1}
+        className={cn(
+          "border-0 p-0 focus:outline-none",
+          mobileStep !== 1 && "hidden md:block",
+        )}
+      >
         <legend className="text-caption text-atlas">
           {labels.legendContact}
         </legend>
+
+        <p
+          id={`${id}-contact-requirement`}
+          className="mt-4 rounded-md bg-beige-soft/60 px-4 py-3 text-small text-anthracite/80"
+        >
+          {labels.contactRequirement}
+        </p>
 
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           <Field
@@ -461,6 +531,12 @@ export function QuoteForm({
               value={values.email}
               onChange={set("email")}
               aria-invalid={Boolean(errors.email ?? errors.contact)}
+              aria-describedby={[
+                `${id}-contact-requirement`,
+                errors.email ?? errors.contact ? `${id}-email-error` : null,
+              ]
+                .filter(Boolean)
+                .join(" ")}
               className={cn(
                 fieldBase,
                 errors.email ?? errors.contact
@@ -474,7 +550,6 @@ export function QuoteForm({
             id={`${id}-phone`}
             field="phone"
             label={labels.phone}
-            hint={labels.optional}
           >
             <input
               id={`${id}-phone`}
@@ -486,18 +561,49 @@ export function QuoteForm({
               dir="ltr"
               value={values.phone}
               onChange={set("phone")}
+              aria-invalid={Boolean(errors.contact)}
+              aria-describedby={[
+                `${id}-contact-requirement`,
+                errors.contact ? `${id}-email-error` : null,
+              ]
+                .filter(Boolean)
+                .join(" ")}
               className={cn(fieldBase, "border-anthracite/15")}
             />
           </Field>
         </div>
+
+        <div className="mt-8 md:hidden">
+          <Button
+            type="button"
+            size="lg"
+            arrow
+            className="w-full"
+            onClick={continueToProject}
+          >
+            {labels.continueToProject}
+          </Button>
+        </div>
       </fieldset>
 
-      <fieldset className="border-0 p-0">
+      <fieldset
+        ref={projectStepRef}
+        tabIndex={-1}
+        className={cn(
+          "border-0 p-0 focus:outline-none",
+          mobileStep !== 2 && "hidden md:block",
+        )}
+      >
         <legend className="text-caption text-atlas">
           {labels.legendProject}
         </legend>
 
-        <p className="mt-6 text-small text-anthracite/70">{labels.services}</p>
+        <div className="mt-6 flex items-baseline justify-between gap-3">
+          <p className="text-small text-anthracite/70">{labels.services}</p>
+          <span className="text-caption text-anthracite/70">
+            {labels.optional}
+          </span>
+        </div>
         <p className="mt-1 text-caption text-anthracite/70">
           {labels.servicesHint}
         </p>
@@ -528,7 +634,12 @@ export function QuoteForm({
         </div>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
-          <Field id={`${id}-budget`} field="budget" label={labels.budget}>
+          <Field
+            id={`${id}-budget`}
+            field="budget"
+            label={labels.budget}
+            hint={labels.optional}
+          >
             <select
               id={`${id}-budget`}
               data-field="budget"
@@ -545,7 +656,12 @@ export function QuoteForm({
             </select>
           </Field>
 
-          <Field id={`${id}-timeline`} field="timeline" label={labels.timeline}>
+          <Field
+            id={`${id}-timeline`}
+            field="timeline"
+            label={labels.timeline}
+            hint={labels.optional}
+          >
             <select
               id={`${id}-timeline`}
               data-field="timeline"
@@ -609,7 +725,7 @@ export function QuoteForm({
         />
       </div>
 
-      <div>
+      <div className={cn(mobileStep === 1 && "hidden md:block")}>
         <label
           htmlFor={`${id}-consent`}
           className="flex max-w-prose cursor-pointer items-start gap-3 text-small text-anthracite/80"
@@ -651,9 +767,29 @@ export function QuoteForm({
         )}
       </div>
 
-      <div>
-        <Button size="lg" arrow disabled={pending} aria-busy={pending}>
+      <div
+        className={cn(
+          "flex flex-col gap-3 md:block",
+          mobileStep === 1 && "hidden md:block",
+        )}
+      >
+        <Button
+          type="submit"
+          size="lg"
+          arrow
+          disabled={pending}
+          aria-busy={pending}
+          className="w-full md:w-auto"
+        >
           {pending ? labels.sending : labels.submit}
+        </Button>
+        <Button
+          type="button"
+          variant="link"
+          className="min-h-11 md:hidden"
+          onClick={backToContact}
+        >
+          {labels.backToContact}
         </Button>
       </div>
     </form>

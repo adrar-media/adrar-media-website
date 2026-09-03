@@ -27,6 +27,10 @@
       "privacyLink": "privacy policy.",
       "optional": "optional",
       "required": "required",
+      "contactRequirement": "Enter at least an email address or a phone number.",
+      "step": "Step",
+      "continueToProject": "Continue to your project",
+      "backToContact": "Back to contact details",
       "choose": "Choose",
       "submit": "Send my request",
       "budgets": [

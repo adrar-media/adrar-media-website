@@ -27,6 +27,10 @@
       "privacyLink": "politique de confidentialité.",
       "optional": "facultatif",
       "required": "obligatoire",
+      "contactRequirement": "Renseignez au moins une adresse e-mail ou un numéro de téléphone.",
+      "step": "Étape",
+      "continueToProject": "Continuer vers le projet",
+      "backToContact": "Retour aux coordonnées",
       "choose": "Choisir",
       "submit": "Envoyer ma demande",
       "budgets": [
