@@ -40,7 +40,7 @@ const nextConfig: NextConfig = {
          * les visuels de /public, qui ne l'avaient pas et étaient revalidés à
          * chaque visite.
          */
-        source: "/:path*.(woff2|webp|avif|png|jpg|jpeg|svg|ico)",
+        source: "/:path*.(woff2|webp|avif|png|jpg|jpeg|svg|ico|mp4|webm)",
         headers: [
           {
             key: "Cache-Control",
