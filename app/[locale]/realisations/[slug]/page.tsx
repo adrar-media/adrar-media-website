@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { isLocale, locales, type Locale } from "@/config/i18n";
+import { isLocale, localeNames, locales, type Locale } from "@/config/i18n";
 import { getTranslator } from "@/lib/i18n/dictionaries";
 import { href } from "@/lib/i18n/routing";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -17,6 +17,7 @@ import { ProjectVisual } from "@/components/portfolio/ProjectVisual";
 import { ProjectGallery } from "@/components/portfolio/ProjectGallery";
 import { ProjectVideoGrid } from "@/components/portfolio/ProjectVideoGrid";
 import { CTASection } from "@/components/layout/CTASection";
+import { whatsappLink } from "@/config/site";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -68,6 +69,8 @@ export default async function ProjectPage({
   const t = await getTranslator(typedLocale, "pages");
   const home = await getTranslator(typedLocale, "home");
   const c = await getTranslator(typedLocale, "common");
+  const whatsappMessage = `${c("cta.whatsappMessage.language")}: ${localeNames[typedLocale]}\n${c("cta.whatsappMessage.page")}: ${project.client}`;
+  const whatsapp = whatsappLink(whatsappMessage);
 
   const metric = project.headlineMetric;
   const involved = services.filter((service) =>
@@ -193,6 +196,21 @@ export default async function ProjectPage({
                   <p className="mt-2 text-small text-anthracite/80">
                     {home(project.caseStudy.disclosure)}
                   </p>
+                </div>
+
+                <div className="mt-10 flex flex-wrap gap-3">
+                  <Button
+                    href={href(typedLocale, "demander-un-devis")}
+                    variant="invert"
+                    arrow
+                  >
+                    {c("cta.quote")}
+                  </Button>
+                  {whatsapp && (
+                    <Button href={whatsapp} external variant="secondary">
+                      {c("cta.whatsapp")}
+                    </Button>
+                  )}
                 </div>
               </div>
             </Block>
