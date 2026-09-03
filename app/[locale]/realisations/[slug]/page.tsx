@@ -14,6 +14,8 @@ import { Block } from "@/components/ui/Block";
 import { Button } from "@/components/buttons/Button";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { ProjectVisual } from "@/components/portfolio/ProjectVisual";
+import { ProjectGallery } from "@/components/portfolio/ProjectGallery";
+import { ProjectVideoGrid } from "@/components/portfolio/ProjectVideoGrid";
 import { CTASection } from "@/components/layout/CTASection";
 
 export function generateStaticParams() {
@@ -195,6 +197,24 @@ export default async function ProjectPage({
               </div>
             </Block>
           </div>
+
+          {project.gallery && (
+            <Block className="mt-4">
+              <ProjectGallery
+                items={project.gallery}
+                label={t("work.galleryLabel")}
+              />
+            </Block>
+          )}
+
+          {project.videos && (
+            <Block className="mt-4">
+              <ProjectVideoGrid
+                items={project.videos}
+                label={t("work.videosLabel")}
+              />
+            </Block>
+          )}
 
           <Block className="mt-20 border-t border-anthracite/[0.12] pt-10">
             <Link

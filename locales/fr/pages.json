@@ -456,7 +456,9 @@
     "caseDeliverablesLabel": "Périmètre livré",
     "transparencyLabel": "Transparence sur la preuve",
     "ctaTitle": "Un projet comparable en tête ?",
-    "ctaBody": "Décrivez-le nous : nous vous dirons ce qu'il est réaliste d'en attendre."
+    "ctaBody": "Décrivez-le nous : nous vous dirons ce qu'il est réaliste d'en attendre.",
+    "galleryLabel": "Aperçu du travail",
+    "videosLabel": "Capsules vidéo"
   },
   "serviceDetail": {
     "backLabel": "Tous les services",

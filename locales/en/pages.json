@@ -456,7 +456,9 @@
     "caseDeliverablesLabel": "Delivered scope",
     "transparencyLabel": "Evidence transparency",
     "ctaTitle": "Have a comparable project in mind?",
-    "ctaBody": "Describe it and we will tell you what it is realistic to expect."
+    "ctaBody": "Describe it and we will tell you what it is realistic to expect.",
+    "galleryLabel": "Work preview",
+    "videosLabel": "Video capsules"
   },
   "serviceDetail": {
     "backLabel": "All services",

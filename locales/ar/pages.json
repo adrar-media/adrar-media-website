@@ -456,7 +456,9 @@
     "caseDeliverablesLabel": "نطاق العمل المنجز",
     "transparencyLabel": "الشفافية حول الأدلة",
     "ctaTitle": "لديك مشروع مشابه؟",
-    "ctaBody": "صفه لنا، وسنقول لك ما يمكن توقعه منه واقعيًا."
+    "ctaBody": "صفه لنا، وسنقول لك ما يمكن توقعه منه واقعيًا.",
+    "galleryLabel": "لمحة عن العمل",
+    "videosLabel": "كبسولات فيديو"
   },
   "serviceDetail": {
     "backLabel": "كل الخدمات",

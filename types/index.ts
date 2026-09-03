@@ -65,6 +65,10 @@ export interface Project {
   cover?: MediaAsset;
   /** Logo client reel, affiche en complement du cadre typographique. */
   logo?: MediaAsset;
+  /** Photos reelles produites pour le projet. Absent tant que non fournies. */
+  gallery?: MediaAsset[];
+  /** Capsules video reelles produites pour le projet. */
+  videos?: ProjectVideo[];
   featured: boolean;
 }
 
@@ -84,6 +88,14 @@ export interface MediaAsset {
   alt: string;
   width: number;
   height: number;
+}
+
+/** Capsule video courte, avec image daffiche extraite reellement de la video. */
+export interface ProjectVideo {
+  src: string;
+  poster: string;
+  /** Libelle affiche sous la video (theme de la capsule). */
+  label: string;
 }
 
 export interface Testimonial {
