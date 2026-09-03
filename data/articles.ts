@@ -7,6 +7,7 @@ export interface ArticleSection {
 
 export interface LocalizedArticle {
   title: string;
+  metaTitle: string;
   excerpt: string;
   metaDescription: string;
   category: string;
@@ -38,6 +39,7 @@ export const articles: EditorialArticle[] = [
     content: {
       fr: {
         title: "Construire un plan marketing local au Maroc sans disperser son budget",
+        metaTitle: "Plan marketing local au Maroc",
         excerpt:
           "Une méthode concrète pour relier objectif commercial, audience locale, message, canaux et mesure avant de produire le premier contenu.",
         metaDescription:
@@ -84,6 +86,7 @@ export const articles: EditorialArticle[] = [
       },
       en: {
         title: "How to build a focused local marketing plan in Morocco",
+        metaTitle: "Local Marketing Plan in Morocco",
         excerpt:
           "A practical way to connect a commercial objective, local audience, message, channels and measurement before producing content.",
         metaDescription:
@@ -130,6 +133,7 @@ export const articles: EditorialArticle[] = [
       },
       ar: {
         title: "كيف تبني خطة تسويق محلي مركزة في المغرب",
+        metaTitle: "خطة تسويق محلي في المغرب",
         excerpt:
           "طريقة عملية تربط الهدف التجاري والجمهور المحلي والرسالة والقنوات والقياس قبل إنتاج أول محتوى.",
         metaDescription:
@@ -184,6 +188,7 @@ export const articles: EditorialArticle[] = [
     content: {
       fr: {
         title: "Créer un calendrier social media que votre équipe peut vraiment tenir",
+        metaTitle: "Calendrier social media efficace",
         excerpt:
           "Des piliers éditoriaux au circuit de validation : une organisation simple pour publier avec régularité sans sacrifier la qualité.",
         metaDescription:
@@ -230,6 +235,7 @@ export const articles: EditorialArticle[] = [
       },
       en: {
         title: "Build a social media calendar your team can actually sustain",
+        metaTitle: "A Sustainable Social Media Calendar",
         excerpt:
           "From content pillars to approval: a simple system for publishing consistently without lowering quality.",
         metaDescription:
@@ -276,6 +282,7 @@ export const articles: EditorialArticle[] = [
       },
       ar: {
         title: "كيف تنشئ تقويم محتوى تستطيع منظومتك الالتزام به",
+        metaTitle: "تقويم محتوى عملي للشبكات الاجتماعية",
         excerpt:
           "من محاور المحتوى إلى الاعتماد: تنظيم بسيط للنشر بانتظام دون التضحية بالجودة.",
         metaDescription:
@@ -330,6 +337,7 @@ export const articles: EditorialArticle[] = [
     content: {
       fr: {
         title: "Le brief vidéo qui évite les Reels jolis mais inutiles",
+        metaTitle: "Brief vidéo efficace pour Reels",
         excerpt:
           "Objectif, hook, preuve, plan de tournage et action finale : les éléments à verrouiller avant d'allumer la caméra.",
         metaDescription:
@@ -376,6 +384,7 @@ export const articles: EditorialArticle[] = [
       },
       en: {
         title: "The video brief that prevents attractive but ineffective Reels",
+        metaTitle: "An Effective Video Brief for Reels",
         excerpt:
           "Objective, hook, proof, shot list and final action: what to settle before the camera starts rolling.",
         metaDescription:
@@ -422,6 +431,7 @@ export const articles: EditorialArticle[] = [
       },
       ar: {
         title: "موجز الفيديو الذي يمنع إنتاج Reels جميلة بلا أثر",
+        metaTitle: "موجز فيديو فعّال لمقاطع Reels",
         excerpt:
           "الهدف والخطاف والدليل وقائمة اللقطات والخطوة النهائية: ما يجب حسمه قبل تشغيل الكاميرا.",
         metaDescription:

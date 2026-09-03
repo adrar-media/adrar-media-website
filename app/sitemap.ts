@@ -25,6 +25,7 @@ import { absoluteUrl, pagePath } from "@/lib/seo/metadata";
 interface Entry {
   route?: CanonicalRoute;
   slug?: string;
+  lastModified?: MetadataRoute.Sitemap[number]["lastModified"];
   priority: number;
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
 }
@@ -56,6 +57,7 @@ const entries: Entry[] = [
   ...articles.map((article) => ({
     route: "blog" as const,
     slug: article.slug,
+    lastModified: article.updatedAt,
     priority: 0.7,
     changeFrequency: "monthly" as const,
   })),
@@ -79,12 +81,10 @@ const languagesFor = (entry: Entry) => {
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!siteConfig.url) return [];
 
-  const lastModified = new Date();
-
   return entries.flatMap((entry) =>
     locales.map((locale) => ({
       url: absoluteUrl(pagePath(locale, entry.route, entry.slug)),
-      lastModified,
+      ...(entry.lastModified ? { lastModified: entry.lastModified } : {}),
       changeFrequency: entry.changeFrequency,
       priority: entry.priority,
       alternates: { languages: languagesFor(entry) },

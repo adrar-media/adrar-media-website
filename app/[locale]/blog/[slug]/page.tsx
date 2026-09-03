@@ -33,7 +33,7 @@ export async function generateMetadata({
     locale,
     route: "blog",
     slug,
-    title: content.title,
+    title: content.metaTitle,
     description: content.metaDescription,
   });
 }

@@ -8,6 +8,10 @@
     "titleLines": ["Sept expertises,", "un seul partenaire."],
     "description": "Chaque expertise fonctionne seule, mais prend toute sa valeur combinée aux autres. C'est ce qui permet de tenir une même intention du positionnement jusqu'à la conversion."
   },
+  "mobileCta": {
+    "quote": "Demander un devis",
+    "whatsapp": "WhatsApp"
+  },
   "scopeLabel": "Ce que cela comprend",
   "detailNote": "Un périmètre précis est établi pour chaque projet, après échange.",
   "items": {

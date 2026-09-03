@@ -8,11 +8,16 @@
     "titleLines": ["Seven disciplines,", "one partner."],
     "description": "Each discipline stands on its own, but earns its full value combined with the others. That is what holds a single intent together, from positioning through to conversion."
   },
+  "mobileCta": {
+    "quote": "Request a quote",
+    "whatsapp": "WhatsApp"
+  },
   "scopeLabel": "What it covers",
   "detailNote": "A precise scope is agreed for every project, after we talk.",
   "items": {
     "strategy": {
       "summary": "Before producing anything, you need to know who you are talking to, what sets you apart, and what the market already expects. Strategy sets the direction and makes everything else measurable.",
+      "metaDescription": "Build a focused marketing strategy with clear positioning, audience priorities, channel roles and measurable goals for sustainable business growth in Morocco.",
       "scope": [
         "Audit of the existing digital presence",
         "Market and competitor analysis",

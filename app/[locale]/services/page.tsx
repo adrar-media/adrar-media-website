@@ -13,6 +13,7 @@ import { CTASection } from "@/components/layout/CTASection";
 import { href } from "@/lib/i18n/routing";
 import { SectionImage } from "@/components/media/SectionImage";
 import { servicesHero } from "@/data/imagery";
+import { MobileServiceCTA } from "@/components/services/MobileServiceCTA";
 
 export async function generateMetadata({
   params,
@@ -60,7 +61,13 @@ export default async function ServicesPage({
         titleLines={t.list("hero.titleLines")}
         intro={t("hero.description")}
         backdrop={<HeaderField variant="services" />}
-      />
+      >
+        <MobileServiceCTA
+          locale={typedLocale}
+          quoteLabel={t("mobileCta.quote")}
+          whatsappLabel={t("mobileCta.whatsapp")}
+        />
+      </PageHeader>
 
       <section className="pb-section">
         <Container>

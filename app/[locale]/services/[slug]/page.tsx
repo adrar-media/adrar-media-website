@@ -15,6 +15,7 @@ import { Block } from "@/components/ui/Block";
 import { Button } from "@/components/buttons/Button";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { CTASection } from "@/components/layout/CTASection";
+import { MobileServiceCTA } from "@/components/services/MobileServiceCTA";
 
 /**
  * Une route dynamique plutôt que sept dossiers.
@@ -48,12 +49,16 @@ export async function generateMetadata({
 
   const c = await getTranslator(locale, "common");
   const s = await getTranslator(locale, "services");
+  const description =
+    locale === "en" && service.key === "strategy"
+      ? s("items.strategy.metaDescription")
+      : s(`items.${service.key}.summary`);
   return pageMetadata({
     locale,
     route: "services",
     slug: service.slug,
     title: c(service.nameKey),
-    description: s(`items.${service.key}.summary`),
+    description,
   });
 }
 
@@ -97,6 +102,12 @@ export default async function ServiceDetailPage({
         titleLines={[c(service.nameKey)]}
         intro={s(`items.${service.key}.summary`)}
       >
+        <MobileServiceCTA
+          locale={typedLocale}
+          quoteLabel={s("mobileCta.quote")}
+          whatsappLabel={s("mobileCta.whatsapp")}
+        />
+
         <div className="mt-10 md:ms-[14%]">
           <Button
             href={href(typedLocale, "services")}
