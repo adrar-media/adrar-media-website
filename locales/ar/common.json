@@ -21,7 +21,12 @@
     "work": "اطّلع على أعمالنا",
     "talk": "لنتحدث عن مشروعك",
     "contact": "تواصل معنا",
-    "whatsapp": "واتساب"
+    "whatsapp": "واتساب",
+    "whatsappMessage": {
+      "language": "اللغة",
+      "page": "الصفحة الأصلية",
+      "service": "الخدمة الأصلية"
+    }
   },
   "language": {
     "label": "تغيير اللغة",

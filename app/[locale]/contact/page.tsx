@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, type Locale } from "@/config/i18n";
+import { isLocale, localeNames, type Locale } from "@/config/i18n";
 import { getTranslator } from "@/lib/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { href } from "@/lib/i18n/routing";
@@ -55,6 +55,7 @@ export default async function ContactPage({
 
   const t = await getTranslator(typedLocale, "pages");
   const c = await getTranslator(typedLocale, "common");
+  const whatsappMessage = `${c("cta.whatsappMessage.language")}: ${localeNames[typedLocale]}\n${c("cta.whatsappMessage.page")}: ${t("contact.meta.title")}`;
   /*
    * La requête cartographique préfère le repère précis au libellé affiché : un
    * nom d'établissement place une épingle, une ville n'en place aucune. À
@@ -172,6 +173,7 @@ export default async function ContactPage({
               <SocialLinks
                 label={c("footer.follow")}
                 whatsappLabel={c("cta.whatsapp")}
+                whatsappMessage={whatsappMessage}
                 className="mt-6"
               />
 

@@ -7,6 +7,7 @@ interface MobileServiceCTAProps {
   locale: Locale;
   quoteLabel: string;
   whatsappLabel: string;
+  whatsappMessage: string;
 }
 
 /**
@@ -19,8 +20,9 @@ export function MobileServiceCTA({
   locale,
   quoteLabel,
   whatsappLabel,
+  whatsappMessage,
 }: MobileServiceCTAProps) {
-  const whatsapp = whatsappLink();
+  const whatsapp = whatsappLink(whatsappMessage);
 
   return (
     <div className="mt-8 flex flex-wrap gap-2 md:hidden">

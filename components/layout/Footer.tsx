@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Locale } from "@/config/i18n";
+import { localeNames, type Locale } from "@/config/i18n";
 import { getTranslator } from "@/lib/i18n/dictionaries";
 import { href } from "@/lib/i18n/routing";
 import { Container } from "@/components/ui/Container";
@@ -11,6 +11,7 @@ import {
 } from "@/components/forms/FooterContactForm";
 import { sendLeadAction } from "@/lib/leads/actions";
 import { FooterContactSection } from "@/components/layout/FooterContactSection";
+import { services } from "@/data/services";
 
 /**
  * Pied de page.
@@ -37,7 +38,11 @@ import { FooterContactSection } from "@/components/layout/FooterContactSection";
 export async function Footer({ locale }: { locale: Locale }) {
   const t = await getTranslator(locale, "common");
   const year = new Date().getFullYear();
-  const whatsapp = whatsappLink();
+  const whatsappMessage = [
+    `${t("cta.whatsappMessage.language")}: ${localeNames[locale]}`,
+    `${t("cta.whatsappMessage.page")}: ${t("footer.contact")}`,
+  ].join("\n");
+  const whatsapp = whatsappLink(whatsappMessage);
   const socials = activeSocials();
 
   /**
@@ -65,15 +70,10 @@ export async function Footer({ locale }: { locale: Locale }) {
     { label: t("nav.contact"), href: href(locale, "contact") },
   ];
 
-  const serviceLinks = [
-    t("services.strategy"),
-    t("services.social"),
-    t("services.content"),
-    t("services.brand"),
-    t("services.production"),
-    t("services.performance"),
-    t("services.web"),
-  ];
+  const serviceLinks = services.map((service) => ({
+    label: t(service.nameKey),
+    href: `${href(locale, "services")}/${service.slug}`,
+  }));
 
   const formLabels: FooterFormLabels = {
     title: t("footer.form.title"),
@@ -157,8 +157,10 @@ export async function Footer({ locale }: { locale: Locale }) {
             <p className="eyebrow mb-5 text-light">{t("footer.services")}</p>
             <ul className="flex flex-col gap-3">
               {serviceLinks.map((service) => (
-                <li key={service} className="text-small text-white/70">
-                  {service}
+                <li key={service.href} className="text-small text-white/70">
+                  <Link href={service.href} className="link-underline transition-colors duration-fast ease-brand hover:text-white">
+                    {service.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -192,7 +194,7 @@ export async function Footer({ locale }: { locale: Locale }) {
                   <a
                     href={`tel:${contact.phoneE164}`}
                     dir="ltr"
-                    className="link-underline mt-1 inline-block text-white/80 transition-colors duration-fast hover:text-white"
+                    className="link-underline mt-1 inline-flex min-h-11 items-center text-white/80 transition-colors duration-fast hover:text-white md:min-h-0"
                   >
                     {contact.phoneDisplay}
                   </a>
@@ -207,7 +209,7 @@ export async function Footer({ locale }: { locale: Locale }) {
                   <a
                     href={`tel:${contact.landlineE164}`}
                     dir="ltr"
-                    className="link-underline mt-1 inline-block text-white/80 transition-colors duration-fast hover:text-white"
+                    className="link-underline mt-1 inline-flex min-h-11 items-center text-white/80 transition-colors duration-fast hover:text-white md:min-h-0"
                   >
                     {contact.landlineDisplay}
                   </a>
@@ -221,7 +223,7 @@ export async function Footer({ locale }: { locale: Locale }) {
                   </p>
                   <a
                     href={`mailto:${contact.email}`}
-                    className="link-underline mt-1 inline-block break-all text-white/80 transition-colors duration-fast hover:text-white"
+                    className="link-underline mt-1 inline-flex min-h-11 items-center break-all text-white/80 transition-colors duration-fast hover:text-white md:min-h-0"
                   >
                     {contact.email}
                   </a>
@@ -235,7 +237,7 @@ export async function Footer({ locale }: { locale: Locale }) {
                   </p>
                   <a
                     href={`mailto:${contact.emailRecruitment}`}
-                    className="link-underline mt-1 inline-block break-all text-white/80 transition-colors duration-fast hover:text-white"
+                    className="link-underline mt-1 inline-flex min-h-11 items-center break-all text-white/80 transition-colors duration-fast hover:text-white md:min-h-0"
                   >
                     {contact.emailRecruitment}
                   </a>
@@ -269,6 +271,7 @@ export async function Footer({ locale }: { locale: Locale }) {
                 <SocialLinks
                   label={t("footer.follow")}
                   whatsappLabel={t("cta.whatsapp")}
+                  whatsappMessage={whatsappMessage}
                   tone="dark"
                 />
               </>

@@ -66,6 +66,7 @@ export default async function ServicesPage({
           locale={typedLocale}
           quoteLabel={t("mobileCta.quote")}
           whatsappLabel={t("mobileCta.whatsapp")}
+          whatsappMessage={`${c("cta.whatsappMessage.language")}: ${locale === "fr" ? "Français" : locale === "en" ? "English" : "العربية"}\n${c("cta.whatsappMessage.page")}: ${t("meta.title")}`}
         />
       </PageHeader>
 
@@ -154,7 +155,7 @@ export default async function ServicesPage({
         </Container>
       </section>
 
-      <CTASection locale={typedLocale} />
+      <CTASection locale={typedLocale} originLabel={t("meta.title")} />
     </>
   );
 }

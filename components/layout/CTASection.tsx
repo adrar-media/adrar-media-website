@@ -1,4 +1,4 @@
-import type { Locale } from "@/config/i18n";
+import { localeNames, type Locale } from "@/config/i18n";
 import { getTranslator } from "@/lib/i18n/dictionaries";
 import { href } from "@/lib/i18n/routing";
 import { whatsappLink } from "@/config/site";
@@ -15,10 +15,22 @@ import { Button } from "@/components/buttons/Button";
  * la couleur forte est réservée à ce qu'il faut retenir — le travail, puis
  * l'action. Le bouton WhatsApp n'apparaît que si un numéro est configuré.
  */
-export async function CTASection({ locale }: { locale: Locale }) {
+export async function CTASection({
+  locale,
+  originLabel,
+  originKind = "page",
+}: {
+  locale: Locale;
+  originLabel?: string;
+  originKind?: "page" | "service";
+}) {
   const t = await getTranslator(locale, "home");
   const c = await getTranslator(locale, "common");
-  const whatsapp = whatsappLink();
+  const whatsappMessage = [
+    `${c("cta.whatsappMessage.language")}: ${localeNames[locale]}`,
+    `${c(`cta.whatsappMessage.${originKind}`)}: ${originLabel ?? c("footer.contact")}`,
+  ].join("\n");
+  const whatsapp = whatsappLink(whatsappMessage);
 
   return (
     <section className="bg-surface py-section text-white">

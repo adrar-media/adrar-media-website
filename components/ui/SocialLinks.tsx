@@ -6,6 +6,7 @@ interface SocialLinksProps {
   label: string;
   /** Nom du canal WhatsApp, déjà traduit. Sert d'étiquette au lien. */
   whatsappLabel: string;
+  whatsappMessage?: string;
   /**
    * Fond sur lequel la rangée est posée. Le pied de page est sombre, la page
    * Contact est claire : les deux jeux de contrastes ne sont pas
@@ -41,10 +42,11 @@ interface SocialLinksProps {
 export function SocialLinks({
   label,
   whatsappLabel,
+  whatsappMessage,
   tone = "light",
   className,
 }: SocialLinksProps) {
-  const whatsapp = whatsappLink();
+  const whatsapp = whatsappLink(whatsappMessage);
   const accounts = activeSocials();
 
   if (!whatsapp && accounts.length === 0) return null;

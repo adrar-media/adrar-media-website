@@ -21,7 +21,12 @@
     "work": "See our work",
     "talk": "Let's talk about your project",
     "contact": "Get in touch",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "whatsappMessage": {
+      "language": "Language",
+      "page": "Origin page",
+      "service": "Origin service"
+    }
   },
   "language": {
     "label": "Change language",
