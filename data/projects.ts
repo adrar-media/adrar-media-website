@@ -217,6 +217,12 @@ export const projects: Project[] = [
       ],
       disclosure: "projects.wlidatna.disclosure",
     },
+    logo: {
+      src: "/images/projects/wlidatna-logo.jpg",
+      alt: "Association Wlidatna",
+      width: 240,
+      height: 240,
+    },
     featured: true,
   },
   {

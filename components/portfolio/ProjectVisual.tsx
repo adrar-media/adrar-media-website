@@ -17,9 +17,16 @@ interface ProjectVisualProps {
  *
  * DEUX ÉTATS.
  *
- * — Logo fourni : le cadre affiche ce logo, large et centré. C'est la preuve
- *   la plus directe qu'un vrai client se tient derrière le projet — plus
- *   directe qu'une photo de studio, qui aurait pu venir de n'importe où.
+ * — Logo fourni : présenté sur une tablette (`surface-soft` sur `surface`,
+ *   rayon `md`), pas en médaillon plaqué au centre. Les logos réels ont leur
+ *   propre fond (souvent sombre, parfois blanc) : les poser à fond perdu sur
+ *   le cadre les aurait fait flotter sans bord ; les recadrer en cercle
+ *   aurait coupé les lockups qui incluent un nom de marque (The Big Family).
+ *   La tablette leur donne un bord propre quel que soit leur fond, avec une
+ *   marge intérieure généreuse — jamais collés à leur propre cadre — et un
+ *   rayon `default` légèrement plus serré que celui de la tablette : deux
+ *   rayons concentriques, pas un seul répété, comme le cadre général
+ *   (`lg`) l'est déjà par rapport à la page.
  * — Logo absent (IMAGE_REQUIRED) : aucun visuel n'est disponible ni autorisé
  *   à ce jour. Plutôt qu'une image d'illustration achetée ou inventée, le
  *   cadre affiche une composition typographique construite à partir du nom
@@ -32,11 +39,12 @@ interface ProjectVisualProps {
  * Le cadre répond au survol du lien qui l'enveloppe (`group`, défini dans
  * SelectedWork) : jusqu'ici seule la flèche bougeait, et une vignette de
  * portfolio de cette taille qui reste inerte sous le curseur ne se lit pas
- * comme cliquable. Le mouvement reste retenu — le cadre se soulève, le
- * contenu central respire, la ligne d'horizon monte — et ne joue que sur
- * `transform` et des couleurs, donc sans recalcul de mise en page. Une durée
- * lente (500 ms) le distingue des micro-interactions à 250 ms : c'est une
- * masse qui se déplace, pas un bouton qui répond.
+ * comme cliquable. Le mouvement reste retenu — le cadre se soulève, la
+ * tablette respire et son bord vire au vert de marque, la ligne d'horizon
+ * monte — et ne joue que sur `transform`, `box-shadow` et des couleurs, donc
+ * sans recalcul de mise en page. Une durée lente (500 ms) le distingue des
+ * micro-interactions à 250 ms : c'est une masse qui se déplace, pas un
+ * bouton qui répond.
  */
 export function ProjectVisual({
   client,
@@ -55,22 +63,25 @@ export function ProjectVisual({
       )}
       style={{ aspectRatio: ratio }}
     >
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center p-[8%]">
         {logoSrc ? (
           <span
             className={cn(
-              "relative aspect-square w-[34%] min-w-24 max-w-56 overflow-hidden rounded-full",
-              "border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.35)]",
-              "transition-transform duration-slow ease-brand group-hover:scale-[1.05]",
+              "relative flex aspect-square w-[46%] min-w-28 max-w-64 items-center justify-center p-4",
+              "rounded-md bg-surface-soft ring-1 ring-white/10",
+              "shadow-lifted transition-[transform,box-shadow] duration-slow ease-brand",
+              "group-hover:scale-[1.04] group-hover:shadow-glow group-hover:ring-atlas/40",
             )}
           >
-            <Image
-              src={logoSrc}
-              alt={logoAlt ?? client}
-              fill
-              sizes="(min-width: 1024px) 220px, 30vw"
-              className="object-cover"
-            />
+            <span className="relative h-full w-full overflow-hidden rounded">
+              <Image
+                src={logoSrc}
+                alt={logoAlt ?? client}
+                fill
+                sizes="(min-width: 1024px) 260px, 40vw"
+                className="object-cover"
+              />
+            </span>
           </span>
         ) : (
           <span
