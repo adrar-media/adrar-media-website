@@ -15,19 +15,25 @@ interface ProjectVisualProps {
 /**
  * Cadre visuel d'un projet.
  *
- * IMAGE_REQUIRED — aucun visuel client n'est disponible ni autorisé à ce jour.
- * Plutôt qu'une image d'illustration achetée ou inventée, le cadre affiche une
- * composition typographique construite à partir du nom du client. Le résultat
- * est assumé et cohérent avec la direction éditoriale : il ne ressemble pas à
- * une image manquante.
+ * DEUX ÉTATS.
  *
- * Le remplacement par une vraie image ne touchera que ce composant.
+ * — Logo fourni : le cadre affiche ce logo, large et centré. C'est la preuve
+ *   la plus directe qu'un vrai client se tient derrière le projet — plus
+ *   directe qu'une photo de studio, qui aurait pu venir de n'importe où.
+ * — Logo absent (IMAGE_REQUIRED) : aucun visuel n'est disponible ni autorisé
+ *   à ce jour. Plutôt qu'une image d'illustration achetée ou inventée, le
+ *   cadre affiche une composition typographique construite à partir du nom
+ *   du client. Le résultat est assumé et cohérent avec la direction
+ *   éditoriale : il ne ressemble pas à une image manquante.
+ *
+ * Le remplacement du second état par un vrai logo, une fois fourni, ne
+ * touche que ce composant.
  *
  * Le cadre répond au survol du lien qui l'enveloppe (`group`, défini dans
  * SelectedWork) : jusqu'ici seule la flèche bougeait, et une vignette de
  * portfolio de cette taille qui reste inerte sous le curseur ne se lit pas
  * comme cliquable. Le mouvement reste retenu — le cadre se soulève, le
- * lettrage respire, la ligne d'horizon monte — et ne joue que sur
+ * contenu central respire, la ligne d'horizon monte — et ne joue que sur
  * `transform` et des couleurs, donc sans recalcul de mise en page. Une durée
  * lente (500 ms) le distingue des micro-interactions à 250 ms : c'est une
  * masse qui se déplace, pas un bouton qui répond.
@@ -50,12 +56,30 @@ export function ProjectVisual({
       style={{ aspectRatio: ratio }}
     >
       <div className="absolute inset-0 flex items-center justify-center">
-        <span
-          aria-hidden
-          className="select-none px-6 text-center text-h1 leading-none text-white/70 transition-[transform,color] duration-slow ease-brand group-hover:scale-[1.04] group-hover:text-white/85"
-        >
-          {client}
-        </span>
+        {logoSrc ? (
+          <span
+            className={cn(
+              "relative aspect-square w-[34%] min-w-24 max-w-56 overflow-hidden rounded-full",
+              "border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.35)]",
+              "transition-transform duration-slow ease-brand group-hover:scale-[1.05]",
+            )}
+          >
+            <Image
+              src={logoSrc}
+              alt={logoAlt ?? client}
+              fill
+              sizes="(min-width: 1024px) 220px, 30vw"
+              className="object-cover"
+            />
+          </span>
+        ) : (
+          <span
+            aria-hidden
+            className="select-none px-6 text-center text-h1 leading-none text-white/70 transition-[transform,color] duration-slow ease-brand group-hover:scale-[1.04] group-hover:text-white/85"
+          >
+            {client}
+          </span>
+        )}
       </div>
 
       {/*
@@ -71,23 +95,6 @@ export function ProjectVisual({
       <span className="absolute bottom-4 start-4 z-10 text-caption text-white/70 transition-colors duration-slow ease-brand group-hover:text-white">
         {pendingLabel}
       </span>
-
-      {/*
-        Logo client — vignette réelle fournie par la direction. Posée en
-        vis-à-vis de l'étiquette, elle ne remplace pas la composition
-        typographique : elle l'authentifie.
-      */}
-      {logoSrc && (
-        <span className="absolute bottom-4 end-4 z-10 h-11 w-11 overflow-hidden rounded-full border border-white/25 bg-black/20 shadow-sm transition-transform duration-slow ease-brand group-hover:-translate-y-1.5">
-          <Image
-            src={logoSrc}
-            alt={logoAlt ?? client}
-            fill
-            sizes="44px"
-            className="object-cover"
-          />
-        </span>
-      )}
 
       {/* Écho de la ligne d'horizon du logo, en filigrane. */}
       <svg

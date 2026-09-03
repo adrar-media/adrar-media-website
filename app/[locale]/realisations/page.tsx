@@ -91,6 +91,8 @@ export default async function WorkPage({
                         client={project.client}
                         pendingLabel={home("work.visualPending")}
                         ratio={layout.ratio}
+                        logoSrc={project.logo?.src}
+                        logoAlt={project.logo?.alt}
                       />
 
                       <div className="mt-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
