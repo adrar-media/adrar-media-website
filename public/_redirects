@@ -1,0 +1,3 @@
+http://www.adrar.media/* https://adrar.media/:splat 301!
+https://www.adrar.media/* https://adrar.media/:splat 301!
+http://adrar.media/* https://adrar.media/:splat 301!
