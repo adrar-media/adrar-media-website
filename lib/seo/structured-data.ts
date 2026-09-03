@@ -37,7 +37,14 @@ export function organizationSchema(locale: Locale): Schema {
 
   return compact({
     "@context": "https://schema.org",
-    "@type": "Organization",
+    /*
+     * Deux types, pas un remplacement : ladresse et les coordonnees GPS
+     * deja emises plus bas sont exactement les champs que Google associe a
+     * un etablissement local (fiche Maps, resultats locaux). Rester en
+     * simple `Organization` les laissait sur la table sans quaucune donnee
+     * supplementaire ne soit necessaire pour les recuperer.
+     */
+    "@type": ["Organization", "ProfessionalService"],
     "@id": home ? `${home}#organization` : undefined,
     name: siteConfig.name,
     alternateName: siteConfig.tagline,

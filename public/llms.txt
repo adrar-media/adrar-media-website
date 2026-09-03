@@ -1,0 +1,29 @@
+# Adrar Media
+
+> Adrar Media est une agence de marketing digital basée à Azrou, au Maroc. Nous transformons les marques et entreprises en expériences digitales capables d'attirer, convaincre et convertir : stratégie, réseaux sociaux, contenu, branding, production audiovisuelle, publicité digitale et sites web.
+
+Adrar Media travaille avec des marques marocaines réelles et ne publie que des résultats vérifiés — chaque étude de cas indique explicitement la source de ses chiffres et n'extrapole jamais un résultat non mesuré.
+
+## Services
+
+- [Stratégie marketing](https://adrar.media/fr/services/strategie-marketing): positionnement, priorités d'audience, rôle des canaux, objectifs mesurables.
+- [Réseaux sociaux](https://adrar.media/fr/services/social-media): ligne éditoriale, rythme de publication, gestion de communauté.
+- [Création de contenu](https://adrar.media/fr/services/creation-contenu): production photo, vidéo et formats de campagne.
+- [Branding](https://adrar.media/fr/services/branding): identité visuelle et déclinaisons graphiques.
+- [Production audiovisuelle](https://adrar.media/fr/services/production-audiovisuelle): tournage, montage, formats courts et longs.
+- [Publicité digitale](https://adrar.media/fr/services/publicite-digitale): campagnes, diffusion, lecture de performance.
+- [Sites web](https://adrar.media/fr/services/web): conception et développement de sites.
+
+## Réalisations
+
+- [Toutes les études de cas](https://adrar.media/fr/realisations): projets publiés avec l'accord du client concerné, chiffres sourcés depuis les plateformes elles-mêmes.
+
+## À propos
+
+- [À propos](https://adrar.media/fr/a-propos)
+- [Méthode](https://adrar.media/fr/methode)
+- [Contact](https://adrar.media/fr/contact)
+
+## Langues
+
+Le site est disponible en français (/fr), anglais (/en) et arabe (/ar), avec des URL entièrement traduites par langue.
