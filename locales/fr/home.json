@@ -94,13 +94,25 @@
         "Production et montage de contenus vidéo"
       ],
       "disclosure": "Il s'agit d'un accompagnement social media en formule gratuite. Le site décrit le périmètre de travail sans publier de donnée sensible, de témoignage bénéficiaire ou de résultat non validé."
+    },
+    "zenori": {
+      "summary": "Campagne de notoriété de deux semaines pour un café haut de gamme.",
+      "context": "Zenori Café disposait d'un lieu déjà abouti visuellement, à Azrou, mais sans dispositif de contenu pour le faire connaître au-delà de sa clientèle de passage.",
+      "approach": "Adrar Media a conçu une campagne narrative de 14 jours reliant des carrousels d'accroche à des capsules vidéo qui y répondent, tournées en conditions réelles dans le café.",
+      "deliverables": [
+        "8 carrousels et 6 capsules vidéo thématiques",
+        "Direction artistique alignée sur l'identité existante du café",
+        "Tournage en boutique et copywriting bilingue français / darija"
+      ],
+      "disclosure": "La campagne vient d'être produite et mise en diffusion : aucun résultat d'audience n'est publié tant qu'une mesure vérifiée n'est pas disponible."
     }
   },
   "industry": {
     "hardware": "Bricolage & outillage",
     "barbershop": "Coiffure & esthétique",
     "pending": "Secteur à confirmer",
-    "association": "Association & action sociale"
+    "association": "Association & action sociale",
+    "cafe": "Café & restauration"
   },
   "results": {
     "eyebrow": "Résultats",

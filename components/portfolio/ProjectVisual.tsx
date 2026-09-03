@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface ProjectVisualProps {
@@ -5,6 +6,9 @@ interface ProjectVisualProps {
   /** Étiquette affichée tant qu'aucun visuel validé n'est disponible. */
   pendingLabel: string;
   ratio: string;
+  /** Logo client réel, fourni par la direction. Absent tant que non confirmé. */
+  logoSrc?: string;
+  logoAlt?: string;
   className?: string;
 }
 
@@ -32,6 +36,8 @@ export function ProjectVisual({
   client,
   pendingLabel,
   ratio,
+  logoSrc,
+  logoAlt,
   className,
 }: ProjectVisualProps) {
   return (
@@ -65,6 +71,23 @@ export function ProjectVisual({
       <span className="absolute bottom-4 start-4 z-10 text-caption text-white/70 transition-colors duration-slow ease-brand group-hover:text-white">
         {pendingLabel}
       </span>
+
+      {/*
+        Logo client — vignette réelle fournie par la direction. Posée en
+        vis-à-vis de l'étiquette, elle ne remplace pas la composition
+        typographique : elle l'authentifie.
+      */}
+      {logoSrc && (
+        <span className="absolute bottom-4 end-4 z-10 h-11 w-11 overflow-hidden rounded-full border border-white/25 bg-black/20 shadow-sm transition-transform duration-slow ease-brand group-hover:-translate-y-1.5">
+          <Image
+            src={logoSrc}
+            alt={logoAlt ?? client}
+            fill
+            sizes="44px"
+            className="object-cover"
+          />
+        </span>
+      )}
 
       {/* Écho de la ligne d'horizon du logo, en filigrane. */}
       <svg

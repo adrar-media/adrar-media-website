@@ -103,6 +103,8 @@ export default async function ProjectPage({
               client={project.client}
               pendingLabel={home("work.visualPending")}
               ratio="16/9"
+              logoSrc={project.logo?.src}
+              logoAlt={project.logo?.alt}
             />
           </Block>
 

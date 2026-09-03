@@ -94,13 +94,25 @@
         "Video production and editing"
       ],
       "disclosure": "This is a free-plan social media collaboration. The site describes the scope without publishing sensitive data, beneficiary testimonials or unverified results."
+    },
+    "zenori": {
+      "summary": "Two-week awareness campaign for a premium café.",
+      "context": "Zenori Café had a visually accomplished space in Azrou, but no content system to make it known beyond its walk-in customers.",
+      "approach": "Adrar Media designed a 14-day narrative campaign pairing hook carousels with video capsules that answer them, filmed on location at the cafe.",
+      "deliverables": [
+        "8 carousels and 6 themed video capsules",
+        "Art direction aligned with the cafe's existing identity",
+        "On-site filming and bilingual French / darija copywriting"
+      ],
+      "disclosure": "The campaign has just been produced and put into distribution: no audience result is published until a verified measurement is available."
     }
   },
   "industry": {
     "hardware": "Hardware & tools",
     "barbershop": "Barbershop & beauty",
     "pending": "Sector to be confirmed",
-    "association": "Association & social impact"
+    "association": "Association & social impact",
+    "cafe": "Café & hospitality"
   },
   "results": {
     "eyebrow": "Results",

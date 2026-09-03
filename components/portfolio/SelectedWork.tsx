@@ -60,6 +60,8 @@ export async function SelectedWork({ locale }: { locale: Locale }) {
                     client={project.client}
                     pendingLabel={t("work.visualPending")}
                     ratio={layout.ratio}
+                    logoSrc={project.logo?.src}
+                    logoAlt={project.logo?.alt}
                   />
 
                   <Block>

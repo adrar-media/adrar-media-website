@@ -63,6 +63,8 @@ export interface Project {
     disclosure: string;
   };
   cover?: MediaAsset;
+  /** Logo client reel, affiche en complement du cadre typographique. */
+  logo?: MediaAsset;
   featured: boolean;
 }
 
