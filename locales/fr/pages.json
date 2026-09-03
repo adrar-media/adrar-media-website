@@ -471,6 +471,9 @@
     "othersTitle": "Les autres expertises",
     "ctaTitle": "Ce service correspond à votre besoin ?",
     "ctaBody": "Demandez un devis : vous recevrez un périmètre chiffré, pas une plaquette.",
-    "viewLabel": "Voir le détail"
+    "viewLabel": "Voir le détail",
+    "proofEyebrow": "Réalisation liée",
+    "proofTitle": "Une preuve concrète de ce savoir-faire",
+    "proofLink": "Voir la réalisation"
   }
 }

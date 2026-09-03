@@ -471,6 +471,9 @@
     "othersTitle": "The other services",
     "ctaTitle": "Does this service match your need?",
     "ctaBody": "Request a quote and you will get a scoped estimate, not a brochure.",
-    "viewLabel": "See the detail"
+    "viewLabel": "See the detail",
+    "proofEyebrow": "Related work",
+    "proofTitle": "A concrete example of this expertise",
+    "proofLink": "View the project"
   }
 }

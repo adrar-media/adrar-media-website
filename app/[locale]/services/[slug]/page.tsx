@@ -8,6 +8,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, serviceSchema } from "@/lib/seo/structured-data";
 import { services } from "@/data/services";
+import { projects } from "@/data/projects";
 import { SectionImage } from "@/components/media/SectionImage";
 import { serviceImagery } from "@/data/imagery";
 import { Container } from "@/components/ui/Container";
@@ -16,6 +17,7 @@ import { Button } from "@/components/buttons/Button";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { CTASection } from "@/components/layout/CTASection";
 import { MobileServiceCTA } from "@/components/services/MobileServiceCTA";
+import { ProjectVisual } from "@/components/portfolio/ProjectVisual";
 
 /**
  * Une route dynamique plutôt que sept dossiers.
@@ -77,8 +79,12 @@ export default async function ServiceDetailPage({
   const t = await getTranslator(typedLocale, "pages");
   const s = await getTranslator(typedLocale, "services");
   const c = await getTranslator(typedLocale, "common");
+  const home = await getTranslator(typedLocale, "home");
 
   const others = services.filter((entry) => entry.slug !== service.slug);
+  const relatedProject = projects.find((project) =>
+    project.services.includes(service.key),
+  );
 
   return (
     <>
@@ -168,6 +174,45 @@ export default async function ServiceDetailPage({
           </div>
         </Container>
       </section>
+
+      {relatedProject && (
+        <section className="border-b border-canvas-gray py-section">
+          <Container>
+            <Block>
+              <p className="eyebrow text-atlas">{t("serviceDetail.proofEyebrow")}</p>
+              <h2 className="mt-4 text-h3 text-ink">
+                {t("serviceDetail.proofTitle")}
+              </h2>
+            </Block>
+            <Block className="mt-10 grid gap-8 md:grid-cols-12 md:items-end">
+              <div className="md:col-span-5">
+                <ProjectVisual
+                  client={relatedProject.client}
+                  pendingLabel={home("work.visualPending")}
+                  ratio="16/10"
+                  logoSrc={relatedProject.logo?.src}
+                  logoAlt={relatedProject.logo?.alt}
+                />
+              </div>
+              <div className="md:col-span-6 md:col-start-7">
+                <p className="text-caption text-atlas">{relatedProject.client}</p>
+                <p className="mt-4 max-w-prose text-body-lg text-anthracite/75">
+                  {home(relatedProject.summary)}
+                </p>
+                <p className="mt-8">
+                  <Button
+                    href={`${href(typedLocale, "realisations")}/${relatedProject.slug}`}
+                    variant="link"
+                    arrow
+                  >
+                    {t("serviceDetail.proofLink")}
+                  </Button>
+                </p>
+              </div>
+            </Block>
+          </Container>
+        </section>
+      )}
 
       <section className="py-section">
         <Container>
