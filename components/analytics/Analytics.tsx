@@ -22,6 +22,18 @@ export function Analytics() {
   const { ga4, metaPixel, tiktokPixel } = analyticsIds;
 
   useEffect(() => {
+    const onEmailClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const link = target.closest<HTMLAnchorElement>("a[href]");
+      if (!link) return;
+
+      const href = (link.getAttribute("href") ?? "").trim().toLowerCase();
+      if (href.startsWith("mailto:")) {
+        trackEvent("email_click", { page_path: window.location.pathname });
+      }
+    };
+
     const onClick = (event: MouseEvent) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
@@ -34,15 +46,17 @@ export function Analytics() {
         trackEvent("whatsapp_click", { page_path });
       } else if (href.startsWith("tel:")) {
         trackEvent("phone_click", { page_path });
-      } else if (href.startsWith("mailto:")) {
-        trackEvent("email_click", { page_path });
       } else if (href.includes("/demander-un-devis") || href.includes("/request-a-quote")) {
         trackEvent("quote_cta_click", { page_path });
       }
     };
 
+    document.addEventListener("click", onEmailClick, true);
     document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    return () => {
+      document.removeEventListener("click", onEmailClick, true);
+      document.removeEventListener("click", onClick);
+    };
   }, []);
 
   return (
