@@ -474,6 +474,13 @@
     "viewLabel": "عرض التفاصيل",
     "proofEyebrow": "عمل ذو صلة",
     "proofTitle": "مثال ملموس على هذه الخبرة",
-    "proofLink": "اطّلع على المشروع"
+    "proofLink": "اطّلع على المشروع",
+    "buyingEyebrow": "قبل أن نبدأ",
+    "buyingTitle": "معلومات مفيدة لاتخاذ القرار",
+    "forWhoLabel": "لمن؟",
+    "processLabel": "مراحل العمل",
+    "deliverablesLabel": "المخرجات الدقيقة",
+    "timelineLabel": "المدة التقريبية",
+    "timelineBody": "تُحدَّد بعد النقاش، وفق نطاق العمل المتفق عليه."
   }
 }

@@ -474,6 +474,13 @@
     "viewLabel": "See the detail",
     "proofEyebrow": "Related work",
     "proofTitle": "A concrete example of this expertise",
-    "proofLink": "View the project"
+    "proofLink": "View the project",
+    "buyingEyebrow": "Before we start",
+    "buyingTitle": "Useful context for your decision",
+    "forWhoLabel": "Who is it for?",
+    "processLabel": "How it works",
+    "deliverablesLabel": "Specific deliverables",
+    "timelineLabel": "Indicative timeline",
+    "timelineBody": "Set after discussion, based on the agreed scope."
   }
 }

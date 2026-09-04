@@ -474,6 +474,13 @@
     "viewLabel": "Voir le détail",
     "proofEyebrow": "Réalisation liée",
     "proofTitle": "Une preuve concrète de ce savoir-faire",
-    "proofLink": "Voir la réalisation"
+    "proofLink": "Voir la réalisation",
+    "buyingEyebrow": "Avant de commencer",
+    "buyingTitle": "Les repères utiles pour décider",
+    "forWhoLabel": "Pour qui ?",
+    "processLabel": "Déroulement",
+    "deliverablesLabel": "Livrables précis",
+    "timelineLabel": "Délai indicatif",
+    "timelineBody": "Défini après échange, selon le périmètre validé."
   }
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { isLocale, locales, type Locale } from "@/config/i18n";
+import { isLocale, localeNames, locales, type Locale } from "@/config/i18n";
 import { getTranslator } from "@/lib/i18n/dictionaries";
 import { href } from "@/lib/i18n/routing";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -18,6 +18,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { CTASection } from "@/components/layout/CTASection";
 import { MobileServiceCTA } from "@/components/services/MobileServiceCTA";
 import { ProjectVisual } from "@/components/portfolio/ProjectVisual";
+import { whatsappLink } from "@/config/site";
 
 /**
  * Une route dynamique plutôt que sept dossiers.
@@ -85,6 +86,8 @@ export default async function ServiceDetailPage({
   const relatedProject = projects.find((project) =>
     project.services.includes(service.key),
   );
+  const whatsappMessage = `${c("cta.whatsappMessage.language")}: ${localeNames[typedLocale]}\n${c("cta.whatsappMessage.service")}: ${c(service.nameKey)}`;
+  const whatsapp = whatsappLink(whatsappMessage);
 
   return (
     <>
@@ -170,6 +173,68 @@ export default async function ServiceDetailPage({
               <p className="mt-10 text-small text-anthracite/70">
                 {s("detailNote")}
               </p>
+            </Block>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-canvas-gray py-section">
+        <Container>
+          <div className="grid gap-10 md:grid-cols-12 md:gap-grid">
+            <Block className="md:col-span-4">
+              <p className="eyebrow text-atlas">{t("serviceDetail.buyingEyebrow")}</p>
+              <h2 className="mt-4 text-h3 text-ink">
+                {t("serviceDetail.buyingTitle")}
+              </h2>
+            </Block>
+            <Block className="grid gap-8 md:col-span-7 md:col-start-6 sm:grid-cols-2">
+              <div>
+                <h3 className="text-caption text-anthracite/70">
+                  {t("serviceDetail.forWhoLabel")}
+                </h3>
+                <p className="mt-3 text-body text-anthracite/80">
+                  {s(`items.${service.key}.summary`)}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-caption text-anthracite/70">
+                  {t("serviceDetail.processLabel")}
+                </h3>
+                <p className="mt-3 text-body text-anthracite/80">
+                  {t("serviceDetail.timelineBody")}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-caption text-anthracite/70">
+                  {t("serviceDetail.deliverablesLabel")}
+                </h3>
+                <ul className="mt-3 grid gap-2 text-body text-anthracite/80">
+                  {s.list(`items.${service.key}.scope`).map((entry) => (
+                    <li key={entry} className="flex gap-3">
+                      <span aria-hidden className="text-atlas">✓</span>
+                      {entry}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-caption text-anthracite/70">
+                  {t("serviceDetail.timelineLabel")}
+                </h3>
+                <p className="mt-3 text-body text-anthracite/80">
+                  {s("detailNote")}
+                </p>
+              </div>
+              <div className="sm:col-span-2 flex flex-wrap gap-3 pt-2">
+                <Button href={href(typedLocale, "demander-un-devis")} variant="invert" arrow>
+                  {c("cta.quote")}
+                </Button>
+                {whatsapp && (
+                  <Button href={whatsapp} external variant="secondary">
+                    {c("cta.whatsapp")}
+                  </Button>
+                )}
+              </div>
             </Block>
           </div>
         </Container>
