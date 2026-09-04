@@ -73,7 +73,7 @@ export function MountainRange() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-x-0 bottom-0 h-[72%] overflow-hidden"
+      className="pointer-events-none absolute inset-x-0 bottom-0 h-[72%] overflow-x-clip overflow-y-hidden"
     >
       {ridges.map((ridge) => (
         <Ridge key={ridge.duration} {...ridge} />

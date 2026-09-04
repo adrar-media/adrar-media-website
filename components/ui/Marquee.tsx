@@ -37,7 +37,7 @@ export function Marquee({ items, className, separator = "•" }: MarqueeProps) {
 
   return (
     <div
-      className={cn("marquee group relative overflow-hidden py-6", className)}
+      className={cn("marquee group relative overflow-x-clip overflow-y-hidden py-6", className)}
       // La bande est décorative dans son ensemble : on ne veut pas qu'un
       // lecteur d'écran annonce un défilement, seulement la liste de mots.
       role="group"
