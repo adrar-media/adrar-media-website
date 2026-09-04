@@ -99,6 +99,7 @@ const INTRO_TIMESCALE = 2;
  * lecteur d'écran traverse la page normalement pendant que le voile est là.
  */
 export function Preloader() {
+  // Le wrapper DesktopPreloader garantit que ce composant n'est jamais importé sur mobile.
   const root = useRef<HTMLDivElement>(null);
   const count = useRef<HTMLSpanElement>(null);
   const rule = useRef<HTMLSpanElement>(null);

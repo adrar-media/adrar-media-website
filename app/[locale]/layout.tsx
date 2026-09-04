@@ -11,7 +11,7 @@ import { Consent } from "@/components/consent/Consent";
 import { DEFAULT_THEME, themeScript } from "@/lib/theme";
 import { Cursor } from "@/components/cursor/Cursor";
 import { ScrollMotion } from "@/components/motion/ScrollMotion";
-import { Preloader } from "@/components/motion/Preloader";
+import { DesktopPreloader } from "@/components/motion/DesktopPreloader";
 import { cn } from "@/lib/utils";
 import "../globals.css";
 
@@ -271,7 +271,7 @@ export default async function LocaleLayout({
           entièrement présent dans le HTML servi : ni le référencement ni les
           lecteurs d'écran ne voient de page vide.
         */}
-        {preloaderEnabled && <Preloader />}
+        {preloaderEnabled && <DesktopPreloader />}
 
         {/*
           Curseur personnalisé. Monté en tête de corps pour que ses deux nœuds
