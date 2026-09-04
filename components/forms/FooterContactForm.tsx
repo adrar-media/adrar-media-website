@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useId, useState, useTransition } from "react";
 import type { Locale } from "@/config/i18n";
 import type { QuoteResult } from "@/lib/leads/types";
+import { trackEvent } from "@/lib/analytics/events";
 import { Button } from "@/components/buttons/Button";
 import { cn } from "@/lib/utils";
 
@@ -191,6 +192,9 @@ export function FooterContactForm({
       }
 
       if (result.status === "sent") {
+        trackEvent("contact_form_submit", {
+          page_path: window.location.pathname,
+        });
         setPhase("sent");
         return;
       }

@@ -4,6 +4,7 @@ import { useId, useMemo, useRef, useState, useTransition } from "react";
 import type { Locale } from "@/config/i18n";
 import { href } from "@/lib/i18n/routing";
 import type { QuoteResult } from "@/lib/leads/types";
+import { trackEvent } from "@/lib/analytics/events";
 import { Button } from "@/components/buttons/Button";
 import { cn } from "@/lib/utils";
 
@@ -281,6 +282,9 @@ export function QuoteForm({
       switch (result.status) {
         case "sent":
           setNotice(null);
+          trackEvent("quote_form_submit", {
+            page_path: window.location.pathname,
+          });
           setPhase("sent");
           requestAnimationFrame(() => sentRef.current?.focus());
           return;

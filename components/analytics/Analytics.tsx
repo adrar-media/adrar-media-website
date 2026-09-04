@@ -1,7 +1,9 @@
 "use client";
 
 import Script from "next/script";
+import { useEffect } from "react";
 import { analyticsIds } from "@/lib/analytics/config";
+import { trackEvent } from "@/lib/analytics/events";
 
 /**
  * SCRIPTS DE MESURE
@@ -18,6 +20,30 @@ import { analyticsIds } from "@/lib/analytics/config";
  */
 export function Analytics() {
   const { ga4, metaPixel, tiktokPixel } = analyticsIds;
+
+  useEffect(() => {
+    const onClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const link = target.closest<HTMLAnchorElement>("a[href]");
+      if (!link) return;
+
+      const href = link.getAttribute("href") ?? "";
+      const page_path = window.location.pathname;
+      if (href.startsWith("https://wa.me/")) {
+        trackEvent("whatsapp_click", { page_path });
+      } else if (href.startsWith("tel:")) {
+        trackEvent("phone_click", { page_path });
+      } else if (href.startsWith("mailto:")) {
+        trackEvent("email_click", { page_path });
+      } else if (href.includes("/demander-un-devis") || href.includes("/request-a-quote")) {
+        trackEvent("quote_cta_click", { page_path });
+      }
+    };
+
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
 
   return (
     <>
