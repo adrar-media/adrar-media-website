@@ -354,6 +354,9 @@ export default async function AboutPage({
                   <Button href="/fr/kenitra" variant="secondary" size="md">
                     {t("about.areasLinkKenitraLabel")}
                   </Button>
+                  <Button href="/fr/azrou-ifrane" variant="secondary" size="md">
+                    {t("about.areasLinkAzrouLabel")}
+                  </Button>
                 </div>
               </Block>
             </div>

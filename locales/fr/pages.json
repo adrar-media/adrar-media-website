@@ -263,7 +263,8 @@
     "areasBody": "Adrar Media est basée à Azrou, dans le Moyen Atlas. Notre équipe se déplace directement dans les villes de la région pour les tournages, les prises de vue et les rendez-vous qui le nécessitent — notamment à Fès, à Meknès et à Kénitra.",
     "areasLinkFesLabel": "Voir notre présence à Fès",
     "areasLinkMeknesLabel": "Voir notre présence à Meknès",
-    "areasLinkKenitraLabel": "Voir notre présence à Kénitra"
+    "areasLinkKenitraLabel": "Voir notre présence à Kénitra",
+    "areasLinkAzrouLabel": "Voir notre présence à Azrou / Ifrane"
   },
   "solutions": {
     "meta": {
@@ -662,5 +663,86 @@
     ],
     "ctaTitle": "Votre projet à Kénitra commence ici",
     "ctaBody": "Décrivez votre commerce ou votre entreprise : nous vous montrons concrètement comment nous pouvons reproduire, pour vous, ce qui a fonctionné pour Bricodi Pro."
+  },
+  "azrouIfrane": {
+    "meta": {
+      "title": "Agence Marketing Digital à Azrou",
+      "description": "Adrar Media est basée à Azrou. Découvrez nos réalisations locales — The Big Family, Zenori Café, Wlidatna — et notre accompagnement pour Azrou et Ifrane."
+    },
+    "eyebrow": "Notre siège",
+    "titleLines": [
+      "L'agence marketing digital",
+      "basée à Azrou"
+    ],
+    "intro": "Adrar Media n'intervient pas à Azrou : elle y est installée. Notre siège se trouve à Azrou, dans le Moyen Atlas, et c'est depuis là que nous accompagnons des commerces, cafés, écoles, associations et PME d'Azrou et d'Ifrane — ainsi que des entreprises plus loin dans la région. Cette page présente nos réalisations sur place et ce que nous pouvons faire pour une nouvelle entreprise de la zone.",
+    "proximityTitle": "Azrou et Ifrane, notre région, pas seulement notre zone d'intervention",
+    "proximityBody": "Azrou et Ifrane forment un même bassin économique, à quelques minutes l'une de l'autre dans le Moyen Atlas — entre forêts de cèdres, tourisme de montagne et vie commerçante locale. Nous connaissons cette zone de l'intérieur, pas depuis un bureau à Casablanca ou Rabat : c'est là que se trouve notre équipe, et c'est là que nous avons mené nos premiers projets.",
+    "workTitle": "Nos réalisations à Azrou",
+    "workIntro": "Trois projets réels, avec trois niveaux de preuve différents — nous ne présentons rien au-delà de ce que chaque étude de cas publie déjà.",
+    "works": [
+      {
+        "client": "The Big Family",
+        "type": "Salon de coiffure",
+        "verified": "Gestion réseaux sociaux, direction visuelle, contenu. Formule gratuite ; aucun résultat chiffré publié tant qu'une mesure vérifiée et un accord de publication ne sont pas disponibles.",
+        "slug": "the-big-family"
+      },
+      {
+        "client": "Zenori Café",
+        "type": "Café haut de gamme",
+        "verified": "Campagne de notoriété de 2 semaines produite (8 carrousels, 6 vidéos). Diffusion en cours ; aucun résultat d'audience publié tant qu'une mesure vérifiée n'est pas disponible.",
+        "slug": "zenori-cafe"
+      },
+      {
+        "client": "Wlidatna",
+        "type": "Association",
+        "verified": "Communication sociale et production de contenu. Aucune donnée sensible ni témoignage bénéficiaire publié.",
+        "slug": "wlidatna"
+      }
+    ],
+    "offerTitle": "Ce que nous pouvons faire pour Azrou et Ifrane",
+    "offerIntro": "La zone Azrou-Ifrane réunit des besoins très concrets, que nos trois projets locaux illustrent déjà en partie :",
+    "sectors": [
+      {
+        "title": "Commerces, cafés et restaurants",
+        "body": "Comme pour Zenori Café : une identité de marque cohérente, du contenu régulier et une présence qui donne envie de pousser la porte, dans une zone où le bouche-à-oreille reste fort mais où la présence en ligne fait désormais la différence."
+      },
+      {
+        "title": "Tourisme et hébergement à Ifrane",
+        "body": "Ifrane vit en grande partie du tourisme de montagne et de son image singulière au Maroc. Les hébergements et activités touristiques de la ville ont besoin d'un contenu qui montre réellement ce cadre — nature, saisons, vie étudiante autour de l'université Al Akhawayn — plutôt qu'une communication générique."
+      },
+      {
+        "title": "Écoles et associations",
+        "body": "Comme pour Wlidatna, une association ou un établissement local a besoin d'une communication claire et respectueuse, pensée pour ses bénéficiaires et ses soutiens autant que pour sa visibilité. Nous n'avons pas encore accompagné d'école à Azrou ou Ifrane, mais l'approche serait la même que celle appliquée à Wlidatna."
+      },
+      {
+        "title": "PME locales",
+        "body": "Au-delà du commerce et du service, plusieurs petites entreprises d'Azrou et d'Ifrane ont besoin d'une première présence digitale structurée — un compte professionnel, un site simple, une régularité de publication — avant d'envisager une stratégie plus large."
+      }
+    ],
+    "whyTitle": "Pourquoi une agence installée sur place change les choses",
+    "whyBody": "Un tournage, une prise de vue ou un rendez-vous ne dépendent d'aucun déplacement depuis une autre région : notre équipe est déjà sur place. C'est une différence concrète avec certaines agences qui affichent une présence à Azrou sans y être réellement installées — nous préférons que cette page reste vérifiable : notre adresse, nos coordonnées et nos réalisations locales sont publiques.",
+    "whyLinkLabel": "Voir notre adresse et nos coordonnées",
+    "faqTitle": "Questions fréquentes",
+    "faq": [
+      {
+        "question": "Votre agence est-elle vraiment basée à Azrou ?",
+        "answer": "Oui. Notre siège, notre adresse et notre équipe sont à Azrou — informations publiques et vérifiables, pas une simple zone de couverture commerciale."
+      },
+      {
+        "question": "Avec qui avez-vous déjà travaillé à Azrou ?",
+        "answer": "The Big Family (salon de coiffure), Zenori Café et Wlidatna (association). Chaque projet est détaillé dans nos réalisations, avec son niveau de preuve réel."
+      },
+      {
+        "question": "Travaillez-vous aussi avec des écoles ou des associations ?",
+        "answer": "Oui, comme le montre notre accompagnement de Wlidatna. Nous n'avons pas encore travaillé avec un établissement scolaire à Azrou, mais la méthode serait la même."
+      },
+      {
+        "question": "Intervenez-vous aussi à Ifrane ?",
+        "answer": "Oui, Ifrane fait partie de notre zone d'implantation directe, à quelques minutes de notre siège."
+      }
+    ],
+    "ctaTitle": "Passez nous voir à Azrou",
+    "ctaBody": "Nous sommes sur place : décrivez votre commerce, votre café, votre école ou votre association, et rencontrons-nous pour en parler concrètement.",
+    "worksLinkLabel": "Voir l'étude de cas"
   }
 }

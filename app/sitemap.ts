@@ -104,6 +104,11 @@ const singleLocaleEntries: MetadataRoute.Sitemap = [
     priority: 0.6,
     changeFrequency: "monthly",
   },
+  {
+    url: absoluteUrl("/fr/azrou-ifrane"),
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
