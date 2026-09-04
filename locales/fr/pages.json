@@ -745,5 +745,101 @@
     "ctaTitle": "Passez nous voir à Azrou",
     "ctaBody": "Nous sommes sur place : décrivez votre commerce, votre café, votre école ou votre association, et rencontrons-nous pour en parler concrètement.",
     "worksLinkLabel": "Voir l'étude de cas"
+  },
+  "tarifCommunityManagement": {
+    "meta": {
+      "title": "Tarif Community Management au Maroc en 2026",
+      "description": "Combien coûte un community manager au Maroc en 2026 ? Prix freelance et agence sourcés, facteurs qui font varier le tarif, et points à vérifier avant de choisir."
+    },
+    "category": "Tarifs & prix",
+    "title": "Tarif community management au Maroc en 2026 : combien prévoir ?",
+    "intro": "Le tarif d'un community manager au Maroc dépend surtout de qui le pratique — freelance ou agence — et de ce qui est réellement inclus dans la prestation. Cet article rassemble des prix publiquement affichés par des prestataires marocains en 2026, et explique ce qui explique les écarts.",
+    "section1Title": "Pourquoi il n'existe pas un tarif unique",
+    "section1Body": "En préparant cet article, nous avons consulté une dizaine de sites d'agences et de freelances marocains proposant du community management. Constat net : la majorité d'entre eux n'affichent aucun prix public et renvoient vers un devis personnalisé — notamment Energiedin, Pluginex ou MENA Digital Agency, trois agences consultées pour cet article.",
+    "section2Title": "Community manager freelance",
+    "section2Body": "Un community manager freelance basé au Maroc (Saad Ait Ouali) publie des formules mensuelles allant d'environ 100 € à 300 € par mois selon le nombre de réseaux et de publications, avec une offre à 400 €/mois pour un forfait plus complet (16 à 20 publications, 2-3 réseaux).",
+    "freelanceTable": [
+      {
+        "formule": "Entrée",
+        "prix": "≈ 100 €/mois",
+        "contenu": "2 réseaux, 12 publications/mois"
+      },
+      {
+        "formule": "Complète",
+        "prix": "≈ 300-400 €/mois",
+        "contenu": "3-4 réseaux, 20-30 publications/mois, Ads séparé"
+      }
+    ],
+    "freelanceTableNote": "Conversion à titre indicatif (≈10,8 MAD pour 1 €).",
+    "section3Title": "Agence de community management",
+    "section3Body": "Un seul prestataire consulté affiche un prix de départ public : Hooked Digital (Casablanca) annonce « à partir de 7 000 MAD par mois », en précisant que ce chiffre varie selon le besoin. Les autres agences (Energiedin, Pluginex, MENA Digital Agency) ne publient pas de montant. Pluginex structure ses offres en trois formules (Essentiel/Business/Premium) définies par nombre de réseaux et de publications, sans prix affiché.",
+    "section4Title": "Ce qui fait varier le prix",
+    "section4Items": [
+      "Nombre de réseaux gérés",
+      "Fréquence de publication (4 posts/semaine en entrée, jusqu'à 15-20 en formule complète)",
+      "Création de contenu ou simple publication",
+      "Publicité (Ads) incluse ou facturée à part — la quasi-totalité des sources la facturent séparément"
+    ],
+    "section5Title": "Ce qu'il faut vérifier avant de choisir un prestataire",
+    "section5Items": [
+      "Le prix inclut-il la création de contenu ou seulement la publication ?",
+      "Combien de réseaux et de publications par semaine sont couverts ?",
+      "Le budget publicitaire est-il compris ou à part ?",
+      "Un reporting est-il fourni, à quelle fréquence ?",
+      "Le prestataire peut-il montrer des exemples réels de contenu produit pour un client ?"
+    ],
+    "section6Title": "Notre positionnement chez Adrar Media",
+    "section6Body": "Adrar Media ne publie pas de grille tarifaire fixe : chaque devis dépend du nombre de réseaux, du volume de contenu et de la présence ou non de publicité digitale, comme pour les prestataires cités plus haut. Nous pouvons montrer des exemples réels, notamment le travail mené pour Bricodi Pro à Kénitra, avec un résultat chiffré et sourcé plutôt qu'une promesse.",
+    "section6KenitraLinkLabel": "Voir le projet Bricodi Pro à Kénitra",
+    "faqTitle": "Questions fréquentes",
+    "faq": [
+      {
+        "question": "Quel est le tarif moyen d'un community manager au Maroc ?",
+        "answer": "Pas de moyenne fiable publiquement vérifiable : la majorité des prestataires ne publient pas de prix fixe. Les seuls chiffres publics vont d'environ 100 €/mois (freelance, entrée) à partir de 7 000 MAD/mois (agence)."
+      },
+      {
+        "question": "Un freelance est-il toujours moins cher qu'une agence ?",
+        "answer": "Généralement oui pour une prestation équivalente, mais une agence mutualise souvent plusieurs compétences qu'un freelance facture parfois séparément."
+      },
+      {
+        "question": "Le budget publicitaire est-il inclus dans le tarif de community management ?",
+        "answer": "Non, dans la quasi-totalité des offres consultées. Le forfait de gestion et le budget publicitaire sont facturés séparément."
+      },
+      {
+        "question": "Pourquoi Adrar Media n'affiche pas de prix fixe ?",
+        "answer": "Pour la même raison que la plupart des prestataires cités : le prix dépend du nombre de réseaux, du volume de contenu et de la publicité. Nous préférons un devis sur mesure."
+      }
+    ],
+    "ctaTitle": "Parlons de votre besoin en community management",
+    "ctaBody": "Décrivez votre activité et vos objectifs : nous vous proposons un devis adapté, sans prix générique ni engagement.",
+    "ctaServiceLabel": "Voir le service Social Media Management",
+    "sourcesTitle": "Sources utilisées",
+    "sources": [
+      {
+        "name": "Hooked Digital",
+        "url": "https://hookeddigital.net/community-management-casablanca-prix-et-prestations-2026/",
+        "note": "seul prix agence public : « à partir de 7 000 MAD/mois »"
+      },
+      {
+        "name": "Saad Ait Ouali",
+        "url": "https://aitouali.com/community-manager-freelance/",
+        "note": "formules 100-400 €/mois"
+      },
+      {
+        "name": "Pluginex",
+        "url": "https://pluginex.ma/community-management-maroc/",
+        "note": "structure de formules, pas de prix public"
+      },
+      {
+        "name": "Energiedin",
+        "url": "https://www.energiedin.com/tarif-community-management-maroc/",
+        "note": "page tarif, pas de prix public"
+      },
+      {
+        "name": "MENA Digital Agency",
+        "url": "https://www.menadigitalagency.com/agence/community-management/maroc/casablanca/",
+        "note": "pas de prix public"
+      }
+    ]
   }
 }

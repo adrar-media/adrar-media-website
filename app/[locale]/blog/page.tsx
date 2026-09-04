@@ -88,6 +88,31 @@ export default async function BlogPage({
                   </Block>
                 );
               })}
+              {typedLocale === "fr" && (
+                <Block delay={articles.length * 80}>
+                  <article className="card-sweep flex h-full flex-col rounded-lg border border-anthracite/[0.12] bg-canvas-raised p-7 md:p-8">
+                    <p className="text-caption text-atlas">
+                      {t("tarifCommunityManagement.category")}
+                    </p>
+                    <h2 className="mt-4 text-h4 text-ink">
+                      {t("tarifCommunityManagement.title")}
+                    </h2>
+                    <p className="mt-4 flex-1 text-small text-anthracite/80">
+                      {t("tarifCommunityManagement.meta.description")}
+                    </p>
+                    <p className="mt-6 text-caption text-anthracite/70">
+                      5 {t("blog.readingMinutes")}
+                    </p>
+                    <Link
+                      href="/fr/blog/tarif-community-management-maroc"
+                      className="group mt-6 inline-flex items-center gap-2 text-button text-atlas hover:text-atlas-dark"
+                    >
+                      {t("blog.readArticle")}
+                      <span aria-hidden className="arrow-nudge">→</span>
+                    </Link>
+                  </article>
+                </Block>
+              )}
             </div>
           ) : (
             <Block className="card-sweep max-w-prose rounded-lg border border-anthracite/[0.12] bg-canvas-raised p-10 md:p-14">

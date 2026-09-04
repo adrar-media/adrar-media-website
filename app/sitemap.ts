@@ -109,6 +109,11 @@ const singleLocaleEntries: MetadataRoute.Sitemap = [
     priority: 0.6,
     changeFrequency: "monthly",
   },
+  {
+    url: absoluteUrl("/fr/blog/tarif-community-management-maroc"),
+    priority: 0.7,
+    changeFrequency: "monthly",
+  },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
