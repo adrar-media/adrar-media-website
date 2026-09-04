@@ -260,8 +260,9 @@
     "ctaTitle": "Le reste se discute de vive voix.",
     "ctaBody": "Décrivez-nous votre situation : nous vous dirons franchement si nous sommes les bons interlocuteurs.",
     "areasTitle": "Zones desservies",
-    "areasBody": "Adrar Media est basée à Azrou, dans le Moyen Atlas. Notre équipe se déplace directement dans les villes proches de notre siège pour les tournages, les prises de vue et les rendez-vous qui le nécessitent — notamment à Fès, à moins d'une heure de route.",
-    "areasLinkLabel": "Voir notre présence à Fès"
+    "areasBody": "Adrar Media est basée à Azrou, dans le Moyen Atlas. Notre équipe se déplace directement dans les villes de la région pour les tournages, les prises de vue et les rendez-vous qui le nécessitent — notamment à Fès et à Meknès.",
+    "areasLinkFesLabel": "Voir notre présence à Fès",
+    "areasLinkMeknesLabel": "Voir notre présence à Meknès"
   },
   "solutions": {
     "meta": {
@@ -542,5 +543,66 @@
     ],
     "ctaTitle": "Discutons de votre projet à Fès",
     "ctaBody": "Décrivez votre activité et vos besoins : nous vous répondons avec une organisation de travail concrète, adaptée à une entreprise basée à Fès."
+  },
+  "meknes": {
+    "meta": {
+      "title": "Agence Marketing Digital à Meknès",
+      "description": "Adrar Media accompagne les entreprises, domaines et coopératives de la région de Meknès en marketing digital, contenu et publicité, depuis le Moyen Atlas."
+    },
+    "eyebrow": "Zone d'intervention",
+    "titleLines": [
+      "Agence marketing digital",
+      "pour les entreprises de Meknès"
+    ],
+    "intro": "Adrar Media est une agence de marketing et communication digitale basée à Azrou, dans le Moyen Atlas — la même région rurale et agricole qui borde Meknès. Nous accompagnons des entreprises marocaines en stratégie marketing, réseaux sociaux, création de contenu, production audiovisuelle, publicité digitale, branding et sites web. Cette page explique ce que nous pouvons apporter à une activité basée à Meknès, et où nous en sommes réellement aujourd'hui dans la région.",
+    "proximityTitle": "Une agence ancrée dans la même région agricole que Meknès",
+    "proximityBody": "Meknès est entourée de terres cultivées, de coopératives et de domaines qui font vivre une bonne partie de la région — la même géographie que celle où se trouve notre siège, à Azrou. Nous connaissons ce terrain parce que nous y sommes installés, pas parce que nous l'avons étudié depuis Casablanca ou Rabat, où sont basées la plupart des agences marketing marocaines.",
+    "offerTitle": "Ce que nous pouvons faire pour une activité de la région de Meknès",
+    "offerIntro": "La région de Meknès rassemble des besoins marketing très différents les uns des autres. Voici les quatre profils que nous rencontrons le plus souvent :",
+    "sectors": [
+      {
+        "title": "Agro-industrie et coopératives agricoles",
+        "body": "Une coopérative ou une unité de transformation agricole a rarement besoin d'une campagne spectaculaire — elle a besoin d'une présence en ligne crédible face à des acheteurs professionnels, de contenu qui montre la production et la qualité, et d'une publicité digitale ciblée quand il s'agit d'ouvrir de nouveaux marchés."
+      },
+      {
+        "title": "Domaines viticoles et producteurs",
+        "body": "La région de Meknès compte parmi les plus anciennes zones viticoles du Maroc. Pour un domaine, l'enjeu est souvent de raconter un terroir et un savoir-faire à un public exigeant : photographie du domaine et des vendanges, identité visuelle de l'étiquette à la communication, et présence digitale pensée pour la vente directe comme pour la distribution."
+      },
+      {
+        "title": "Tourisme impérial et patrimoine",
+        "body": "Meknès est l'une des villes impériales du Maroc, à proximité immédiate de Volubilis et de Moulay Idriss Zerhoun. Les établissements touristiques de la région ont besoin d'un contenu qui valorise ce patrimoine sans le réduire à une carte postale : vidéos, réseaux sociaux et un site qui donne une raison concrète de s'arrêter à Meknès plutôt que de la traverser en route vers Fès."
+      },
+      {
+        "title": "PME et commerces locaux",
+        "body": "Une majorité des entreprises de Meknès sont des PME et des commerces qui n'ont pas besoin d'un dispositif complexe, mais d'une présence sociale régulière, d'une identité visuelle claire et, pour certaines, d'un premier site web fonctionnel. C'est le socle sur lequel nous construisons ensuite, si le besoin grandit."
+      }
+    ],
+    "disclosureTitle": "Notre transparence sur Meknès.",
+    "disclosureBody": "Nous n'avons pas, à ce jour, de client basé à Meknès. Nous préférons l'écrire clairement plutôt que de le laisser supposer par une formulation vague. Ce que nous pouvons montrer, ce sont nos réalisations vérifiées dans la région du Moyen Atlas et à Kénitra, avec la même méthode que celle que nous proposerions ici. Si votre entreprise devient la première de la région à travailler avec nous, cette page sera mise à jour avec votre accord.",
+    "howTitle": "Comment nous organisons le travail depuis Azrou",
+    "howBody": "Un premier échange pour comprendre votre activité et votre marché, un déplacement sur place à Meknès pour les prises de vue, les visites de domaine ou de site de production qui le nécessitent, puis la production et le suivi assurés depuis Azrou. La proximité avec le siège rend ces allers-retours simples, sans les délais d'une agence basée à plusieurs heures de route.",
+    "proofTitle": "Nos réalisations dans la région",
+    "proofBody": "Les projets les plus proches géographiquement sont ceux de Bricodi Pro à Kénitra et de nos clients basés à Azrou (The Big Family, Zenori Café, Wlidatna). Chaque étude de cas indique la source exacte de ses résultats, sans chiffre estimé — la même exigence s'appliquerait à un projet mené à Meknès.",
+    "faqTitle": "Questions fréquentes",
+    "faq": [
+      {
+        "question": "Intervenez-vous à Meknès sans y être installés ?",
+        "answer": "Oui. Notre siège est à Azrou, dans la même région que Meknès. Nous nous déplaçons directement pour les visites de terrain, tournages et rendez-vous qui le nécessitent."
+      },
+      {
+        "question": "Avez-vous déjà un client à Meknès ?",
+        "answer": "Pas à ce jour. Nous le disons sans détour. Nos réalisations vérifiées se trouvent actuellement à Kénitra et à Azrou."
+      },
+      {
+        "question": "Quels services recommandez-vous pour un domaine viticole ou une coopérative agricole ?",
+        "answer": "Le plus souvent création de contenu (photo/vidéo de production) et publicité digitale pour toucher des acheteurs professionnels ou de nouveaux marchés ; branding quand une marque de produit doit être construite ou clarifiée."
+      },
+      {
+        "question": "Comment se passe une prise de contact pour un projet à Meknès ?",
+        "answer": "Via le formulaire de demande de devis ou par téléphone. Nous cadrons votre activité avant de proposer une organisation de travail adaptée à Meknès."
+      }
+    ],
+    "ctaTitle": "Parlons de votre activité à Meknès",
+    "ctaBody": "Décrivez votre entreprise, votre domaine ou votre commerce : nous revenons vers vous avec une organisation de travail concrète, adaptée à votre localisation."
   }
 }
