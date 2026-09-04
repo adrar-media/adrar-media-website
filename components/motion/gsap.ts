@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import { SplitText } from "gsap/SplitText";
-import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { useGSAP } from "@gsap/react";
 
 /**
@@ -33,7 +32,7 @@ import { useGSAP } from "@gsap/react";
  * à héberger à part. Ils portent les deux mouvements signature du site : la
  * découpe des titres et le tracé du logo à l'écran de chargement.
  */
-gsap.registerPlugin(useGSAP, ScrollTrigger, CustomEase, SplitText, DrawSVGPlugin);
+gsap.registerPlugin(useGSAP, ScrollTrigger, CustomEase, SplitText);
 
 /** Révélations et déplacements de masse. */
 export const EASE_BRAND = CustomEase.create("brand", "0.22, 1, 0.36, 1");
@@ -91,4 +90,4 @@ export const REVEAL_START = "top 90%";
  */
 export const HEADLINE_START = "top 82%";
 
-export { gsap, ScrollTrigger, SplitText, DrawSVGPlugin, useGSAP };
+export { gsap, ScrollTrigger, SplitText, useGSAP };

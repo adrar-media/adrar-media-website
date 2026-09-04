@@ -95,34 +95,45 @@ export function HeaderField({ variant, className }: HeaderFieldProps) {
       mm.add(
         "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
         () => {
-          const intro = gsap.timeline({ paused: true });
-          intro.fromTo(
-            shapes,
-            { drawSVG: "50% 50%" },
-            {
-              drawSVG: "0% 100%",
-              duration: 1.4,
-              ease: EASE_ENTRANCE,
-              stagger: 0.1,
-            },
-          );
+          let cancelled = false;
+          let intro: ReturnType<typeof gsap.timeline> | undefined;
+          let drifts: ReturnType<typeof gsap.to>[] = [];
+          let unsubscribe = () => {};
 
-          const drifts = Array.from(floaters).map((layer, index) =>
-            gsap.to(layer, {
-              y: index % 2 === 0 ? -14 : 10,
-              duration: 7 + index * 2,
-              ease: "sine.inOut",
-              repeat: -1,
-              yoyo: true,
-              delay: 1 + index * 0.4,
-            }),
-          );
+          void import("gsap/DrawSVGPlugin").then(({ DrawSVGPlugin }) => {
+            if (cancelled) return;
+            gsap.registerPlugin(DrawSVGPlugin);
 
-          const unsubscribe = whenPreloaderDone(() => intro.play());
+            intro = gsap.timeline({ paused: true });
+            intro.fromTo(
+              shapes,
+              { drawSVG: "50% 50%" },
+              {
+                drawSVG: "0% 100%",
+                duration: 1.4,
+                ease: EASE_ENTRANCE,
+                stagger: 0.1,
+              },
+            );
+
+            drifts = Array.from(floaters).map((layer, index) =>
+              gsap.to(layer, {
+                y: index % 2 === 0 ? -14 : 10,
+                duration: 7 + index * 2,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
+                delay: 1 + index * 0.4,
+              }),
+            );
+
+            unsubscribe = whenPreloaderDone(() => intro?.play());
+          });
 
           return () => {
+            cancelled = true;
             unsubscribe();
-            intro.kill();
+            intro?.kill();
             drifts.forEach((drift) => drift.kill());
           };
         },
