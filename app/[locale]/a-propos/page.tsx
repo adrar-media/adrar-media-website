@@ -344,9 +344,12 @@ export default async function AboutPage({
                 <p className="max-w-prose text-body-lg text-anthracite/80">
                   {t("about.areasBody")}
                 </p>
-                <div className="mt-8">
+                <div className="mt-8 flex flex-wrap gap-3">
                   <Button href="/fr/fes" variant="secondary" size="md">
-                    {t("about.areasLinkLabel")}
+                    {t("about.areasLinkFesLabel")}
+                  </Button>
+                  <Button href="/fr/meknes" variant="secondary" size="md">
+                    {t("about.areasLinkMeknesLabel")}
                   </Button>
                 </div>
               </Block>
