@@ -1,0 +1,5 @@
+/fonts/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/projects/zenori-cafe/videos/*.mp4
+  Cache-Control: public, max-age=31536000, immutable
