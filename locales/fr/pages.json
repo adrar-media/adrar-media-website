@@ -482,5 +482,62 @@
     "deliverablesLabel": "Livrables précis",
     "timelineLabel": "Délai indicatif",
     "timelineBody": "Défini après échange, selon le périmètre validé."
+  },
+  "fes": {
+    "meta": {
+      "title": "Agence Marketing Digital à Fès",
+      "description": "Adrar Media accompagne les entreprises de la région de Fès en stratégie marketing, réseaux sociaux, contenu et création de site web, depuis le Moyen Atlas."
+    },
+    "eyebrow": "Zone d'intervention",
+    "titleLines": [
+      "Agence marketing digital",
+      "pour les entreprises de Fès"
+    ],
+    "intro": "Adrar Media est une agence de marketing et communication digitale basée à Azrou, dans le Moyen Atlas — à moins d'une heure de route de Fès. Nous accompagnons des entreprises marocaines en stratégie marketing, réseaux sociaux, création de contenu, production audiovisuelle, publicité digitale, branding et sites web. Cette page explique concrètement comment nous pouvons travailler avec une entreprise fassie, et où nous en sommes aujourd'hui dans la région.",
+    "proximityTitle": "Une agence du Moyen Atlas, à moins d'une heure de Fès",
+    "proximityBody": "Fès ne fait pas partie des grands pôles où se concentrent la plupart des agences marketing marocaines — Casablanca et Rabat. Adrar Media est basée à Azrou, dans une zone géographiquement proche de Fès et de Meknès, avec une équipe qui se déplace directement sur place pour les tournages, les prises de vue et les rendez-vous qui le nécessitent. Nous ne travaillons pas Fès à distance depuis une autre région du pays : c'est une zone que nous couvrons parce qu'elle est proche de notre siège.",
+    "offerTitle": "Ce que nous pouvons faire pour une entreprise fassie",
+    "offerIntro": "Fès a une économie particulière, différente de celle d'une ville comme Kénitra ou d'une petite ville comme Azrou. Trois types d'activités reviennent souvent dans les besoins marketing que nous observons dans la région :",
+    "sectors": [
+      {
+        "title": "Artisanat et savoir-faire traditionnel",
+        "body": "Poterie, cuir, zellige, tissage : les entreprises artisanales fassies ont souvent besoin de montrer un savoir-faire avant de vendre un produit. Cela passe par de la photographie et de la vidéo qui documentent réellement le geste et l'atelier, une identité visuelle qui respecte l'héritage de la marque sans la figer dans une imagerie touristique générique, et une présence en ligne pensée pour un client final qui n'est pas toujours au Maroc."
+      },
+      {
+        "title": "Riads, maisons d'hôtes et hébergement touristique",
+        "body": "Pour un riad ou une maison d'hôtes, la décision d'achat se joue presque entièrement sur l'image : photos, vidéos courtes, présence Instagram, et un site qui donne confiance avant la réservation. C'est un travail de création de contenu et de gestion de réseaux sociaux au long cours, pas une campagne ponctuelle."
+      },
+      {
+        "title": "Écoles, instituts et enseignement privé",
+        "body": "Les établissements d'enseignement privé à Fès ont un besoin différent : une communication qui s'adresse à la fois aux parents et aux étudiants, un calendrier de publication qui suit l'année scolaire, et une stratégie de contenu qui installe la confiance sur la durée plutôt qu'une publicité ponctuelle."
+      }
+    ],
+    "disclosureTitle": "Notre transparence sur Fès.",
+    "disclosureBody": "Nous n'avons pas, à ce jour, de client basé à Fès. Nous préférons le dire clairement plutôt que de laisser une formulation ambiguë le suggérer. Ce que nous pouvons montrer, ce sont nos réalisations vérifiées dans la région du Moyen Atlas et à Kénitra — la méthode de travail que nous y avons appliquée est la même que celle que nous proposerions à Fès. Si vous êtes la première entreprise fassie à travailler avec nous, cette page sera mise à jour avec votre projet, avec votre accord.",
+    "howTitle": "Comment nous travaillons avec vous depuis Azrou",
+    "howBody": "Premier échange à distance ou par téléphone pour cadrer le besoin, déplacement sur place à Fès pour les prises de vue, les tournages ou les rendez-vous qui le nécessitent, puis suivi et production à distance. La proximité géographique avec Azrou rend ces déplacements simples à organiser, sans les délais ni les coûts d'une agence basée à Casablanca ou à l'étranger.",
+    "proofTitle": "Ce que nos clients de la région nous confient",
+    "proofBody": "Nos études de cas les plus proches géographiquement sont celles de Bricodi Pro à Kénitra et de nos clients basés à Azrou (The Big Family, Zenori Café, Wlidatna). Chacune indique la source exacte de ses résultats — aucun chiffre n'y est estimé ou arrondi. C'est la même exigence que nous appliquerions à un projet à Fès.",
+    "faqTitle": "Questions fréquentes",
+    "faq": [
+      {
+        "question": "Travaillez-vous avec des entreprises à Fès si vous n'êtes pas installés sur place ?",
+        "answer": "Oui. Notre siège est à Azrou, à moins d'une heure de route de Fès. Nous nous déplaçons directement pour les tournages, les prises de vue et les rendez-vous qui le nécessitent."
+      },
+      {
+        "question": "Avez-vous déjà accompagné une entreprise à Fès ?",
+        "answer": "Pas encore à ce jour. Nous le disons clairement plutôt que de le suggérer. Nos réalisations vérifiées se trouvent actuellement à Kénitra et à Azrou."
+      },
+      {
+        "question": "Quels services proposez-vous pour l'artisanat ou le tourisme à Fès ?",
+        "answer": "Principalement la création de contenu (photo et vidéo), la gestion de réseaux sociaux et, selon le besoin, la création d'un site web ou une identité visuelle."
+      },
+      {
+        "question": "Comment se déroule une première prise de contact ?",
+        "answer": "Par le formulaire de demande de devis ou par téléphone. Nous cadrons le besoin avant de proposer une organisation de travail adaptée à votre localisation."
+      }
+    ],
+    "ctaTitle": "Discutons de votre projet à Fès",
+    "ctaBody": "Décrivez votre activité et vos besoins : nous vous répondons avec une organisation de travail concrète, adaptée à une entreprise basée à Fès."
   }
 }
