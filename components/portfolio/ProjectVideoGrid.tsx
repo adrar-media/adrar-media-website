@@ -1,3 +1,6 @@
+"use client";
+
+import { useCallback, useEffect, useRef } from "react";
 import type { ProjectVideo } from "@/types";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -27,21 +30,55 @@ export function ProjectVideoGrid({ items, label }: ProjectVideoGridProps) {
               className="relative overflow-hidden rounded-md bg-surface"
               style={{ aspectRatio: "9 / 16" }}
             >
-              <video
-                src={item.src}
-                poster={item.poster}
-                controls
-                preload="metadata"
-                playsInline
-                className="absolute inset-0 h-full w-full object-cover"
-              >
-                <track kind="captions" />
-              </video>
+              <LazyVideo item={item} />
             </div>
             <p className="mt-3 text-small text-anthracite/70">{item.label}</p>
           </Reveal>
         ))}
       </div>
     </div>
+  );
+}
+
+function LazyVideo({ item }: { item: ProjectVideo }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  const loadSource = useCallback(() => {
+    const video = ref.current;
+    if (!video || video.src) return;
+    video.src = item.src;
+    video.load();
+  }, [item.src]);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          loadSource();
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px" },
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [loadSource]);
+
+  return (
+    <video
+      ref={ref}
+      poster={item.poster}
+      controls
+      preload="none"
+      playsInline
+      onPointerDown={loadSource}
+      className="absolute inset-0 h-full w-full object-cover"
+    >
+      <track kind="captions" />
+    </video>
   );
 }
