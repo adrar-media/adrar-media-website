@@ -4,6 +4,7 @@ import { useId, useMemo, useRef, useState, useTransition } from "react";
 import type { Locale } from "@/config/i18n";
 import { href } from "@/lib/i18n/routing";
 import type { QuoteResult } from "@/lib/leads/types";
+import { isValidPhone } from "@/lib/leads/validate";
 import { trackEvent } from "@/lib/analytics/events";
 import { Button } from "@/components/buttons/Button";
 import { cn } from "@/lib/utils";
@@ -36,6 +37,7 @@ export interface QuoteFormLabels {
   errors: {
     name: string;
     email: string;
+    phone: string;
     contact: string;
     message: string;
     consent: string;
@@ -77,7 +79,7 @@ interface QuoteFormProps {
 }
 
 type Errors = Partial<
-  Record<"name" | "email" | "contact" | "message" | "consent", string>
+  Record<"name" | "email" | "phone" | "contact" | "message" | "consent", string>
 >;
 
 const fieldBase =
@@ -196,8 +198,12 @@ export function QuoteForm({
     // On n'exige pas les deux : un numéro suffit à rappeler quelqu'un.
     if (!values.email.trim() && !values.phone.trim()) {
       next.contact = labels.errors.contact;
-    } else if (values.email.trim() && !/^\S+@\S+\.\S{2,}$/.test(values.email)) {
+    }
+    if (values.email.trim() && !/^\S+@\S+\.\S{2,}$/.test(values.email)) {
       next.email = labels.errors.email;
+    }
+    if (values.phone.trim() && !isValidPhone(values.phone)) {
+      next.phone = labels.errors.phone;
     }
     return next;
   };
@@ -230,6 +236,7 @@ export function QuoteForm({
       ...current,
       name: found.name,
       email: found.email,
+      phone: found.phone,
       contact: found.contact,
     }));
     if (Object.keys(found).length > 0) {
@@ -294,6 +301,7 @@ export function QuoteForm({
           const serverErrors: Errors = {};
           if (result.errors.name) serverErrors.name = labels.errors.name;
           if (result.errors.email) serverErrors.email = labels.errors.email;
+          if (result.errors.phone) serverErrors.phone = labels.errors.phone;
           if (result.errors.contact) serverErrors.contact = labels.errors.contact;
           if (result.errors.message) serverErrors.message = labels.errors.message;
           if (result.errors.consent) serverErrors.consent = labels.errors.consent;
@@ -554,6 +562,7 @@ export function QuoteForm({
             id={`${id}-phone`}
             field="phone"
             label={labels.phone}
+            error={errors.phone}
           >
             <input
               id={`${id}-phone`}
@@ -565,14 +574,17 @@ export function QuoteForm({
               dir="ltr"
               value={values.phone}
               onChange={set("phone")}
-              aria-invalid={Boolean(errors.contact)}
+              aria-invalid={Boolean(errors.phone)}
               aria-describedby={[
                 `${id}-contact-requirement`,
-                errors.contact ? `${id}-email-error` : null,
+                errors.phone ? `${id}-phone-error` : null,
               ]
                 .filter(Boolean)
                 .join(" ")}
-              className={cn(fieldBase, "border-anthracite/15")}
+              className={cn(
+                fieldBase,
+                errors.phone ? "border-red-600" : "border-anthracite/15",
+              )}
             />
           </Field>
         </div>

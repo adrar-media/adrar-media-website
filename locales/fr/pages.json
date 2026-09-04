@@ -49,6 +49,7 @@
       "errors": {
         "name": "Indiquez le nom sous lequel vous souhaitez être appelé.",
         "email": "Cette adresse e-mail semble incomplète.",
+        "phone": "Indiquez un numéro marocain valide, par exemple 06 63 07 05 61 ou +212 663 07 05 61.",
         "contact": "Laissez au moins un e-mail ou un téléphone, sans quoi nous ne pourrons pas répondre.",
         "message": "Décrivez votre projet en quelques mots, même brièvement.",
         "consent": "Votre accord est nécessaire pour transmettre cette demande."

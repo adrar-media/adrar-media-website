@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface FooterContactSectionProps {
   contactHref: string;
@@ -17,8 +18,21 @@ export function FooterContactSection({
   children,
 }: FooterContactSectionProps) {
   const pathname = usePathname();
+  const [hidden, setHidden] = useState(false);
 
-  if (normalizePath(pathname) === normalizePath(contactHref)) return null;
+  /*
+   * `usePathname()` peut voir le segment interne après le middleware (notamment
+   * /ar/contact pour l'URL publique /ar/tawasul) pendant le rendu serveur.
+   * Le navigateur hydrate pourtant avec l'URL publique. Décider du rendu
+   * pendant le render produisait donc deux arbres différents et React #418.
+   * Le premier rendu reste identique, puis l'effet masque le doublon après
+   * l'hydratation avec le pathname réellement visible par le visiteur.
+   */
+  useEffect(() => {
+    setHidden(normalizePath(pathname) === normalizePath(contactHref));
+  }, [pathname, contactHref]);
+
+  if (hidden) return null;
 
   return children;
 }

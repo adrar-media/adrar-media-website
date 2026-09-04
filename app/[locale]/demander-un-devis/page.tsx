@@ -85,6 +85,7 @@ export default async function QuotePage({
     errors: {
       name: t("quote.form.errors.name"),
       email: t("quote.form.errors.email"),
+      phone: t("quote.form.errors.phone"),
       contact: t("quote.form.errors.contact"),
       message: t("quote.form.errors.message"),
       consent: t("quote.form.errors.consent"),

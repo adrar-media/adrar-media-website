@@ -49,6 +49,7 @@
       "errors": {
         "name": "Tell us what to call you.",
         "email": "This email address looks incomplete.",
+        "phone": "Enter a valid Moroccan number, for example 06 63 07 05 61 or +212 663 07 05 61.",
         "contact": "Leave at least an email or a phone number, otherwise we cannot reply.",
         "message": "Describe your project in a few words, however briefly.",
         "consent": "Your consent is required to send this request."

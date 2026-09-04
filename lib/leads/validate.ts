@@ -7,6 +7,12 @@ const clamp = (value: unknown, max: number): string =>
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+/** Formats marocains locaux (05/06/07) et internationaux (+212/00212). */
+const PHONE = /^(?:0[5-7]\d{8}|(?:\+212|00212)[5-7]\d{8})$/;
+
+export const isValidPhone = (value: string): boolean =>
+  PHONE.test(value.trim().replace(/[\s().-]/g, ""));
+
 /**
  * Nettoyage et validation côté serveur.
  *
@@ -53,7 +59,8 @@ export function parseQuote(input: unknown): {
   if (data.name.length < 2) errors.name = true;
   // Un numéro suffit à rappeler quelqu'un : on n'exige pas les deux canaux.
   if (!data.email && !data.phone) errors.contact = true;
-  else if (data.email && !EMAIL.test(data.email)) errors.email = true;
+  if (data.email && !EMAIL.test(data.email)) errors.email = true;
+  if (data.phone && !isValidPhone(data.phone)) errors.phone = true;
   if (data.message.length < 10) errors.message = true;
   if (!data.consent) errors.consent = true;
 

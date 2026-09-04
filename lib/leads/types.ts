@@ -41,6 +41,7 @@ export interface LeadRequestContext {
 export type QuoteFieldError =
   | "name"
   | "email"
+  | "phone"
   | "contact"
   | "message"
   | "consent";

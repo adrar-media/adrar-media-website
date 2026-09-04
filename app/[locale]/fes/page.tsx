@@ -43,11 +43,22 @@ export async function generateMetadata({
 
   const t = await getTranslator("fr", "pages");
   const url = absoluteUrl("/fr/fes");
+  const image = absoluteUrl("/images/sections/contact-azrou.webp");
+  const title = t("fes.meta.title");
+  const description = t("fes.meta.description");
 
   return {
-    title: t("fes.meta.title"),
-    description: t("fes.meta.description"),
+    title,
+    description,
     alternates: url ? { canonical: url } : undefined,
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "website",
+      locale: "fr_FR",
+      images: image ? [{ url: image }] : undefined,
+    },
   };
 }
 
