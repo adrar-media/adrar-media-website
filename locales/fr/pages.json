@@ -260,9 +260,10 @@
     "ctaTitle": "Le reste se discute de vive voix.",
     "ctaBody": "Décrivez-nous votre situation : nous vous dirons franchement si nous sommes les bons interlocuteurs.",
     "areasTitle": "Zones desservies",
-    "areasBody": "Adrar Media est basée à Azrou, dans le Moyen Atlas. Notre équipe se déplace directement dans les villes de la région pour les tournages, les prises de vue et les rendez-vous qui le nécessitent — notamment à Fès et à Meknès.",
+    "areasBody": "Adrar Media est basée à Azrou, dans le Moyen Atlas. Notre équipe se déplace directement dans les villes de la région pour les tournages, les prises de vue et les rendez-vous qui le nécessitent — notamment à Fès, à Meknès et à Kénitra.",
     "areasLinkFesLabel": "Voir notre présence à Fès",
-    "areasLinkMeknesLabel": "Voir notre présence à Meknès"
+    "areasLinkMeknesLabel": "Voir notre présence à Meknès",
+    "areasLinkKenitraLabel": "Voir notre présence à Kénitra"
   },
   "solutions": {
     "meta": {
@@ -604,5 +605,62 @@
     ],
     "ctaTitle": "Parlons de votre activité à Meknès",
     "ctaBody": "Décrivez votre entreprise, votre domaine ou votre commerce : nous revenons vers vous avec une organisation de travail concrète, adaptée à votre localisation."
+  },
+  "kenitra": {
+    "meta": {
+      "title": "Agence Marketing Digital à Kénitra",
+      "description": "Adrar Media accompagne les commerces et PME de Kénitra en marketing digital — découvrez le lancement digital de Bricodi Pro, notre premier projet sur place."
+    },
+    "eyebrow": "Zone d'intervention",
+    "titleLines": [
+      "Agence marketing digital",
+      "pour les entreprises de Kénitra"
+    ],
+    "intro": "Adrar Media est une agence de marketing et communication digitale basée à Azrou. Kénitra fait partie des premières villes où nous avons mené un projet complet en dehors de notre siège — avec Bricodi Pro, une droguerie-quincaillerie du quartier Bir Rami. Cette page présente ce projet tel qu'il a été réalisé, et ce que nous pouvons apporter à d'autres commerces et PME de Kénitra.",
+    "proximityTitle": "Kénitra, l'un de nos premiers projets hors d'Azrou",
+    "proximityBody": "Avant Bricodi Pro, l'essentiel de notre activité se concentrait autour d'Azrou. Ce projet a été l'occasion de construire une présence digitale complète pour un commerce qui partait de zéro — sans compte Instagram, sans fiche Google Maps, sans aucun contenu photo ou vidéo. C'est ce travail, avec ses résultats réels, qui sert de référence pour tout commerce de Kénitra qui se trouve dans une situation comparable.",
+    "proofBoxTitle": "Bricodi Pro — notre preuve à Kénitra",
+    "proofBoxBody": "Droguerie, bricolage et outillage — Bir Rami, Kénitra. Adrar Media a construit l'intégralité de la présence digitale du commerce : création et animation du compte Instagram, référencement sur Google Maps, identité visuelle et production de contenu (photo, vidéo, lancement produit, témoignages clients).",
+    "proofBoxSourceNote": "Aucun taux d'engagement, volume de prospects ou chiffre commercial n'est extrapolé au-delà de cette donnée vérifiée.",
+    "proofBoxLinkLabel": "Voir l'étude de cas complète",
+    "offerTitle": "Ce que nous pouvons faire pour une entreprise de Kénitra",
+    "offerIntro": "Kénitra a un tissu économique varié — commerce de proximité, industrie et logistique portées par la zone franche, et un centre urbain en expansion. Trois profils reviennent le plus souvent :",
+    "sectors": [
+      {
+        "title": "Commerces de proximité et quincailleries",
+        "body": "Le cas Bricodi Pro est directement transposable : un commerce de quartier qui a besoin d'exister en ligne pour être trouvé, comparé et choisi avant même que le client pousse la porte. Compte Instagram, fiche Google Maps et contenu photo/vidéo réguliers en sont le socle."
+      },
+      {
+        "title": "PME industrielles et logistiques",
+        "body": "La présence d'une zone franche atlantique et d'un tissu industriel (notamment automobile) autour de Kénitra crée des besoins différents : une présence professionnelle en ligne face à des partenaires B2B, du contenu qui présente l'activité avec sérieux, et une stratégie de marque cohérente plutôt qu'une simple visibilité locale."
+      },
+      {
+        "title": "Retail et commerce urbain",
+        "body": "Pour un commerce en centre-ville ou en zone commerciale, l'enjeu est souvent la régularité : publier, répondre, entretenir une communauté sur la durée — exactement le travail engagé avec Bricodi Pro depuis son lancement."
+      }
+    ],
+    "howTitle": "Comment nous travaillons avec vous depuis Azrou",
+    "howBody": "Un premier échange pour cadrer votre activité, un déplacement sur place à Kénitra pour les prises de vue et le lancement, puis une gestion et une production continues. C'est exactement l'organisation qui a été mise en place pour Bricodi Pro, et qui reste disponible pour toute nouvelle entreprise de la ville.",
+    "faqTitle": "Questions fréquentes",
+    "faq": [
+      {
+        "question": "Avez-vous déjà travaillé avec une entreprise à Kénitra ?",
+        "answer": "Oui. Bricodi Pro, une droguerie-quincaillerie du quartier Bir Rami, dont la présence digitale a été construite entièrement par Adrar Media."
+      },
+      {
+        "question": "Quels résultats avez-vous obtenus pour Bricodi Pro ?",
+        "answer": "516K+ vues générées sur Facebook durant la phase de lancement, chiffre vérifié dans Meta Business Suite. Nous ne publions aucun résultat que nous ne pouvons pas sourcer."
+      },
+      {
+        "question": "Quels services recommandez-vous pour un commerce ou une PME à Kénitra ?",
+        "answer": "Le plus souvent gestion des réseaux sociaux et publicité digitale pour le commerce de proximité ; branding et création de contenu pour les PME industrielles qui doivent professionnaliser leur image."
+      },
+      {
+        "question": "Comment se passe une prise de contact pour un projet à Kénitra ?",
+        "answer": "Via le formulaire de demande de devis ou par téléphone. Nous nous appuyons sur ce qui a fonctionné pour Bricodi Pro pour cadrer rapidement votre projet."
+      }
+    ],
+    "ctaTitle": "Votre projet à Kénitra commence ici",
+    "ctaBody": "Décrivez votre commerce ou votre entreprise : nous vous montrons concrètement comment nous pouvons reproduire, pour vous, ce qui a fonctionné pour Bricodi Pro."
   }
 }
