@@ -258,7 +258,10 @@
     "teamIntro": "Une équipe de trois personnes, réunie sous un même toit : Yassine pilote l'agence, Nabil anime les communautés et Zineb construit les univers graphiques.",
     "teamPending": "Les présentations de l'équipe seront publiées ici une fois les portraits et les intitulés validés. Nous préférons cette page vide à des profils approximatifs.",
     "ctaTitle": "Le reste se discute de vive voix.",
-    "ctaBody": "Décrivez-nous votre situation : nous vous dirons franchement si nous sommes les bons interlocuteurs."
+    "ctaBody": "Décrivez-nous votre situation : nous vous dirons franchement si nous sommes les bons interlocuteurs.",
+    "areasTitle": "Zones desservies",
+    "areasBody": "Adrar Media est basée à Azrou, dans le Moyen Atlas. Notre équipe se déplace directement dans les villes proches de notre siège pour les tournages, les prises de vue et les rendez-vous qui le nécessitent — notamment à Fès, à moins d'une heure de route.",
+    "areasLinkLabel": "Voir notre présence à Fès"
   },
   "solutions": {
     "meta": {

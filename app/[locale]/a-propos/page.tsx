@@ -13,6 +13,7 @@ import { CTASection } from "@/components/layout/CTASection";
 import { StepGlyph } from "@/components/process/StepGlyph";
 import { TeamChart } from "@/components/team/TeamChart";
 import { HeaderField } from "@/components/decor/HeaderField";
+import { Button } from "@/components/buttons/Button";
 
 export async function generateMetadata({
   params,
@@ -331,6 +332,28 @@ export default async function AboutPage({
           )}
         </Container>
       </section>
+
+      {typedLocale === "fr" && (
+        <section className="border-b border-canvas-gray bg-beige-soft py-section">
+          <Container>
+            <div className="grid gap-12 md:grid-cols-12 md:gap-grid">
+              <Block className="md:col-span-4">
+                <h2 className="text-h3 text-ink">{t("about.areasTitle")}</h2>
+              </Block>
+              <Block delay={100} className="md:col-span-7 md:col-start-6">
+                <p className="max-w-prose text-body-lg text-anthracite/80">
+                  {t("about.areasBody")}
+                </p>
+                <div className="mt-8">
+                  <Button href="/fr/fes" variant="secondary" size="md">
+                    {t("about.areasLinkLabel")}
+                  </Button>
+                </div>
+              </Block>
+            </div>
+          </Container>
+        </section>
+      )}
 
       <CTASection locale={typedLocale} />
     </>

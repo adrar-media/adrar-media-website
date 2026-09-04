@@ -78,10 +78,28 @@ const languagesFor = (entry: Entry) => {
   };
 };
 
+/**
+ * Pages existant dans une seule langue.
+ *
+ * Le systeme ci-dessus part du principe qu'une route existe dans les trois
+ * langues pour construire ses alternates hreflang (languagesFor). Une page
+ * comme /fr/fes n'a pas encore d'equivalent en/ar : la faire passer par ce
+ * systeme aurait genere des entrees /en/fes et /ar/fes qui n'existent pas.
+ * Ces URL sont donc listees a part, sans hreflang et sans lastModified
+ * invente - seulement l'URL, la priorite et la frequence de changement.
+ */
+const singleLocaleEntries: MetadataRoute.Sitemap = [
+  {
+    url: absoluteUrl("/fr/fes"),
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!siteConfig.url) return [];
 
-  return entries.flatMap((entry) =>
+  const multiLocale = entries.flatMap((entry) =>
     locales.map((locale) => ({
       url: absoluteUrl(pagePath(locale, entry.route, entry.slug)),
       ...(entry.lastModified ? { lastModified: entry.lastModified } : {}),
@@ -90,4 +108,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages: languagesFor(entry) },
     })),
   );
+
+  return [...multiLocale, ...singleLocaleEntries];
 }
