@@ -185,7 +185,7 @@ export async function sendQuoteEmail(
       : `[Nouvelle demande de devis] ${name}${company ? ` / ${company}` : ""}`;
 
   try {
-    const { error } = await transport.resend.emails.send({
+    const { data, error } = await transport.resend.emails.send({
       from: transport.from,
       to: [transport.to],
       subject,
@@ -199,8 +199,8 @@ export async function sendQuoteEmail(
       ...(quote.email ? { replyTo: quote.email } : {}),
     });
 
-    if (error) {
-      console.error("[adrar] envoi Resend refusé", { type: error.name });
+    if (error || !data?.id) {
+      console.error("[adrar] envoi Resend non confirmé", { type: error?.name ?? "missing-id" });
       return false;
     }
     return true;

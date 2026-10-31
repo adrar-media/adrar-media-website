@@ -1,4 +1,5 @@
 import type { Project } from "@/types";
+import { isProjectMediaApproved } from "@/config/publication";
 
 /**
  * Projets réels uniquement.
@@ -8,7 +9,7 @@ import type { Project } from "@/types";
  * Aucune image n'est référencée tant que les visuels et l'accord client ne
  * sont pas fournis — les composants rendent alors un cadre typographique.
  */
-export const projects: Project[] = [
+const projectContent: Project[] = [
   {
     slug: "bricodi-pro",
     client: "Bricodi Pro",
@@ -333,5 +334,11 @@ export const projects: Project[] = [
     featured: true,
   },
 ];
+
+export const projects: Project[] = projectContent.map((project) =>
+  isProjectMediaApproved(project.slug)
+    ? project
+    : { ...project, cover: undefined, logo: undefined, gallery: undefined, videos: undefined },
+);
 
 export const featuredProjects = projects.filter((p) => p.featured);

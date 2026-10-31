@@ -24,15 +24,15 @@
  * Ce qui n'est PAS confirmé n'a pas de repli et reste vide — voir `socials` et
  * `location` plus bas.
  */
-const env = (key: string, fallback = ""): string =>
-  process.env[key]?.trim() || fallback;
+const env = (value: string | undefined, fallback = ""): string =>
+  value?.trim() || fallback;
 
 export const siteConfig = {
   name: "Adrar Media",
   tagline: "From Local to Global.",
   description:
     "Nous transformons les marques et entreprises en expériences digitales capables d'attirer, convaincre et convertir.",
-  url: env("NEXT_PUBLIC_SITE_URL", "https://adrar.media"),
+  url: env(process.env.NEXT_PUBLIC_SITE_URL, "https://adrar.media").replace(/\/+$/, ""),
   locale: "fr-MA",
 } as const;
 
@@ -55,11 +55,11 @@ export const siteConfig = {
  */
 export const contact = {
   /** Ligne mobile. */
-  phoneDisplay: env("NEXT_PUBLIC_PHONE_DISPLAY", "06 63 07 05 61"),
-  phoneE164: env("NEXT_PUBLIC_PHONE_E164", "+212663070561"),
+  phoneDisplay: env(process.env.NEXT_PUBLIC_PHONE_DISPLAY, "06 63 07 05 61"),
+  phoneE164: env(process.env.NEXT_PUBLIC_PHONE_E164, "+212663070561"),
   /** Ligne fixe du bureau. */
-  landlineDisplay: env("NEXT_PUBLIC_LANDLINE_DISPLAY", "05 35 56 45 43"),
-  landlineE164: env("NEXT_PUBLIC_LANDLINE_E164", "+212535564543"),
+  landlineDisplay: env(process.env.NEXT_PUBLIC_LANDLINE_DISPLAY, "05 35 56 45 43"),
+  landlineE164: env(process.env.NEXT_PUBLIC_LANDLINE_E164, "+212535564543"),
   /*
    * WhatsApp, confirmé : c'est la ligne mobile ci-dessus.
    *
@@ -68,20 +68,20 @@ export const contact = {
    * page « numéro invalide » au lieu d'ouvrir la conversation. D'où le même
    * numéro écrit une troisième fois, en chiffres nus.
    */
-  whatsapp: env("NEXT_PUBLIC_WHATSAPP_NUMBER", "212663070561"),
+  whatsapp: env(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER, "212663070561"),
   /** Adresse générale. */
-  email: env("NEXT_PUBLIC_CONTACT_EMAIL", "contact@adrar.media"),
+  email: env(process.env.NEXT_PUBLIC_CONTACT_EMAIL, "contact@adrar.media"),
   /**
    * Candidatures. Séparée de l'adresse générale pour que les CV n'atterrissent
    * pas dans la boîte commerciale, où ils se perdent entre deux demandes de
    * devis.
    */
-  emailRecruitment: env("NEXT_PUBLIC_RECRUITMENT_EMAIL", "recrutement@adrar.media"),
+  emailRecruitment: env(process.env.NEXT_PUBLIC_RECRUITMENT_EMAIL, "recrutement@adrar.media"),
   /** Adresse postale affichée. Confirmée par la direction. */
-  location: env("NEXT_PUBLIC_LOCATION", "N° 47, Lot Nakhil 6, Ahadaf, Azrou"),
+  location: env(process.env.NEXT_PUBLIC_LOCATION, "N° 47, Lot Nakhil 6, Ahadaf, Azrou"),
   /** Ville et pays, pour les données structurées. */
-  locality: env("NEXT_PUBLIC_LOCALITY", "Azrou"),
-  country: env("NEXT_PUBLIC_COUNTRY", "MA"),
+  locality: env(process.env.NEXT_PUBLIC_LOCALITY, "Azrou"),
+  country: env(process.env.NEXT_PUBLIC_COUNTRY, "MA"),
   /**
    * Requête envoyée à la carte, si elle diffère du libellé affiché — un nom
    * d'établissement précis place un repère là où une simple ville n'en place
@@ -96,10 +96,10 @@ export const contact = {
    * place tombe juste à la porte. L'adresse reste affichée sous la carte : le
    * visiteur lit une adresse, la carte reçoit un point.
    */
-  mapQuery: env("NEXT_PUBLIC_MAP_QUERY", "33.4538199,-5.2248788"),
+  mapQuery: env(process.env.NEXT_PUBLIC_MAP_QUERY, "33.4538199,-5.2248788"),
   /** Coordonnées séparées, pour le champ `geo` de schema.org. */
-  latitude: env("NEXT_PUBLIC_LATITUDE", "33.4538199"),
-  longitude: env("NEXT_PUBLIC_LONGITUDE", "-5.2248788"),
+  latitude: env(process.env.NEXT_PUBLIC_LATITUDE, "33.4538199"),
+  longitude: env(process.env.NEXT_PUBLIC_LONGITUDE, "-5.2248788"),
 } as const;
 
 /**
@@ -117,15 +117,15 @@ export const socials = [
   {
     key: "instagram",
     label: "Instagram",
-    url: env("NEXT_PUBLIC_INSTAGRAM_URL", "https://www.instagram.com/adrar.media/"),
+    url: env(process.env.NEXT_PUBLIC_INSTAGRAM_URL, "https://www.instagram.com/adrar.media/"),
   },
   {
     key: "linkedin",
     label: "LinkedIn",
-    url: env("NEXT_PUBLIC_LINKEDIN_URL", "https://ma.linkedin.com/company/adrar-media"),
+    url: env(process.env.NEXT_PUBLIC_LINKEDIN_URL, "https://ma.linkedin.com/company/adrar-media"),
   },
-  { key: "facebook", label: "Facebook", url: env("NEXT_PUBLIC_FACEBOOK_URL") },
-  { key: "tiktok", label: "TikTok", url: env("NEXT_PUBLIC_TIKTOK_URL") },
+  { key: "facebook", label: "Facebook", url: env(process.env.NEXT_PUBLIC_FACEBOOK_URL) },
+  { key: "tiktok", label: "TikTok", url: env(process.env.NEXT_PUBLIC_TIKTOK_URL) },
 ] as const;
 
 export type SocialKey = (typeof socials)[number]["key"];

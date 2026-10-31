@@ -107,6 +107,8 @@ export interface Testimonial {
   photo?: MediaAsset;
   /** Un témoignage n'est publié qu'une fois validé par le client. */
   approved: boolean;
+  /** Référence non confidentielle de l'accord écrit obtenu. */
+  approvalReference?: string;
 }
 
 export interface TeamMember {
