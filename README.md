@@ -31,14 +31,14 @@ Aucun fichier extérieur à ce dossier n'est modifié, déplacé ou supprimé. A
 | Framework | Next.js 15 (App Router) | Aligné sur la stack interne Adrar OS |
 | Langage | TypeScript 5.7 (strict) | Fiabilité, maintenabilité |
 | Styles | Tailwind CSS 3.4 | Design system par tokens |
-| Animation | CSS seul | Transitions et révélations en CSS ; aucune librairie d'animation n'a été nécessaire |
+| Animation | CSS + GSAP / @gsap/react | Animations et révélations ; respecter les préférences de mouvement |
 | Backend | **aucun** | Frontend performant > backend massif |
 
 Aucune dépendance supplémentaire ne sera installée sans justification écrite dans ce README.
 
 ### Décisions d'architecture
 
-1. **Pas de backend en V1.** Le formulaire de devis passe par une action serveur Next.js et un appel HTTP au service d'envoi. NestJS/PostgreSQL ne seront introduits que si une fonctionnalité l'exige réellement.
+1. **Pas de backend en V1.** Le formulaire de devis passe par une action serveur Next.js et le SDK Resend côté serveur. NestJS/PostgreSQL ne seront introduits que si une fonctionnalité l'exige réellement.
 2. **Pas de CMS en V1.** Le contenu vit dans `data/` en TypeScript typé. Les types sont calqués sur les entités métier pour qu'un CMS puisse s'y brancher plus tard sans refonte du front.
 3. **Multilingue dès la V1.** Français, anglais et arabe, avec RTL complet et détection du pays. Implémenté sans librairie i18n — voir la section dédiée plus bas.
 4. **Palette de référence.** Le site applique strictement la palette officielle ci-dessous. Adrar OS utilise des valeurs divergentes (`#0F2238`, `#1BA784`, `#3BC9A6`) : c'est un écart connu, à arbitrer côté Adrar OS ultérieurement. Rien n'est modifié dans Adrar OS depuis ce projet.
@@ -128,6 +128,11 @@ Aucune capitale forcée dans l'interface : l'arabe les supporte mal, et le regis
 
 ## Commandes
 
+`npm run verify` exécute lint, typage, tests de configuration et build.
+`npm run smoke:production` démarre le build localement et vérifie les routes,
+canoniques, RTL, erreurs et restrictions de médias. Aucun email réel n’est envoyé.
+Le build refuse automatiquement une configuration de production invalide.
+
 ```bash
 npm install      # installer les dépendances
 npm run dev      # serveur de développement — http://localhost:3100
@@ -187,19 +192,23 @@ Quand une donnée manque, le code porte un marqueur explicite : `CONTENT_REQUIRE
 
 - **Bricodi Pro** — matériaux / outillage. Résultat fourni par la direction : **516K+ vues Facebook pendant la phase de lancement**. Aucune autre métrique (ROI, leads, CA, taux de conversion) ne sera produite pour ce projet.
 
-### Données manquantes bloquantes
+### État de publication (audit du 31 octobre 2026)
 
-| Donnée | Impact |
-|---|---|
-| Téléphone, WhatsApp, email, localisation | Pages Contact, Footer, bouton WhatsApp |
-| URLs réseaux sociaux | Footer, structured data |
-| Nom de domaine de production | `canonical`, `sitemap`, Open Graph, analytics |
-| Statistiques Social Proof (4 chiffres réels) | Section Social Proof de la homepage |
-| Visuels des réalisations + accord client | Portfolio et études de cas |
-| Témoignages validés par les clients | Section Testimonials |
-| Logo au format vectoriel (SVG) | Qualité de rendu et performance |
+| Élément | État réel du dépôt | Décision de lancement |
+|---|---|---|
+| Coordonnées, localisation | Valeurs confirmées déjà présentes dans `config/site.ts` | Tester les liens et confirmer que les canaux sont toujours actifs |
+| Réseaux sociaux | Instagram et LinkedIn renseignés ; Facebook/TikTok absents | Comptes absents masqués |
+| Domaine | `https://adrar.media` par défaut, surchargeable par environnement | Valider le domaine principal et les DNS chez l'hébergeur |
+| Statistiques | Un résultat fourni : 516K+ vues Facebook Bricodi Pro ; quatre statistiques générales absentes | Aucun chiffre ajouté ; Social Proof masqué |
+| Médias clients | Fichiers présents ; aucune référence d'accord écrit enregistrée | Médias masqués et URL fermées jusqu'à inscription dans `config/project-media-approvals.json` |
+| Témoignages | Aucun approuvé | Section masquée ; `approved` et `approvalReference` requis |
+| Logo | PNG officiel utilisé ; SVG de marque auxiliaire disponible | Conserver le PNG ; le SVG officiel complet reste à fournir, ne pas le remplacer par une imitation |
+| Envoi automatique | SDK Resend installé ; secrets non présents dans le dépôt | Configurer les deux variables serveur et tester la réception, ou valider le repli manuel |
+| Analytics / CRM | Facultatifs et désactivés sans identifiants | Peuvent rester désactivés ; aucun identifiant inventé |
 
-Tant que ces éléments ne sont pas fournis, les sections concernées restent des structures vides et éditables — jamais du contenu fictif.
+Le contrôle technique ne constitue pas une validation des droits, des DNS ou de
+la réception email. Suivre la recette et les points encore externes dans
+[DEPLOIEMENT.md](./DEPLOIEMENT.md).
 
 ### Confidentialité
 
@@ -257,11 +266,11 @@ La passerelle est écrite (`lib/leads/adrar-os.ts`) et reste **inactive tant qu'
 ## Formulaire de devis
 
 Chaîne complète : `components/forms/QuoteForm.tsx` →
-`app/[locale]/demander-un-devis/actions.ts` → `lib/leads/`.
+`lib/leads/actions.ts` → `lib/leads/`.
 
 L'action serveur revalide la saisie (`lib/leads/validate.ts`), écarte les
 robots par champ piège, limite le débit par origine (`lib/leads/rate-limit.ts`),
-envoie le message (`lib/leads/email.ts`, appel HTTP direct à Resend) puis
+envoie le message (`lib/leads/email.ts`, SDK Resend côté serveur) puis
 transmet une copie au CRM s'il est configuré (`lib/leads/adrar-os.ts`).
 
 Si aucun service d'envoi n'est configuré, ou s'il échoue, le formulaire ne
@@ -304,8 +313,9 @@ aucune bannière ne s'affiche : il n'y aurait rien à consentir.
 | 17 | Accessibilité (repères, page courante, isolation bidirectionnelle, états d'erreur) | ✅ |
 | 18 | QA (build, typage, lint, parcours navigateur, 404 et pannes) | ✅ |
 
-Reste à faire, hors code : renseigner les valeurs d'environnement et fournir
-le contenu listé plus haut. Voir [DEPLOIEMENT.md](./DEPLOIEMENT.md).
+Reste à faire : valider la configuration réelle chez l’hébergeur, la réception
+des demandes et les contenus nécessitant un accord externe. Les sections sans
+preuve restent masquées. Voir [DEPLOIEMENT.md](./DEPLOIEMENT.md).
 
 ---
 

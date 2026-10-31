@@ -10,4 +10,6 @@ import type { Testimonial } from "@/types";
  */
 export const testimonials: Testimonial[] = [];
 
-export const approvedTestimonials = testimonials.filter((t) => t.approved);
+export const approvedTestimonials = testimonials.filter((t) =>
+  t.approved && t.approvalReference?.trim() && t.quote.trim() && t.author.trim(),
+);

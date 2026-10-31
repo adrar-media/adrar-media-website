@@ -34,17 +34,15 @@ const nextConfig: NextConfig = {
       },
       {
         /*
-         * Empreintes de build dans les noms de fichiers : le contenu ne change
-         * jamais sous une même URL, il peut donc être gardé un an. Next pose
-         * déjà cet en-tête sur /_next/static ; la règle couvre les polices et
-         * les visuels de /public, qui ne l'avaient pas et étaient revalidés à
-         * chaque visite.
+         * Next gère le cache immuable de /_next/static. Les assets de /public
+         * gardent des noms stables : revalidation après une heure pour que le
+         * remplacement du logo ou des visuels soit visible après publication.
          */
         source: "/:path*.(woff2|webp|avif|png|jpg|jpeg|svg|ico|mp4|webm)",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, stale-while-revalidate=86400",
+            value: "public, max-age=3600, must-revalidate",
           },
         ],
       },

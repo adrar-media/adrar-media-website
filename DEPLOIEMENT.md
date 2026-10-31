@@ -1,143 +1,115 @@
-# Mise en ligne — Adrar Media
+# Publication — Adrar Media
 
-Ce document est la marche à suivre complète, du dépôt au domaine. Il ne
-suppose aucune connaissance préalable de l'hébergement.
+## État au 31 octobre 2026
 
----
+Le code contient déjà les coordonnées et la localisation confirmées, Instagram,
+LinkedIn, le domaine `https://adrar.media`, le logo PNG et des médias clients.
+Le README historique ne reflétait pas tous ces ajouts.
 
-## 1. Ce qui doit être décidé avant
+Ne pas confondre présence d'un fichier avec accord de publication. Aucun accord
+client écrit n'est référencé dans le dépôt : les médias sont donc masqués dans
+les pages et fermés par le middleware, y compris via `/_next/image`.
+Les fichiers restent conservés dans le dépôt. Le dépôt GitHub étant public,
+ce filtrage du site ne retire pas les fichiers de GitHub ni d'anciens caches.
 
-| Élément | Pourquoi c'est bloquant | Où le renseigner |
+## 1. P0 — configuration et conversion
+
+- [ ] Confirmer que `https://adrar.media` est le domaine principal ; définir
+  `NEXT_PUBLIC_SITE_URL` avant le build si le domaine principal est différent.
+  Ne pas ajouter `/fr`, une requête ou un fragment à cette variable.
+- [ ] Vérifier les DNS, le certificat HTTPS et la redirection de l'autre forme
+  du domaine (www / sans www) vers le domaine principal retenu.
+- [ ] Confirmer l'activité des coordonnées déjà présentes dans `config/site.ts` :
+  mobile, fixe, WhatsApp, email commercial, recrutement et localisation.
+- [ ] Renseigner les surcharges publiques dans l'environnement de l'hébergeur
+  **avant le build**. Next fige les `NEXT_PUBLIC_` à la compilation : modifier
+  une variable impose un nouveau build et un nouveau déploiement.
+- [ ] Choisir le mode de réception : automatique avec Resend, ou manuel avec
+  boutons email/WhatsApp. En mode manuel le visiteur doit encore envoyer son
+  message ; le site ne confirme pas une réception automatique.
+- [ ] Pour Resend : vérifier le domaine d'envoi chez Resend, puis renseigner
+  `EMAIL_API_KEY` et `QUOTE_NOTIFICATION_FROM` côté serveur uniquement.
+  Le destinataire est `contact@adrar.media`, fixé dans `lib/leads/email.ts`.
+- [ ] Tester les deux formulaires sur l'hébergement final et constater la
+  réception réelle. Une réponse du fournisseur ne prouve pas l'arrivée en boîte.
+
+Aucun secret n'est à mettre dans Git, dans `.env.example` ou dans une variable
+`NEXT_PUBLIC_`. Le contrôle refuse une configuration partielle de transport.
+Sans transport, il avertit et conserve le repli manuel.
+
+## 2. P1 — contenu et droits
+
+| Élément | Traitement prêt dans le code | Action externe restante |
 |---|---|---|
-| Nom de domaine de production | URL canoniques, sitemap, image de partage, données structurées | `NEXT_PUBLIC_SITE_URL` |
-| E-mail, téléphone, WhatsApp, ville | Pages Contact et pied de page ; sans eux, ces blocs restent masqués | `NEXT_PUBLIC_CONTACT_*`, `NEXT_PUBLIC_PHONE_*`, `NEXT_PUBLIC_WHATSAPP_NUMBER`, `NEXT_PUBLIC_LOCATION` |
-| URLs des réseaux sociaux | Pied de page et champ `sameAs` des données structurées | `NEXT_PUBLIC_*_URL` |
-| Boîte de réception des formulaires | Envoi automatique vers `contact@adrar.media` | `EMAIL_API_KEY`, `QUOTE_NOTIFICATION_FROM` |
+| Réseaux | Instagram/LinkedIn présents ; Facebook/TikTok masqués | Fournir uniquement les comptes officiels supplémentaires |
+| Statistiques générales | Section masquée car tableau vide | Fournir quatre chiffres réels avec leurs sources si souhaité |
+| Résultat Bricodi Pro | 516K+ vues Facebook, phase de lancement | Ne pas extrapoler de ROI, leads ou CA |
+| Médias clients | Masqués et URL fermées | Obtenir les accords ; inscrire une référence non confidentielle par slug dans `config/project-media-approvals.json`, puis reconstruire |
+| Témoignages | Section masquée | Ajouter le texte approuvé dans `data/testimonials.ts`, `approved: true` et une `approvalReference` réelle |
+| Logo | PNG existant conservé | Fournir le SVG officiel complet ; ne pas confondre le symbole auxiliaire `adrar-media-mark.svg` avec ce logo |
 
-Le site **fonctionne sans ces valeurs** : chaque bloc concerné se masque de
-lui-même et le formulaire bascule sur l'envoi manuel. Rien n'est cassé, mais
-le site tourne alors en dessous de ses moyens.
+Les projets textuels existants restent disponibles. Les accords et justificatifs
+complets restent hors du dépôt public : seule une référence interne non sensible
+y est inscrite. Aucun accord n'est supposé ou fabriqué.
 
-Les mentions légales attendent en plus des informations réglementaires
-(immatriculation, siège, directeur de publication, hébergeur). Elles sont
-listées nommément sur la page `/mentions-legales` tant qu'elles manquent.
+Lors du remplacement du logo, mettre à jour tous ses usages, puis exécuter
+`node scripts/generate-brand-assets.mjs` si le symbole source ou les visuels de
+partage changent. Vérifier favicon et partage FR/EN/AR. Les assets de `/public`
+sont revalidés après une heure ; un CDN tiers peut nécessiter sa propre purge.
 
----
+## 3. P2 — intégrations facultatives
 
-## 2. Hébergement recommandé — Vercel
+- Analytics : laisser les trois identifiants vides si aucun compte n'est fourni.
+  Aucune bannière ni script de suivi n'est alors chargé. Si activé : tester
+  l'absence de requêtes avant consentement et après refus, puis le chargement
+  après acceptation. Utiliser les identifiants du compte réel.
+- CRM : laisser `ADRAR_OS_API_URL` et `ADRAR_OS_API_KEY` vides tant qu'Adrar OS
+  n'offre pas d'endpoint Lead compatible. Le CRM ne conditionne pas l'envoi
+  email ; son échec ne doit pas perdre une demande déjà transmise.
+- Search Console : vérifier la propriété du domaine et soumettre le sitemap.
 
-Next.js est développé par Vercel : middleware, rendu par langue, images et
-en-têtes y fonctionnent sans configuration. Aucun fichier de déploiement n'est
-nécessaire dans ce dépôt.
+## 4. Ordre exact de recette
 
-1. Pousser le dépôt sur GitHub.
-2. Sur vercel.com : **Add New → Project**, choisir le dépôt.
-   Framework détecté : *Next.js*. Ne rien changer aux commandes proposées.
-3. **Environment Variables** : recopier les valeurs de `.env.example`
-   renseignées, pour les environnements *Production* **et** *Preview*.
-4. **Deploy**.
-5. **Settings → Domains** : ajouter le domaine, puis créer chez le registrar
-   l'enregistrement DNS indiqué par Vercel. Le certificat HTTPS est émis seul.
+1. Arrêter les contenus et accords disponibles ; conserver le masquage des autres.
+2. Valider domaine, coordonnées et mode de réception.
+3. Configurer l'environnement de build et les secrets serveur chez l'hébergeur.
+4. Installer les dépendances : `npm ci` (Node >= 20 ; CI sur Node 22).
+5. Exécuter `npm run verify` : lint → typage → tests de configuration et de transport simulé →
+   contrôle d'environnement → build. Corriger chaque échec avant de poursuivre.
+6. Exécuter `npm run smoke:production`. Ce script démarre lui-même le build
+   sur `localhost:3310`, vérifie les routes du sitemap et ferme le serveur.
+   `SMOKE_PORT` permet de changer le port. Le scénario standard utilise les
+   coordonnées confirmées et le registre de médias vide du dépôt.
+7. Examiner en navigateur mobile et ordinateur : navigation, formulaires,
+   FR/EN/AR, RTL, clavier, images, erreurs et consentement éventuel.
+8. Déployer sur une préproduction Next.js avec middleware et actions serveur.
+   Un export statique seul n'est pas compatible. Empêcher l'indexation de cette
+   préproduction dans les réglages de l'hébergeur.
+9. Sur cette préproduction, tester les deux formulaires, leur réception ou leur
+   repli manuel et le comportement lors d'une panne du service d'envoi.
+10. Vérifier les URL canoniques par page, `hreflang`, `/sitemap.xml`,
+    `/robots.txt`, les partages et la fermeture de `/fr/styleguide`,
+    `/en/styleguide` et `/ar/styleguide` (404).
+11. Publier le même commit avec les variables de production validées.
+12. Contrôler immédiatement HTTPS, redirections, accueil FR/EN/AR, formulaires,
+    réception et sitemap. Garder le déploiement précédent pour retour arrière.
 
-### Autre hébergeur
+Le workflow `.github/workflows/quality.yml` exécute les contrôles techniques sur
+les PR et les pushes sur `main`. Il ne configure pas l'hébergement et ne remplace
+pas la recette humaine, les accords clients ou le contrôle de réception.
 
-Tout hébergeur Node fonctionne (Netlify, Railway, Render, VPS) :
+## 5. Hébergement
+
+L'identité légale versionnée mentionne Netlify. Conserver l'hébergeur réel dans
+`NEXT_PUBLIC_HOST_NAME` et `NEXT_PUBLIC_HOST_ADDRESS` ; les corriger si le site
+change d'hébergeur. Sur Netlify, utiliser la prise en charge Next.js avec rendu
+serveur, middleware et actions serveur. Sur un serveur Node autonome :
 
 ```bash
 npm ci
-npm run build
-npm run start   # écoute sur le port 3100
+npm run verify
+npm run start
 ```
 
-Node 20 ou plus est requis (`package.json` → `engines`).
-
-Sur un VPS, placer un reverse proxy (nginx, Caddy) devant le port 3100 pour le
-TLS. **Un export statique n'est pas possible** : le site utilise un middleware
-pour résoudre la langue et une action serveur pour le formulaire.
-
----
-
-## 3. Détection du pays
-
-La langue proposée au premier accès vient d'un en-tête de requête posé par
-l'hébergeur : `x-vercel-ip-country` sur Vercel, `cf-ipcountry` derrière
-Cloudflare, et quelques équivalents.
-
-Sans cet en-tête, le site se rabat sur la langue du navigateur, puis sur le
-français. Rien ne casse — la détection est simplement moins précise.
-
----
-
-## 4. Après la mise en ligne
-
-1. `https://VOTRE-DOMAINE/robots.txt` — doit mentionner le sitemap.
-2. `https://VOTRE-DOMAINE/sitemap.xml` — doit lister les trois langues.
-3. Partager une URL sur WhatsApp ou LinkedIn : la vignette de marque doit
-   apparaître.
-4. Envoyer une demande de devis de test et vérifier sa réception.
-5. Google Search Console : ajouter la propriété, déposer le sitemap.
-6. Tester `/{langue}/styleguide` : doit renvoyer 404 en production.
-
----
-
-## 5. Régénérer les visuels de marque
-
-Icônes, favicon et images de partage sont produits par un script, à partir du
-seul fichier `public/brand/adrar-media-mark.svg` :
-
-```bash
-node scripts/generate-brand-assets.mjs
-```
-
-À relancer si la marque, l'accroche de partage ou les couleurs changent. Les
-fichiers produits sont versionnés : le build n'en dépend pas.
-
----
-
-## 6. Envoi des demandes de devis
-
-L'envoi automatique passe par [Resend](https://resend.com), appelé en HTTP
-direct — aucune dépendance n'est ajoutée au projet.
-
-1. Créer un compte, vérifier le domaine d'envoi (enregistrements DNS fournis
-   par Resend).
-2. Créer une clé d'API → `EMAIL_API_KEY`.
-3. Définir `QUOTE_NOTIFICATION_FROM` avec un expéditeur du domaine vérifié,
-   par exemple `Site Adrar Media <no-reply@adrar.media>`.
-
-La destination `contact@adrar.media` est fixée côté serveur. Tant que la clé et
-l'expéditeur ne sont pas tous les deux présents, le formulaire ne
-prétend pas envoyer : il compose le message et propose au visiteur de le
-transmettre par e-mail ou WhatsApp.
-
-Pour un autre prestataire (Postmark, Brevo, SendGrid), seul
-`lib/leads/email.ts` change — une requête HTTP. Ni le formulaire ni la
-validation ne sont concernés.
-
----
-
-## 7. Mesure d'audience
-
-Renseigner `NEXT_PUBLIC_GA4_MEASUREMENT_ID`, `NEXT_PUBLIC_META_PIXEL_ID` ou
-`NEXT_PUBLIC_TIKTOK_PIXEL_ID` active la bannière de consentement. Aucun script
-n'est chargé avant un accord explicite ; l'absence de réponse vaut refus.
-
-Sans identifiant, aucune bannière ne s'affiche : il n'y aurait rien à
-consentir.
-
----
-
-## 8. Contenu à publier après coup
-
-Ces éléments s'ajoutent sans toucher au code — le site les affiche dès qu'ils
-existent, et les masque tant qu'ils n'existent pas.
-
-| Contenu | Fichier | Effet |
-|---|---|---|
-| Témoignages clients validés | `data/testimonials.ts` | Fait apparaître la section Témoignages sur l'accueil |
-| Membres de l'équipe | `data/team.ts` | Remplace le texte d'attente de la page À propos par la grille |
-| Résultats chiffrés sourcés | `data/statistics.ts` | Alimente la section Résultats |
-| Nouveaux projets | `data/projects.ts` | Portfolio, page projet, sitemap |
-
-Règle inchangée : **aucun chiffre sans source, aucun témoignage sans accord
-écrit du client.**
+Le serveur écoute sur le port 3100. Sur VPS, placer un reverse proxy HTTPS en
+amont. Ne pas mélanger les fichiers ou secrets avec Adrar OS ou un autre projet.

@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { isLocale, localeCookie } from "@/config/i18n";
+import { canServeProjectMedia } from "@/config/publication";
 
 /** Indice de langue recommandée, lu par l'interface pour proposer un changement. */
 export const suggestionCookie = "adrar_locale_hint";
@@ -24,6 +25,23 @@ import { resolveLocale } from "@/lib/i18n/resolve-locale";
  */
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
+  // Ferme aussi l'optimiseur : masquer une galerie seule laisserait ses URL accessibles.
+  if (pathname.startsWith("/images/projects/") || pathname === "/_next/image") {
+    const source = pathname === "/_next/image"
+      ? request.nextUrl.searchParams.get("url") ?? ""
+      : pathname;
+    let mediaPath: string;
+    try {
+      mediaPath = new URL(source, request.nextUrl.origin).pathname;
+      mediaPath = decodeURIComponent(mediaPath);
+    } catch {
+      return new NextResponse(null, { status: 400 });
+    }
+    if (!canServeProjectMedia(mediaPath)) {
+      return new NextResponse(null, { status: 404, headers: { "Cache-Control": "no-store" } });
+    }
+    return NextResponse.next();
+  }
   const segments = pathname.split("/").filter(Boolean);
   const first = segments[0];
 
@@ -95,5 +113,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Exclut les fichiers statiques, l'API et les ressources internes de Next.
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\.[\\w]+$).*)"],
+  matcher: ["/images/projects/:path*", "/_next/image", "/((?!api|_next/static|_next/image|favicon.ico|.*\\.[\\w]+$).*)"],
 };
